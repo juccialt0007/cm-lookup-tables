@@ -161,7 +161,7 @@ class GetEternal extends Component{
         this.setState({visibilityVeteran: "", visibilityNormal: "d-none", visibilityFleet: "d-none", inputVisVet: "col-7 row", inputVisFleet: "d-none", sheetType:"Veteran/Input Sheet"})
     }
     btnFleets = () => {
-        this.setState({visibilityVeteran: "d-none", visibilityNormal: "d-none", visibilityFleet: "", inputVisVet: "d-none", inputVisFleet: "col-7 row", sheetType:"Fleet Sheet"})
+        this.setState({visibilityVeteran: "d-none", visibilityNormal: "d-none", visibilityFleet: "", inputVisVet: "d-none", inputVisFleet: "col-7 row", sheetType:"Fleet Sheet: 5% Fuel Fee Factored In"})
     }
 
 
@@ -503,7 +503,7 @@ class GetEternal extends Component{
                                     <input type="text" class="input-group-text" onChange={this.setWorkers}></input>
                                 </div>
 
-                                <div class="col-4 mt-2"><p class="text-right">Hover on the fields to show tool-tip</p></div>
+                                <div class="col-4 mt-2"><p class="text-right">Hover on the fields to show tool-tip.</p></div>
 
                                 <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
                                     <p class="text-left">Fleet Rank:</p>
@@ -518,7 +518,7 @@ class GetEternal extends Component{
                                     <input type="text" class="input-group-text" onChange={this.setFleetLevel}></input>
                                 </div>
 
-                                <div class="col-4 mt-2"><p class="text-right">Input Fleet Rank to show Success Rates</p></div>
+                                <div class="col-4 mt-2"><p class="text-right">Input Fleet Rank to show Success Rates.</p></div>
 
                             </div>
 
