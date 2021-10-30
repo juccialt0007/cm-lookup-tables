@@ -183,6 +183,10 @@ class GetEternal extends Component{
         return parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7)).toFixed(2)
     }
 
+    getFuel(i){
+        return parseFloat(this.getMineUSD(i) * 0.05).toFixed(2)
+    }
+
     getFleetSuccessChance(i){
         if (this.state.fleet_rank === "D" || this.state.fleet_rank === "d" ) {
             return this.getFleetDSR(i)
@@ -211,14 +215,14 @@ class GetEternal extends Component{
     }
 
     getFleetDSR(i){
-        if (this.state.mp > 5599) {
-            return 91
-        } else if (this.state.mp > 1499 && this.state.mp < 5600) {
+        if (this.state.mp > 5449) {
+            return 88
+        } else if (this.state.mp > 1499 && this.state.mp < 5450) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.d_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91){
-                return 91
+            if (answer > 88){
+                return 88
             } else if (answer < 39 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i] ){
                 return 'Not Enough MP'
             } else {
@@ -229,14 +233,14 @@ class GetEternal extends Component{
         }
     }
     getFleetDSRM(i){
-        if (this.state.mp > 5599) {
-            return '91%'
-        } else if (this.state.mp > 1499 && this.state.mp < 5600) {
+        if (this.state.mp > 5449) {
+            return '88%'
+        } else if (this.state.mp > 1499 && this.state.mp < 5450) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.d_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91){
-                return '91%'
+            if (answer > 88){
+                return '88%'
             } else if (answer < 39 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i] ){
                 return 'Not Enough MP'
             } else {
@@ -248,14 +252,14 @@ class GetEternal extends Component{
     }
 
     getFleetCSR(i){
-        if (this.state.mp > 5549) {
-            return 91
-        } else if (this.state.mp > 1499 && this.state.mp < 5550) {
+        if (this.state.mp > 5399) {
+            return 88
+        } else if (this.state.mp > 1499 && this.state.mp < 5400) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.c_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91){
-                return 91
+            if (answer > 88){
+                return 88
             } else if ( answer < 40 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i] ){
                 return 'Not Enough MP'
             } else {
@@ -266,14 +270,14 @@ class GetEternal extends Component{
         }
     }
     getFleetCSRM(i){
-        if (this.state.mp > 5549) {
-            return 91+'%'
-        } else if (this.state.mp > 1499 && this.state.mp < 5550) {
+        if (this.state.mp > 5399) {
+            return 88+'%'
+        } else if (this.state.mp > 1499 && this.state.mp < 5400) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.c_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91){
-                return 91+'%'
+            if (answer > 88){
+                return 88+'%'
             } else if ( answer < 40 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i] ){
                 return 'Not Enough MP'
             } else {
@@ -285,14 +289,21 @@ class GetEternal extends Component{
     }
 
     getFleetBSR(i){
-        if (this.state.mp > 5299) {
+        if (this.state.mp > 1499 && i === 0){
             return 91
-        } else if (this.state.mp > 1499 && this.state.mp < 5300) {
+        } else if (this.state.mp > 1499 && i === 1){
+            return 89
+        }
+        else if (this.state.mp > 5149) {
+            return 88
+        } 
+        
+        else if (this.state.mp > 1499 && this.state.mp < 5150) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.b_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91){
-                return 91
+            if (answer > 88){
+                return 88
             } else if ( answer < 45 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
             } else {
@@ -303,14 +314,20 @@ class GetEternal extends Component{
         }
     }
     getFleetBSRM(i){
-        if (this.state.mp > 5299) {
+        if (this.state.mp > 1499 && i === 0){
             return 91+'%'
-        } else if (this.state.mp > 1499 && this.state.mp < 5300) {
+        } else if (this.state.mp > 1499 && i === 1){
+            return 89+'%'
+        }
+        else if (this.state.mp > 5149) {
+            return 88+'%'
+        } 
+        else if (this.state.mp > 1499 && this.state.mp < 5150) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.b_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91){
-                return 91+'%'
+            if (answer > 88){
+                return 88+'%'
             } else if ( answer < 45 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
             } else {
@@ -322,20 +339,27 @@ class GetEternal extends Component{
     }
 
     getFleetASR(i){
-        if (this.state.mp > 5049 && i ===0) {
+        if (this.state.mp > 1499 && i === 0) {
             return 93
-        } else if (this.state.mp > 5049 && i !==0){
+        } else if (this.state.mp > 1499 && i === 1){
             return 91
+        } else if (this.state.mp > 1499 && i === 2){
+            return 89
+        } else if (this.state.mp > 4899){
+            return 88
         }
-        
-        else if (this.state.mp > 1499 && this.state.mp < 5050) {
+        else if (this.state.mp > 1499 && this.state.mp < 4900) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.a_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91 && i === 0){
+            if (answer > 88 && i === 0){
                 return 93
-            } else if (answer > 91 && i !== 0){
+            } else if (answer > 88 && i === 1){
                 return 91
+            } else if (answer > 88 && i === 2){
+                return 89
+            } else if (answer > 88 && i !== 2){
+                return 88
             } else if ( answer < 50 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
             } else {
@@ -345,21 +369,29 @@ class GetEternal extends Component{
             return parseFloat(this.state.a_success_chance[i] * 100).toFixed(0)
         }
     }
+
     getFleetASRM(i){
-        if (this.state.mp > 5049 && i ===0) {
+        if (this.state.mp > 1499 && i === 0) {
             return 93+'%'
-        } else if (this.state.mp > 5049 && i !==0){
+        } else if (this.state.mp > 1499 && i === 1){
             return 91+'%'
+        } else if (this.state.mp > 1499 && i === 2){
+            return 89+'%'
+        } else if (this.state.mp > 4899){
+            return 88+'%'
         }
-        
-        else if (this.state.mp > 1499 && this.state.mp < 5050) {
+        else if (this.state.mp > 1499 && this.state.mp < 4900) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.a_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91 && i === 0){
+            if (answer > 88 && i === 0){
                 return 93+'%'
-            } else if (answer > 91 && i !== 0){
+            } else if (answer > 88 && i === 1){
                 return 91+'%'
+            } else if (answer > 88 && i === 2){
+                return 89+'%'
+            } else if (answer > 88 && i !== 2){
+                return 88+'%'
             } else if ( answer < 50 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
             } else {
@@ -372,15 +404,15 @@ class GetEternal extends Component{
 
 
     getFleetSSR(i){
-        if (this.state.mp > 4899 && i === 0){
+        if (this.state.mp > 1499 && i === 0){
             return 97
-        } else if (this.state.mp > 4899 && i === 1){
+        } else if (this.state.mp > 1499 && i === 1){
             return 95
-        } else if (this.state.mp > 4899 && i === 2){
+        } else if (this.state.mp > 1499 && i === 2){
             return 93
-        } else if (this.state.mp > 4899 && i === 3){
+        } else if (this.state.mp > 1499 && i === 3){
             return 91
-        } else if (this.state.mp > 4899 && i !== 3){
+        } else if (this.state.mp > 4899){
             return 91
         }
         else if (this.state.mp > 1499 && this.state.mp < 4900) {
@@ -407,15 +439,15 @@ class GetEternal extends Component{
         }
     }
     getFleetSSRM(i){
-        if (this.state.mp > 4899 && i === 0){
+        if (this.state.mp > 1499 && i === 0){
             return 97+'%'
-        } else if (this.state.mp > 4899 && i === 1){
+        } else if (this.state.mp > 1499 && i === 1){
             return 95+'%'
-        } else if (this.state.mp > 4899 && i === 2){
+        } else if (this.state.mp > 1499 && i === 2){
             return 93+'%'
-        } else if (this.state.mp > 4899 && i === 3){
+        } else if (this.state.mp > 1499 && i === 3){
             return 91+'%'
-        } else if (this.state.mp > 4899 && i !== 3){
+        } else if (this.state.mp > 4899){
             return 91+'%'
         }
         else if (this.state.mp > 1499 && this.state.mp < 4900) {
@@ -617,6 +649,7 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">Oracle Reward Multiplier</th>
                                     <th class="border border-2 border-dark">Mine Reward (ETL)</th>
                                     <th class="border border-2 border-dark">Mine Reward (USD)</th>
+                                    <th class="border border-2 border-dark">Fuel Cost (USD)</th>
                                     <th class="border border-2 border-dark">Success Rate (SR)</th>
                                     <th class="border border-2 border-dark">7 Day Reward (USD) vs SR</th>
                                     <th class="border border-2 border-dark">Est. Workers</th>
@@ -635,6 +668,7 @@ class GetEternal extends Component{
                                                 <td class="border border-secondary gray">{parseFloat(this.state.oracle_adjustment[i]).toFixed(3)}</td>
                                                 <td class="border border-secondary text-primary">{this.getFleetMineETL(i)} ETL</td>
                                                 <td class="border border-secondary">${this.getFleetMineUSD(i)}</td>
+                                                <td class="border border-secondary">${this.getFuel(i)}</td>
                                                 <td class="border border-secondary text-secondary"><b>{this.getFleetSuccessChanceM(i)}</b></td>
                                                 <td class="border border-secondary">${this.getFleetSRvsUSD(i)}</td>
                                                 <td class="border border-secondary">{this.state.workers}</td>
