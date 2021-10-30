@@ -77,12 +77,28 @@ td  {
   font-weight: 700;
 }
 
+.text-right{
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: #512979;
+}
+
 .text-center{
   text-align: center;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
 }
 
+.btn-custom{
+  background-color: #3f9ad6 !important;
+  color: white !important;
+  width: 100%;
+}
+
+.input-group-text{
+  width: 80% !important;
+}
 
 
   
