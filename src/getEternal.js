@@ -168,11 +168,19 @@ class GetEternal extends Component{
     //(Who called in the) Fleet
 
     getFleetMineETL(i){
-        return parseFloat( ((this.getMineUSD(i)/this.state.eternalPrice) * 0.95) * this.state.rank_reward[this.state.fleet_level] ).toFixed(3)
+        return parseFloat((this.getFleetMineUSD(i)/this.state.eternalPrice)).toFixed(3)
     }
 
     getFleetMineUSD(i){
-        return parseFloat( ((5.0 * this.state.oracle_adjustment[i]) * 0.95 ) * this.state.rank_reward[this.state.fleet_level] ).toFixed(2)
+        return parseFloat( (this.getMineUSD(i) * this.state.rank_reward[this.state.fleet_level] ) - (0.05 * this.getMineUSD(i)) ).toFixed(2)
+    }
+
+    getFleetSRvsUSD(i){
+        return parseFloat(this.getFleetMineUSD(i)*7 * this.getFleetSuccessChance(i) / 100).toFixed(2)
+    }
+
+    getFleetNet(i){
+        return parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7)).toFixed(2)
     }
 
     getFleetSuccessChance(i){
@@ -434,13 +442,7 @@ class GetEternal extends Component{
         }
     }
 
-    getFleetSRvsUSD(i){
-        return parseFloat(this.getFleetMineUSD(i)*7 * this.getFleetSuccessChance(i) / 100).toFixed(2)
-    }
-
-    getFleetNet(i){
-        return parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7)).toFixed(2)
-    }
+    
 
 
 
