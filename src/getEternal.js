@@ -91,6 +91,7 @@ class GetEternal extends Component{
     }
     btnFleets = () => {
         this.setState({visibilityNormal: "d-none", visibilityFleet: "", inputVisFleet: "col-7 row", sheetType:"Fleet Sheet: 5% Fuel Fee Factored In"})
+        alert("Disclaimer: \r\nThis is a Community Project Run solely by me (Jucci#0007)\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
     }
 
     btnFleetInfo = () => {
@@ -620,7 +621,7 @@ class GetEternal extends Component{
                                         <br/> 
                                         <br/> 
                                         <br/> 
-                                        <b>Fleet Ranks determine Base Success Rate</b>. Refer to image: <br/> 
+                                        <b>Fleet Ranks determine Base Success Rate</b>. Previous Success Rates are highlighted in Green, Refer to image: <br/> 
                                         <b>This affects Veterans Guild. Check Fleets Calculator and figure out your Success Rates based on Fleet Rank and MP.</b>
                                     </p>
                                     </div>
