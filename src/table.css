@@ -100,5 +100,19 @@ td  {
   width: 80% !important;
 }
 
+.text-size-14{
+  font-size: 12px !important;
+}
 
-  
+.stretch{
+  width: 100%;
+  border-radius: 0.25rem;
+  border-color: #3f9ad6 !important;
+}
+
+.text-right1{
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  color: #512979;
+}
