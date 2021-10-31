@@ -29,7 +29,7 @@ class GetEternal extends Component{
             a_success_chance: [0.93,0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.77,0.75,0.71,0.69,0.67,0.65,0.63,0.61,0.59,0.57,0.55,0.53,0.52,0.52,0.52,0.52,0.52,0.50,0.50,0.50,0.50,0.50],
             s_success_chance: [0.97,0.95,0.93,0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.74,0.72,0.70,0.68,0.66,0.64,0.62,0.60,0.58,0.56,0.55,0.55,0.55,0.55,0.55,0.53,0.53,0.53,0.53,0.53],
             fleet_rank: "",
-            fleet_level: 0,
+            fleet_level: 11,
             rank_reward: [1,1.01,1.02,1.03,1.04,1.05,1.1,1.12,1.14,1.16,1.20,1.205,1.21,1.215,1.22,1.225,1.25,1.255,1.26,1.265,1.27,1.3,1.305,1.31,1.315,1.35],
 
             visInfo: "",
@@ -90,8 +90,8 @@ class GetEternal extends Component{
         this.setState({visibilityNormal: "mb-4", visibilityFleet: "d-none", inputVisFleet: "d-none", sheetType:"Info"})
     }
     btnFleets = () => {
-        this.setState({visibilityNormal: "d-none", visibilityFleet: "", inputVisFleet: "col-7 row", sheetType:"Fleet Sheet: 5% Fuel Fee Factored In"})
-        alert("Disclaimer: \r\nThis is a Community Project Run solely by me (Jucci#0007)\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
+        this.setState({visibilityNormal: "d-none", visibilityFleet: "", inputVisFleet: "col-7 row", sheetType:"Fleet Sheet"})
+        alert("Disclaimer: \r\nThis is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
     }
 
     btnFleetInfo = () => {
@@ -112,7 +112,7 @@ class GetEternal extends Component{
     }
 
     getFleetMineUSD(i){
-        return parseFloat( (this.getMineUSD(i) * this.state.rank_reward[this.state.fleet_level] ) - (0.05 * this.getMineUSD(i)) ).toFixed(2)
+        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level] / 1.205))).toFixed(2)
     }
 
     getFleetSRvsUSD(i){
@@ -124,9 +124,11 @@ class GetEternal extends Component{
     }
 
     getFleetNet(i){
-        return parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7)).toFixed(2)
+        return parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7) ).toFixed(2)
     }
-
+    getFleetNetFuel(i){
+        return parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7) - (this.getFuel(i)*7) ).toFixed(2)
+    }
     getFuel(i){
         return parseFloat(this.getMineUSD(i) * 0.05).toFixed(2)
     }
@@ -470,10 +472,10 @@ class GetEternal extends Component{
                                 <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
                                     <input type="text" class="input-group-text" onChange={this.setFleetRank}></input>
                                 </div>
-                                <div title="Fleet Levels are 0 to 25, they increase rewards earned" class="col-2 pt-2">
+                                <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-2 pt-2">
                                     <p class="text-left">Fleet Level:</p>
                                 </div>
-                                <div title="Fleet Levels are 0 to 25, they increase rewards earned" class="col-2">
+                                <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-2">
                                     <input type="text" class="input-group-text" onChange={this.setFleetLevel}></input>
                                 </div>
 
@@ -652,7 +654,8 @@ class GetEternal extends Component{
                                         In order to progress in an optimal way, you will have to climb between Planets, as you go up each Tier of experience (levels 6, 11, 16, 21 and 25)
                                         <br/> the amount of experience received in planets lower than your Tier decreases.<br/>
                                         <br/>
-
+                                        Level 11 is roughly equivalent to current rewards.
+                                        <br/>
                                         <b>Win or Lose, your Fleet still gains Experience</b>
                                         <br/>
                                         Experience Earned is around 5 / Expedition
@@ -682,7 +685,7 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">#</th>
                                     <th class="border border-2 border-dark">Planet</th>
                                     <th class="border border-2 border-dark">MP</th>
-                                    <th class="border border-2 border-dark">Oracle Reward Multiplier</th>
+                                    <th class="border border-2 border-dark">Oracle</th>
                                     <th class="border border-2 border-dark">Mine Reward (ETL)</th>
                                     <th class="border border-2 border-dark">Mine Reward (USD)</th>
                                     <th class="border border-2 border-dark">Fuel Cost (USD)</th>
@@ -691,6 +694,7 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">Est. Workers</th>
                                     <th class="border border-2 border-dark">Worker Contract Upkeep / 7d </th>
                                     <th class="border border-2 border-dark">Net Profit / 7d</th>
+                                    <th class="border border-2 border-dark">Net Profit / 7d - Fuel</th>
                                 </tr>
                                 {/* Fleet */}
                                 {(() => {
@@ -710,6 +714,7 @@ class GetEternal extends Component{
                                                 <td class="border border-secondary">{this.state.workers}</td>
                                                 <td class="border border-secondary text-primary">{this.getFleetContractCost()} ETL</td>
                                                 <td class="border border-secondary">${this.getFleetNet(i)}</td>
+                                                <td class="border border-secondary">${this.getFleetNetFuel(i)}</td>
                                             </tr>
                                         )
                                     }
