@@ -29,13 +29,34 @@ td  {
   font-family: 'Nunito', sans-serif;
 }
 
+.getEternalHeaderM{
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+}
+
+
 .credits{
   text-align: right;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
 }
 
+.credits1{
+  text-justify: auto;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+}
+
 .disclaimer{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.disclaimer1{
+  text-justify: auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -77,11 +98,25 @@ td  {
   font-weight: 700;
 }
 
+.text-left-M{
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
+
 .text-right{
   text-align: left;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   color: #512979;
+}
+
+.text-small{
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  color: #0dcaf0;
+  font-size: 10px
 }
 
 .text-center{
@@ -108,6 +143,12 @@ td  {
   width: 100%;
   border-radius: 0.25rem;
   border-color: #3f9ad6 !important;
+  color: #3f9ad6 !important;
+}
+
+.center-align{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .text-right1{
@@ -115,4 +156,61 @@ td  {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
   color: #512979;
+}
+
+.width90{
+  
+  width: 90%;
+}
+
+@media screen and (max-width:767px) {
+  .mobile-margin {
+    margin-top: 4px;
+    margin-bottom: 2px;
+    width:100%;
+  }
+  .input-group-text{
+    width: 100% !important;
+  }
+  table {
+    font-family: 'Nunito', sans-serif;
+    width: 100%;
+    height: 15%;
+  }
+
+  th {
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  tr {
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+  }
+
+  td  {
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    padding: 2px;
+    font-size: 12px;
+  }
+  }
+
+.overflow{
+  overflow-x:auto;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

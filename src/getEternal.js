@@ -20,7 +20,6 @@ class GetEternal extends Component{
             success_chance: [0.88,0.86,0.84,0.82,0.80,0.78,0.76,0.74,0.72,0.70,0.68,0.66,0.64,0.62,0.60,0.58,0.56,0.54,0.52,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50],
             visibilityNormal: "",
             visibilityFleet:"d-none",
-            sheetType: "Info",
             inputVisFleet: "d-none",
 
             d_success_chance: [0.85,0.83,0.81,0.79,0.77,0.75,0.73,0.71,0.69,0.67,0.6,0.58,0.56,0.54,0.52,0.50,0.48,0.46,0.44,0.42,0.41,0.41,0.41,0.41,0.41,0.39,0.39,0.39,0.39,0.39],
@@ -34,7 +33,12 @@ class GetEternal extends Component{
 
             visInfo: "",
             visFleetRank: "d-none",
-            visFleetLevel: "d-none"
+            visFleetLevel: "d-none",
+            btnHighlightInfo: "btn btn-custom mobile-margin",
+            btnHighlightFleet: "btn stretch mobile-margin",
+            btnHighlightCMInfo: "btn btn-custom text-size-14",
+            btnHighlightFleetRank: "btn stretch text-size-14",
+            btnHighlightFleetLevel: "btn stretch text-size-14",
 
         }
         
@@ -49,7 +53,6 @@ class GetEternal extends Component{
         const response = await fetch(url);
         const data = await response.json();
         this.setState({eternalPrice: data["cryptomines-eternal"]["usd"]})
-        console.log(data);
     }
 
     async componentDidMount() {
@@ -87,21 +90,21 @@ class GetEternal extends Component{
         this.setState({fleet_level: event.target.value})
     }
     btnVisNrm = () => {
-        this.setState({visibilityNormal: "mb-4", visibilityFleet: "d-none", inputVisFleet: "d-none", sheetType:"Info"})
+        this.setState({visibilityNormal: "mb-4", visibilityFleet: "d-none", inputVisFleet: "d-none", btnHighlightInfo: "btn btn-custom mobile-margin", btnHighlightFleet: "btn stretch mobile-margin"})
     }
     btnFleets = () => {
-        this.setState({visibilityNormal: "d-none", visibilityFleet: "", inputVisFleet: "col-7 row", sheetType:"Fleet Sheet"})
+        this.setState({visibilityNormal: "d-none", visibilityFleet: "overflow", inputVisFleet: "row mt-2", btnHighlightInfo: "btn stretch mobile-margin", btnHighlightFleet: "btn btn-custom mobile-margin"})
         alert("Disclaimer: \r\nThis is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
     }
 
     btnFleetInfo = () => {
-        this.setState({visInfo: "mb-4", visFleetLevel: "d-none", visFleetRank: "d-none"})
+        this.setState({visInfo: "mb-4", visFleetLevel: "d-none", visFleetRank: "d-none", btnHighlightCMInfo: "btn btn-custom text-size-14", btnHighlightFleetRank:"btn stretch text-size-14", btnHighlightFleetLevel:"btn stretch text-size-14"})
     }
     btnFleetRanks = () => {
-        this.setState({visInfo: "d-none", visFleetLevel: "d-none", visFleetRank: "mb-4"})
+        this.setState({visInfo: "d-none", visFleetLevel: "d-none", visFleetRank: "mb-4", btnHighlightCMInfo: "btn stretch text-size-14", btnHighlightFleetRank:"btn btn-custom text-size-14", btnHighlightFleetLevel:"btn stretch text-size-14"})
     }
     btnFleetLevels = () => {
-        this.setState({visInfo: "d-none", visFleetLevel: "mb-4", visFleetRank: "d-none"})
+        this.setState({visInfo: "d-none", visFleetLevel: "mb-4", visFleetRank: "d-none", btnHighlightCMInfo: "btn stretch text-size-14", btnHighlightFleetRank:"btn stretch text-size-14", btnHighlightFleetLevel:"btn btn-custom text-size-14"})
     }
 
 
@@ -130,7 +133,7 @@ class GetEternal extends Component{
         return parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7) - (this.getFuel(i)*7) ).toFixed(2)
     }
     getFuel(i){
-        return parseFloat(this.getMineUSD(i) * 0.05).toFixed(2)
+        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level] / 1.205)) * 0.05).toFixed(2)
     }
 
     getFleetSuccessChance(i){
@@ -348,7 +351,6 @@ class GetEternal extends Component{
         }
     }
 
-
     getFleetSSR(i){
         if (this.state.mp > 1499 && i === 0){
             return 97
@@ -420,89 +422,177 @@ class GetEternal extends Component{
         }
     }
 
-    
-
-
-
     render(){
         return(
-            <div class="container-fixed mx-5">
-                <div class="container-fluid mx-2">
+            <div class="container-fixed px-3">
+                <div class="container-fluid px-1">
                     <div class="container-fluid">
-                        <div class="row align-items-start border border-2 border-dark"> 
-                            <p class="col-4 getEternalHeader mt-3"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{this.state.eternalPrice}</span></p>
-                            <p class="col-4 getEternalHeader mt-3"> <b>Contract (7 Days) / Worker</b> -{'>'} <span class="text-primary">{parseFloat(7/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
-                            <p class="col-4 getEternalHeader mt-3"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
+
+                        <div class="d-none d-lg-block px-0 mx-0">
+                            <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
+                                <p class="col-4 getEternalHeader mt-3"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{this.state.eternalPrice}</span></p>
+                                <p class="col-4 getEternalHeader mt-3"> <b>Contract (7 Days) / Worker</b> -{'>'} <span class="text-primary">{parseFloat(7/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
+                                <p class="col-4 getEternalHeader mt-3"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
+                            </div>
                         </div>
+
+                        
+
+                        <div class="d-xs-block d-sm-none px-0 mx-0">
+                            <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
+                                <p class="col-4 getEternalHeaderM mt-3"> <b>USD/ETL</b>:<br/>  <span class="text-primary">{this.state.eternalPrice}</span></p>
+                                <p class="col-4 getEternalHeaderM mt-3"> <b>Contract 7d: </b><br/> <span class="text-primary">{parseFloat(7/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
+                                <p class="col-4 getEternalHeaderM mt-3"> <b>Minting</b>: <br/><span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
+                            </div>
+                        </div>
+
+
+
                     </div>
 
                     <div class="contrainer-fluid">
                         <div class="my-3 row">
-                            <div class="col-5 row">
-                                <div class="col-2">
-                                    <button type="button" class="btn btn-custom" onClick={this.btnVisNrm}>Info</button>
+                            <div class="row d-none d-lg-block px-0 mx-0">
+                                <div class="col-5 row">
+                                    <div class="col-2">
+                                        <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Fleets</button>
+                                    </div>
                                 </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn btn-custom" onClick={this.btnFleets}>Fleets</button>
+                                
+                                <div class="row px-0 mx-0">
+                                <div class="col-2"></div>
+                                <div class={this.state.inputVisFleet+" col-8"}>
+
+                                    <div title="MP affects Success Rate (SR)" class="col-2 pt-2">
+                                        <p class="text-left">MP:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR)" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">Workers:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4 mt-2"><p class="text-right">Hover on the fields to show tool-tip.</p></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">Fleet Rank:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                        <input type="text" class="input-group-text" onChange={this.setFleetRank}></input>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-2 pt-2">
+                                        <p class="text-left">Fleet Level:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setFleetLevel}></input>
+                                    </div>
+
+                                    <div class="col-4 mt-2"><p class="text-right">Input Fleet Rank to show Success Rates.</p></div>
+
                                 </div>
-                                <div class="col-6">
-                                    <p class="text-center mt-2">{this.state.sheetType}</p>
+                                <div class="col-2"></div>
                                 </div>
+                                
+                                
+
+
                             </div>
 
-                            <div class={this.state.inputVisFleet}>
-                                <div title="MP affects Success Rate (SR)" class="col-2 pt-2">
-                                    <p class="text-left">MP:</p>
-                                </div>
-                                <div title="MP affects Success Rate (SR)" class="col-2">
-                                    <input type="text" class="input-group-text" onChange={this.setMP}></input>
-                                </div>
-                                <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
-                                    <p class="text-left">Workers:</p>
-                                </div>
-                                <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
-                                    <input type="text" class="input-group-text" onChange={this.setWorkers}></input>
+
+
+
+                            <div class="d-xs-block d-sm-none px-0 mx-0">
+                                <div class="px-0 mx-0 row">
+                                    <div class="col-6">
+                                        <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Fleets</button>
+                                    </div>
                                 </div>
 
-                                <div class="col-4 mt-2"><p class="text-right">Hover on the fields to show tool-tip.</p></div>
+                                <div class={this.state.inputVisFleet+" col-12 pt-4 px-0 mx-0"}>
 
-                                <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
-                                    <p class="text-left">Fleet Rank:</p>
-                                </div>
-                                <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
-                                    <input type="text" class="input-group-text" onChange={this.setFleetRank}></input>
-                                </div>
-                                <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-2 pt-2">
-                                    <p class="text-left">Fleet Level:</p>
-                                </div>
-                                <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-2">
-                                    <input type="text" class="input-group-text" onChange={this.setFleetLevel}></input>
+                                    <div title="MP affects Success Rate (SR)" class="col-4 pt-2">
+                                        <p class="text-left-M">MP:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR)" class="col-8">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div class="col-12 my-1"><p class="text-small">MP affects Success Rate (SR)</p></div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-4 pt-2">
+                                        <p class="text-left-M">Workers:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-8">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+                                    <div class="col-12 my-1"><p class="text-small">Workers affect Contract Upkeep and Net Profit</p></div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-4 pt-2">
+                                        <p class="text-left-M">Fleet Rank:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-8">
+                                        <input type="text" class="input-group-text" onChange={this.setFleetRank}></input>
+                                    </div>
+                                    <div class="col-12 my-1"><p class="text-small">Fleet Ranks are: D, C, B, A, and S</p></div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-4 pt-2">
+                                        <p class="text-left-M">Fleet Level:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-8">
+                                        <input type="number" class="input-group-text" onChange={this.setFleetLevel}></input>
+                                    </div>
+                                    <div class="col-12 my-1"><p class="text-small">Fleet Levels are 0 to 25, they increase rewards earned. Default is 11.</p></div>
+                                    
+
                                 </div>
 
-                                <div class="col-4 mt-2"><p class="text-right">Input Fleet Rank to show Success Rates.</p></div>
+
+
+
 
                             </div>
+
+                            
 
 
                         </div>
                     </div>
-
+                        
                         <div id="normal" class={this.state.visibilityNormal}>
                          
-
-                            <div class="col-5 row my-4">
-
-                                <div class="col-2">
-                                    <button type="button" class="btn stretch text-size-14" onClick={this.btnFleetInfo}>CM Info</button>
-                                </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn stretch text-size-14" onClick={this.btnFleetRanks}>Fleet Ranks</button>
-                                </div>
-                                <div class="col-2">
-                                    <button type="button" class="btn stretch text-size-14" onClick={this.btnFleetLevels}>Fleet Levels</button>
+                            <div class="d-xs-block d-sm-none px-0 mx-0">
+                                <div class="row my-4">
+                                    <div class="col-4">
+                                        <button type="button" class={this.state.btnHighlightCMInfo} onClick={this.btnFleetInfo}>CM Info</button>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="button" class={this.state.btnHighlightFleetRank} onClick={this.btnFleetRanks}>Fleet Ranks</button>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="button" class={this.state.btnHighlightFleetLevel} onClick={this.btnFleetLevels}>Fleet Levels</button>
+                                    </div>
                                 </div>
                             </div>
 
+                            <div class="d-none d-lg-block px-0 mx-0">
+                                <div class="col-5 row my-4">
+                                    <div class="col-2">
+                                        <button type="button" class={this.state.btnHighlightCMInfo} onClick={this.btnFleetInfo}>CM Info</button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class={this.state.btnHighlightFleetRank} onClick={this.btnFleetRanks}>Fleet Ranks</button>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class={this.state.btnHighlightFleetLevel} onClick={this.btnFleetLevels}>Fleet Levels</button>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="my-6">
 
@@ -554,7 +644,8 @@ class GetEternal extends Component{
 
                                 <b>From AMA:</b><br/>
                                 — What do you mean you are going to give me 11 levels and a lot of money?
-                                <br/>&emsp;&emsp;Players who create their fleet during the event will be given Level 11 for each fleet created (FLEET LEVEL), allowing players to keep their rewards similar to how they were before the update, the more you level up your fleet, the better rewards you will get.
+                                <br/>&emsp;&emsp;Players who create their fleet during the event will be given Level 11 for each fleet created (FLEET LEVEL), allowing players to keep their rewards similar to how they were before the update,
+                                <br/> the more you level up your fleet, the better rewards you will get.
                                 <br/>
                                 — What is a fleet?
                                 <br/>&emsp;&emsp;Fleet is a new nft, it is the union of ships and workers, allowing you to reduce your GAS costs for mining and other actions.
@@ -605,78 +696,136 @@ class GetEternal extends Component{
                             </div>
 
                             <div class={this.state.visFleetRank}>
-                                <div class="row">
-                                    <div class="col-7">
-                                    <p class="text-right1 mt-4">
-                                        The Fleet RANK is based on the majority of ships in your fleet with the highest rarity, with a tie defaulting to lower rank.<br/> 
-                                        Fleet rank affects the <b>SUCCESS RATE</b> of the planet you're mining — better rank = better success%. <br/>
-                                        If the Majority of your ships are:<br/> 
-                                        ★ = Rank D <br/> 
-                                        ★★ = Rank C <br/> 
-                                        ★★★ = Rank B <br/> 
-                                        ★★★★ = Rank A <br/> 
-                                        ★★★★★ = Rank S <br/> 
-                                        So if you have 6 ships in your fleet, and 5 of them are ★, your fleet is Rank D. <br/> 
-                                        If you by chance have even numbers, like 4 ships total, 2 are ★★ and the other 2 are ★★★, it defaults to the lower value, so Rank C.<br/> 
-                                        <b>Only S Rank Fleets can break the 88% Success Rate cap to 91%.</b>
 
-                                        <br/> 
-                                        <br/> 
-                                        <br/> 
-                                        <b>Fleet Ranks determine Base Success Rate</b>. Previous Success Rates are highlighted in Green, Refer to image: <br/> 
-                                        <b>This affects Veterans Guild. Check Fleets Calculator and figure out your Success Rates based on Fleet Rank and MP.</b>
-                                    </p>
-                                    </div>
-                                    <div class="col-5">
-                                        <img 
-                                        src="https://miro.medium.com/max/631/1*g_vxLk4DtIP7l5q1e-gU8Q.png"
-                                        alt="new"
-                                        />
+
+                                <div class="d-none d-lg-block px-0 mx-0">
+                                    <div class="row">
+                                        <div class="col-7">
+                                        <p class="text-right1 mt-4">
+                                            The Fleet RANK is based on the majority of ships in your fleet with the highest rarity, with a tie defaulting to lower rank.<br/> 
+                                            Fleet rank affects the <b>SUCCESS RATE</b> of the planet you're mining — better rank = better success%. <br/>
+                                            If the Majority of your ships are:<br/> 
+                                            ★ = Rank D <br/> 
+                                            ★★ = Rank C <br/> 
+                                            ★★★ = Rank B <br/> 
+                                            ★★★★ = Rank A <br/> 
+                                            ★★★★★ = Rank S <br/> 
+                                            So if you have 6 ships in your fleet, and 5 of them are ★, your fleet is Rank D. <br/> 
+                                            If you by chance have even numbers, like 4 ships total, 2 are ★★ and the other 2 are ★★★, it defaults to the lower value, so Rank C.<br/> 
+                                            <b>Only S Rank Fleets can break the 88% Success Rate cap to 91%.</b>
+
+                                            <br/> 
+                                            <br/> 
+                                            <br/> 
+                                            <b>Fleet Ranks determine Base Success Rate</b>. Previous Success Rates are highlighted in Green, Refer to image: <br/> 
+                                            <b>This affects Veterans Guild. Check Fleets Calculator and figure out your Success Rates based on Fleet Rank and MP.</b>
+                                        </p>
+                                        </div>
+                                        <div class="col-5">
+                                            <img 
+                                            src="https://miro.medium.com/max/631/1*g_vxLk4DtIP7l5q1e-gU8Q.png"
+                                            alt="new"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                                
-                                
 
-                                
+                                <div class="d-xs-block d-sm-none px-0 mx-0">
+                                    <div class="row">
+                                        <div class="col-12">
+                                        <p class="text-right1 mt-4">
+                                            The Fleet RANK is based on the majority of ships in your fleet with the highest rarity, with a tie defaulting to lower rank.<br/> 
+                                            Fleet rank affects the <b>SUCCESS RATE</b> of the planet you're mining — better rank = better success%. <br/>
+                                            If the Majority of your ships are:<br/> 
+                                            ★ = Rank D <br/> 
+                                            ★★ = Rank C <br/> 
+                                            ★★★ = Rank B <br/> 
+                                            ★★★★ = Rank A <br/> 
+                                            ★★★★★ = Rank S <br/> 
+                                            So if you have 6 ships in your fleet, and 5 of them are ★, your fleet is Rank D. <br/> 
+                                            If you by chance have even numbers, like 4 ships total, 2 are ★★ and the other 2 are ★★★, it defaults to the lower value, so Rank C.<br/> 
+                                            <b>Only S Rank Fleets can break the 88% Success Rate cap to 91%.</b>
 
+                                            <br/> 
+                                            <br/> 
+                                            <br/> 
+                                            <b>Fleet Ranks determine Base Success Rate</b>. Previous Success Rates are highlighted in Green, Refer to image: <br/> 
+                                            <b>This affects Veterans Guild. Check Fleets Calculator and figure out your Success Rates based on Fleet Rank and MP.</b>
+                                        </p>
+                                        </div>
+                                        <div class="col-12 overflow">
+                                            <img 
+                                            src="https://miro.medium.com/max/631/1*g_vxLk4DtIP7l5q1e-gU8Q.png"
+                                            alt="new"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
 
                             <div class={this.state.visFleetLevel}>
-                                <div class="row">
-                                    <div class="col-8">
 
-                                    <p class="text-right1 mt-4">
-                                        Fleet LEVEL determines the <b>additional rewards gained</b> when you mine with your fleet. 
-                                        <br/>
-                                        <br/>In order to allow a progressive scaling to all our players, your Fleets will be able to level up which will allow you to reach better earnings 
-                                        <br/>starting from a more limited point, improving your rewards with respect to the initial levels up to 35%. <br/>
-                                        In order to progress in an optimal way, you will have to climb between Planets, as you go up each Tier of experience (levels 6, 11, 16, 21 and 25)
-                                        <br/> the amount of experience received in planets lower than your Tier decreases.<br/>
-                                        <br/>
-                                        Level 11 is roughly equivalent to current rewards.
-                                        <br/>
-                                        <b>Win or Lose, your Fleet still gains Experience</b>
-                                        <br/>
-                                        Experience Earned is around 5 / Expedition
-                                    </p>
+                                <div class="d-none d-lg-block px-0 mx-0">
+                                    <div class="row">
+                                        <div class="col-8">
 
-                                    
-                                    </div>
-                                    <div class="col-4">
-                                    <img 
-                                    src="https://miro.medium.com/max/513/1*PbTRw6E5g8fwlLTnpZePww.png"
-                                    alt="new"
-                                    />
+                                        <p class="text-right1 mt-4">
+                                            Fleet LEVEL determines the <b>additional rewards gained</b> when you mine with your fleet. 
+                                            <br/>
+                                            <br/>In order to allow a progressive scaling to all our players, your Fleets will be able to level up which will allow you to reach better earnings 
+                                            <br/>starting from a more limited point, improving your rewards with respect to the initial levels up to 35%. <br/>
+                                            In order to progress in an optimal way, you will have to climb between Planets, as you go up each Tier of experience (levels 6, 11, 16, 21 and 25)
+                                            <br/> the amount of experience received in planets lower than your Tier decreases.<br/>
+                                            <br/>
+                                            Level 11 is roughly equivalent to current rewards.
+                                            <br/>
+                                            <b>Win or Lose, your Fleet still gains Experience</b>
+                                            <br/>
+                                            Experience Earned is around 5 / Expedition
+                                        </p>
+
+                                        
+                                        </div>
+                                        <div class="col-4">
+                                        <img 
+                                        src="https://miro.medium.com/max/513/1*PbTRw6E5g8fwlLTnpZePww.png"
+                                        alt="new"
+                                        />
+                                        </div>
                                     </div>
                                 </div>
-                                
-                                
+                                <div class="d-xs-block d-sm-none px-0 mx-0">
+                                <div class="row">
+                                        <div class="col-12">
+
+                                        <p class="text-right1 mt-4">
+                                            Fleet LEVEL determines the <b>additional rewards gained</b> when you mine with your fleet. 
+                                            <br/>
+                                            <br/>In order to allow a progressive scaling to all our players, your Fleets will be able to level up which will allow you to reach better earnings 
+                                            <br/>starting from a more limited point, improving your rewards with respect to the initial levels up to 35%. <br/>
+                                            In order to progress in an optimal way, you will have to climb between Planets, as you go up each Tier of experience (levels 6, 11, 16, 21 and 25)
+                                            <br/> the amount of experience received in planets lower than your Tier decreases.<br/>
+                                            <br/>
+                                            Level 11 is roughly equivalent to current rewards.
+                                            <br/>
+                                            <b>Win or Lose, your Fleet still gains Experience</b>
+                                            <br/>
+                                            Experience Earned is around 5 / Expedition
+                                        </p>
+
+                                        
+                                        </div>
+                                        <div class="col-12 overflow">
+                                        <img 
+                                        src="https://miro.medium.com/max/513/1*PbTRw6E5g8fwlLTnpZePww.png"
+                                        alt="new"
+                                        />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div >
                             </div>
-
-                            </div>
-
-
                         </div>
 
                         <div id="fleet" class={this.state.visibilityFleet}>
@@ -694,7 +843,7 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">Est. Workers</th>
                                     <th class="border border-2 border-dark">Worker Contract Upkeep / 7d </th>
                                     <th class="border border-2 border-dark">Net Profit / 7d</th>
-                                    <th class="border border-2 border-dark">Net Profit / 7d - Fuel</th>
+                                    <th class="border border-2 border-dark">Net Profit - Fuel / 7d</th>
                                 </tr>
                                 {/* Fleet */}
                                 {(() => {
@@ -724,27 +873,65 @@ class GetEternal extends Component{
                         </div>
 
 
-                        <div class="row align-items-start mt-6">
-                            <div class="col-6">
-                                <p class="disclaimer">
-                                Disclaimer: ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
-                                <br/>
-                                All values are approximation and should only be used as a template. ETL/USD updates are every 2 seconds.
-                                <br/>
-                                Mobile View is currently non-existent. You have been warned. <strike>I'll get back to it if I'm not busy.</strike>
-                                </p>
-                                
-                            </div>
-                            <div class="col-6">
-                                <p class="credits text-info">
-                                Original Sheet and ORM Matrix by: Discord@starl3xx#2691
-                                <br/>
-                                Made by: Discord@Jucci#0007
-                                <br/>
-                                Found bugs? Want to help? Send us a message.
-                                </p>
+
+                        <div class="d-none d-lg-block px-0 mx-0">
+                            <div class="row align-items-start mt-6">
+                                <div class="col-6">
+                                    <p class="disclaimer">
+                                    Disclaimer: ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
+                                    <br/>
+                                    All values are approximation and should only be used as a template. ETL/USD updates are every 2 seconds.
+                                    <br/>
+                                    <strike>Mobile View is currently non-existent. You have been warned. I'll get back to it if I'm not busy.</strike>
+                                    <br/>
+                                    Mobile View Finally Available
+                                    </p>
+                                    
+                                </div>
+                                <div class="col-6">
+                                    <p class="credits text-info">
+                                    Original Sheet and ORM Matrix by: Discord@starl3xx#2691
+                                    <br/>
+                                    Made by: Discord@Jucci#0007
+                                    <br/>
+                                    Found bugs? Want to help? Send us a message.
+                                    </p>
+                                </div>
                             </div>
                         </div>
+
+
+                        <div class="d-xs-block d-sm-none px-0 mx-0">
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <p class="disclaimer1">
+                                    Disclaimer: ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
+                                    <br/>
+                                    All values are approximation and should only be used as a template. ETL/USD updates are every 2 seconds.
+                                    <br/>
+                                    <strike>Mobile View is currently non-existent. You have been warned. I'll get back to it if I'm not busy.</strike>
+                                    <br/>
+                                    Mobile View Finally Available
+                                    </p>
+                                    
+                                </div>
+                                <div class="col-12">
+                                    <p class="credits1 text-info">
+                                    Original Sheet and ORM Matrix by: Discord@starl3xx#2691
+                                    <br/>
+                                    Made by: Discord@Jucci#0007
+                                    <br/>
+                                    Found bugs? Want to help? Send us a message.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+
+
+
                 </div>
             </div>
         )
