@@ -164,94 +164,116 @@ class GetEternal extends Component{
     }
 
     getFleetDSR(i){
-        if (this.state.mp > 5449) {
-            return 88
-        } else if (this.state.mp > 1499 && this.state.mp < 5450) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.d_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 88){
+            if (answer >= 97 && i < 10){
+                return 97
+            }
+            else if (answer > 88){
                 return 88
-            } else if (answer < 39 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i] ){
+            } else if ( answer < 39 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
             } else {
                 return answer
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.d_success_chance[i] * 100).toFixed(0)
+            if (this.state.mp > 1499 && i === 0){
+                return 91
+            } else if (this.state.mp > 1499 && i === 1){
+                return 89
+            } else {
+                return parseFloat(this.state.d_success_chance[i] * 100).toFixed(0)
+            }
         }
     }
     getFleetDSRM(i){
-        if (this.state.mp > 5449) {
-            return '88%'
-        } else if (this.state.mp > 1499 && this.state.mp < 5450) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.d_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 88){
-                return '88%'
-            } else if (answer < 39 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i] ){
+            if (answer >= 97 && i < 10){
+                return 97+'%'
+            }
+            else if (answer > 88){
+                return 88+'%'
+            } else if ( answer < 39 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
             } else {
                 return answer+'%'
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.d_success_chance[i] * 100).toFixed(0)+'%'
+            if (this.state.mp > 1499 && i === 0){
+                return 91+'%'
+            } else if (this.state.mp > 1499 && i === 1){
+                return 89+'%'
+            } else {
+                return parseFloat(this.state.d_success_chance[i] * 100).toFixed(0)+'%'
+            }
         }
     }
 
     getFleetCSR(i){
-        if (this.state.mp > 5399) {
-            return 88
-        } else if (this.state.mp > 1499 && this.state.mp < 5400) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.c_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 88){
+            if (answer >= 97 && i < 10){
+                return 97
+            }
+            else if (answer > 88){
                 return 88
-            } else if ( answer < 40 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i] ){
+            } else if ( answer < 40 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
             } else {
                 return answer
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.c_success_chance[i] * 100).toFixed(0)
+            if (this.state.mp > 1499 && i === 0){
+                return 91
+            } else if (this.state.mp > 1499 && i === 1){
+                return 89
+            } else {
+                return parseFloat(this.state.c_success_chance[i] * 100).toFixed(0)
+            }
         }
     }
     getFleetCSRM(i){
-        if (this.state.mp > 5399) {
-            return 88+'%'
-        } else if (this.state.mp > 1499 && this.state.mp < 5400) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.c_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 88){
+            if (answer >= 97 && i < 10){
+                return 97+'%'
+            }
+            else if (answer > 88){
                 return 88+'%'
-            } else if ( answer < 40 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i] ){
+            } else if ( answer < 40 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
             } else {
                 return answer+'%'
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.c_success_chance[i] * 100).toFixed(0)+'%'
+            if (this.state.mp > 1499 && i === 0){
+                return 91+'%'
+            } else if (this.state.mp > 1499 && i === 1){
+                return 89+'%'
+            } else {
+                return parseFloat(this.state.c_success_chance[i] * 100).toFixed(0)+'%'
+            }
         }
     }
 
     getFleetBSR(i){
-        if (this.state.mp > 1499 && i === 0){
-            return 91
-        } else if (this.state.mp > 1499 && i === 1){
-            return 89
-        }
-        else if (this.state.mp > 5149) {
-            return 88
-        } 
-        
-        else if (this.state.mp > 1499 && this.state.mp < 5150) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.b_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 88){
+            if (answer >= 97 && i < 10){
+                return 97
+            }
+            else if (answer > 88){
                 return 88
             } else if ( answer < 45 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
@@ -259,23 +281,24 @@ class GetEternal extends Component{
                 return answer
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.b_success_chance[i] * 100).toFixed(0)
+            if (this.state.mp > 1499 && i === 0){
+                return 91
+            } else if (this.state.mp > 1499 && i === 1){
+                return 89
+            } else {
+                return parseFloat(this.state.b_success_chance[i] * 100).toFixed(0)
+            }
         }
     }
     getFleetBSRM(i){
-        if (this.state.mp > 1499 && i === 0){
-            return 91+'%'
-        } else if (this.state.mp > 1499 && i === 1){
-            return 89+'%'
-        }
-        else if (this.state.mp > 5149) {
-            return 88+'%'
-        } 
-        else if (this.state.mp > 1499 && this.state.mp < 5150) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.b_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 88){
+            if (answer >= 97 && i < 10){
+                return 97+'%'
+            }
+            else if (answer > 88){
                 return 88+'%'
             } else if ( answer < 45 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
@@ -283,7 +306,13 @@ class GetEternal extends Component{
                 return answer+'%'
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.b_success_chance[i] * 100).toFixed(0)+'%'
+            if (this.state.mp > 1499 && i === 0){
+                return 91+'%'
+            } else if (this.state.mp > 1499 && i === 1){
+                return 89+'%'
+            } else {
+                return parseFloat(this.state.b_success_chance[i] * 100).toFixed(0)+'%'
+            }
         }
     }
 
