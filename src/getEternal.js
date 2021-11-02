@@ -94,7 +94,7 @@ class GetEternal extends Component{
     }
     btnFleets = () => {
         this.setState({visibilityNormal: "d-none", visibilityFleet: "overflow", inputVisFleet: "row mt-2", btnHighlightInfo: "btn stretch mobile-margin", btnHighlightFleet: "btn btn-custom mobile-margin"})
-        alert("Disclaimer: \r\nThis is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
+        alert("Disclaimer: \r\nThis is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nI am also aware that some of the Planet Success Rate Caps are more vs the sheet. Will be updating once enough information is gathered.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
     }
 
     btnFleetInfo = () => {
@@ -568,13 +568,13 @@ class GetEternal extends Component{
                          
                             <div class="d-xs-block d-sm-none px-0 mx-0">
                                 <div class="row my-4">
-                                    <div class="col-4">
+                                    <div class="col-4 padding-right">
                                         <button type="button" class={this.state.btnHighlightCMInfo} onClick={this.btnFleetInfo}>CM Info</button>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-4 padding-center">
                                         <button type="button" class={this.state.btnHighlightFleetRank} onClick={this.btnFleetRanks}>Fleet Ranks</button>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-4 padding-left">
                                         <button type="button" class={this.state.btnHighlightFleetLevel} onClick={this.btnFleetLevels}>Fleet Levels</button>
                                     </div>
                                 </div>
@@ -749,7 +749,7 @@ class GetEternal extends Component{
                                             <br/> 
                                             <br/> 
                                             <br/> 
-                                            <b>Fleet Ranks determine Base Success Rate</b>. Previous Success Rates are highlighted in Green, Refer to image: <br/> 
+                                            <b>Fleet Ranks determine Base Success Rate</b>. Previous Success Rates are highlighted in Green, Refer to image below. <br/> 
                                             <b>This affects Veterans Guild. Check Fleets Calculator and figure out your Success Rates based on Fleet Rank and MP.</b>
                                         </p>
                                         </div>
@@ -832,7 +832,7 @@ class GetEternal extends Component{
                             <table>
                                 <tr class="border border-dark">
                                     <th class="border border-2 border-dark">#</th>
-                                    <th class="border border-2 border-dark">Planet</th>
+                                    <th class="border extra-padding border-2 border-dark">Planet</th>
                                     <th class="border border-2 border-dark">MP</th>
                                     <th class="border border-2 border-dark">Oracle</th>
                                     <th class="border border-2 border-dark">Mine Reward (ETL)</th>
