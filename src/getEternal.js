@@ -168,8 +168,12 @@ class GetEternal extends Component{
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.d_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer >= 97 && i < 10){
+            if (i < 10){
+                if (answer >= 97){
                 return 97
+                } else {
+                    return answer
+                }
             }
             else if (answer > 88){
                 return 88
@@ -193,8 +197,12 @@ class GetEternal extends Component{
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.d_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer >= 97 && i < 10){
+            if (i < 10){
+                if (answer >= 97){
                 return 97+'%'
+                } else {
+                    return answer+'%'
+                }
             }
             else if (answer > 88){
                 return 88+'%'
@@ -219,10 +227,14 @@ class GetEternal extends Component{
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.c_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer >= 97 && i < 10){
+            if (i < 10){
+                if (answer >= 97){
                 return 97
+                } else {
+                    return answer
+                }
             }
-            else if (answer > 88){
+            else if (answer >= 88){
                 return 88
             } else if ( answer < 40 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
@@ -244,10 +256,14 @@ class GetEternal extends Component{
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.c_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer >= 97 && i < 10){
+            if (i < 10){
+                if (answer >= 97){
                 return 97+'%'
+                } else {
+                    return answer+'%'
+                }
             }
-            else if (answer > 88){
+            else if (answer >= 88){
                 return 88+'%'
             } else if ( answer < 40 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
@@ -270,8 +286,12 @@ class GetEternal extends Component{
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.b_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer >= 97 && i < 10){
+            if (i < 10){
+                if (answer >= 97){
                 return 97
+                } else {
+                    return answer
+                }
             }
             else if (answer > 88){
                 return 88
@@ -280,6 +300,7 @@ class GetEternal extends Component{
             } else {
                 return answer
             }
+
         } else if (this.state.mp < 1500) {
             if (this.state.mp > 1499 && i === 0){
                 return 91
@@ -295,8 +316,12 @@ class GetEternal extends Component{
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.b_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer >= 97 && i < 10){
+            if (i < 10){
+                if (answer >= 97){
                 return 97+'%'
+                } else {
+                    return answer+'%'
+                }
             }
             else if (answer > 88){
                 return 88+'%'
@@ -305,6 +330,7 @@ class GetEternal extends Component{
             } else {
                 return answer+'%'
             }
+
         } else if (this.state.mp < 1500) {
             if (this.state.mp > 1499 && i === 0){
                 return 91+'%'
