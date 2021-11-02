@@ -111,6 +111,14 @@ td  {
   color: #512979;
 }
 
+.text-right-special{
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: #512979;
+  font-size: 14px;
+}
+
 .text-small{
   text-align: left;
   font-family: 'Nunito', sans-serif;

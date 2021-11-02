@@ -30,7 +30,7 @@ class GetEternal extends Component{
             fleet_rank: "",
             fleet_level: 11,
             rank_reward: [1,1.01,1.02,1.03,1.04,1.05,1.1,1.12,1.14,1.16,1.20,1.205,1.21,1.215,1.22,1.225,1.25,1.255,1.26,1.265,1.27,1.3,1.305,1.31,1.315,1.35],
-
+            sheetInfo: "d-none",
             visInfo: "",
             visFleetRank: "d-none",
             visFleetLevel: "d-none",
@@ -90,11 +90,11 @@ class GetEternal extends Component{
         this.setState({fleet_level: event.target.value})
     }
     btnVisNrm = () => {
-        this.setState({visibilityNormal: "mb-4", visibilityFleet: "d-none", inputVisFleet: "d-none", btnHighlightInfo: "btn btn-custom mobile-margin", btnHighlightFleet: "btn stretch mobile-margin"})
+        this.setState({sheetInfo: "d-none" ,visibilityNormal: "mb-4", visibilityFleet: "d-none", inputVisFleet: "d-none", btnHighlightInfo: "btn btn-custom mobile-margin", btnHighlightFleet: "btn stretch mobile-margin"})
     }
     btnFleets = () => {
-        this.setState({visibilityNormal: "d-none", visibilityFleet: "overflow", inputVisFleet: "row mt-2", btnHighlightInfo: "btn stretch mobile-margin", btnHighlightFleet: "btn btn-custom mobile-margin"})
-        alert("Disclaimer: \r\nThis is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nI am also aware that some of the Planet Success Rate Caps are more vs the sheet. Will be updating once enough information is gathered.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
+        this.setState({sheetInfo: "mt-2 text-right-special" ,visibilityNormal: "d-none", visibilityFleet: "overflow", inputVisFleet: "row mt-2", btnHighlightInfo: "btn stretch mobile-margin", btnHighlightFleet: "btn btn-custom mobile-margin"})
+        alert("Disclaimer: \r\nThis is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nSpecial Thanks to: deejaygeekout#1720 and especially to: frifster#1185 (Master Papink) for agreeing to my experiment on clarifying the white paper.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
     }
 
     btnFleetInfo = () => {
@@ -288,26 +288,23 @@ class GetEternal extends Component{
     }
 
     getFleetASR(i){
-        if (this.state.mp > 1499 && i === 0) {
-            return 93
-        } else if (this.state.mp > 1499 && i === 1){
-            return 91
-        } else if (this.state.mp > 1499 && i === 2){
-            return 89
-        } else if (this.state.mp > 4899){
-            return 88
-        }
-        else if (this.state.mp > 1499 && this.state.mp < 4900) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.a_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 88 && i === 0){
-                return 93
-            } else if (answer > 88 && i === 1){
-                return 91
-            } else if (answer > 88 && i === 2){
-                return 89
-            } else if (answer > 88 && i !== 2){
+            if (answer >= 97 && i < 17){
+                return 97
+            }  else if (answer >= 90 && i > 15 && i < 25){
+                if (i===17) {
+                    return 95
+                } else if (i===18){
+                    return 93
+                } else if (i===19){
+                    return 91
+                } else {
+                    return 90
+                }
+            } else if (answer >= 88 && i > 24 && i < 30){
                 return 88
             } else if ( answer < 50 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
@@ -320,26 +317,23 @@ class GetEternal extends Component{
     }
 
     getFleetASRM(i){
-        if (this.state.mp > 1499 && i === 0) {
-            return 93+'%'
-        } else if (this.state.mp > 1499 && i === 1){
-            return 91+'%'
-        } else if (this.state.mp > 1499 && i === 2){
-            return 89+'%'
-        } else if (this.state.mp > 4899){
-            return 88+'%'
-        }
-        else if (this.state.mp > 1499 && this.state.mp < 4900) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.a_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 88 && i === 0){
-                return 93+'%'
-            } else if (answer > 88 && i === 1){
-                return 91+'%'
-            } else if (answer > 88 && i === 2){
-                return 89+'%'
-            } else if (answer > 88 && i !== 2){
+            if (answer >= 97 && i < 17){
+                return 97+'%'
+            }  else if (answer >= 90 && i > 15 && i < 25){
+                if (i===17) {
+                    return 95+'%'
+                } else if (i===18){
+                    return 93+'%'
+                } else if (i===19){
+                    return 91+'%'
+                } else {
+                    return 90+'%'
+                }
+            } else if (answer >= 88 && i > 24 && i < 30){
                 return 88+'%'
             } else if ( answer < 50 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
@@ -352,30 +346,15 @@ class GetEternal extends Component{
     }
 
     getFleetSSR(i){
-        if (this.state.mp > 1499 && i === 0){
-            return 97
-        } else if (this.state.mp > 1499 && i === 1){
-            return 95
-        } else if (this.state.mp > 1499 && i === 2){
-            return 93
-        } else if (this.state.mp > 1499 && i === 3){
-            return 91
-        } else if (this.state.mp > 4899){
-            return 91
-        }
-        else if (this.state.mp > 1499 && this.state.mp < 4900) {
+        if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.s_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91 && i === 0){
+            if (answer >= 91 && i < 20){
                 return 97
-            } else if (answer > 91 && i === 1){
-                return 95
-            } else if (answer > 91 && i === 2){
+            }  else if (answer >= 93 && i > 19 && i < 25){
                 return 93
-            } else if (answer > 91 && i === 3){
-                return 91
-            } else if (answer > 91 && i !== 3){
+            } else if (answer >= 91 && i > 24 && i < 30){
                 return 91
             } else if ( answer < 53 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
@@ -387,30 +366,15 @@ class GetEternal extends Component{
         }
     }
     getFleetSSRM(i){
-        if (this.state.mp > 1499 && i === 0){
-            return 97+'%'
-        } else if (this.state.mp > 1499 && i === 1){
-            return 95+'%'
-        } else if (this.state.mp > 1499 && i === 2){
-            return 93+'%'
-        } else if (this.state.mp > 1499 && i === 3){
-            return 91+'%'
-        } else if (this.state.mp > 4899){
-            return 91+'%'
-        }
-        else if (this.state.mp > 1499 && this.state.mp < 4900) {
+    if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.s_success_chance[i] * 100 + divi).toFixed(0);
-            if (answer > 91 && i === 0){
+            if (answer >= 91 && i < 20){
                 return 97+'%'
-            } else if (answer > 91 && i === 1){
-                return 95+'%'
-            } else if (answer > 91 && i === 2){
+            }  else if (answer >= 93 && i > 19 && i < 25){
                 return 93+'%'
-            } else if (answer > 91 && i === 3){
-                return 91+'%'
-            } else if (answer > 91 && i !== 3){
+            } else if (answer >= 91 && i > 24 && i < 30){
                 return 91+'%'
             } else if ( answer < 53 || (Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
                 return 'Not Enough MP'
@@ -460,6 +424,7 @@ class GetEternal extends Component{
                                     <div class="col-2">
                                         <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Fleets</button>
                                     </div>
+                                    <div class="col-8"><p class={this.state.sheetInfo}>Validated with frifster#1185 (Master Papink's) A Rank 5100MP Fleet</p></div>
                                 </div>
                                 
                                 <div class="row px-0 mx-0">
