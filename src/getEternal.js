@@ -477,7 +477,7 @@ class GetEternal extends Component{
                                         <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
                                     </div>
                                     <div class="col-2">
-                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Fleets</button>
+                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Calculator</button>
                                     </div>
                                     <div class="col-8"><p class={this.state.sheetInfo}>Validated with frifster#1185 (Master Papink's) A Rank 5100MP Fleet</p></div>
                                 </div>
@@ -534,7 +534,7 @@ class GetEternal extends Component{
                                         <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
                                     </div>
                                     <div class="col-6">
-                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Fleets</button>
+                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Calculator</button>
                                     </div>
                                 </div>
 
