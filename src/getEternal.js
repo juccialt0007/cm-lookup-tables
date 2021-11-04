@@ -487,7 +487,7 @@ class GetEternal extends Component{
                                     </div>
                                     <div class="col-7 row">
                                         <div class="col-12">
-                                            <p class={this.state.sheetInfo+" text-size-14"}>Fuel Values are estimates based on white paper with the help of Dannii ❤#3151 and Memnoch#3381</p>
+                                            <p class={this.state.sheetInfo+" text-size-14"}>Fuel Values are estimates based on in game values (Planet 1 = 21Fuel), with some additional help from Dannii ❤#3151 and Memnoch#3381</p>
                                         </div>
                                     </div>
                                 </div>
