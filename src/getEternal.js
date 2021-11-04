@@ -16,6 +16,7 @@ class GetEternal extends Component{
             minepower: [100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000],
             planets: ["Odrocury","Thabbiter","Pulmeron","Ecryria","Searus","Gemia","Malphus","Neuter","Grarvis 022","Sorth 33A5","Dutrabos","Lustronides","Zullosie","Yimagua","Haostea","Kongebro","Vuruturn","Droxuyama","Miuq I11","Zapus 5M0","Begelia","Gochimars","Konvides","Donvillon","Ania","Aenerth","Tachiron","Cichurilia","Gagua 07","Sector G"],
             oracle_adjustment: [1,2,3,4.125,5.25,6.5,7.75,9,10.25,11.625,14.375,16.125,18,19.875,22.375,24.125,26.5,28.875,31.375,34,44.5,48.5,52.75,57.25,62,67.125,72.5,78.25,84.25,90.75],
+            //oracle_adjustment: [1.000,2.019,3.078,4.176,5.315,6.516,7.754,9.033,10.372,11.751,14.429,16.208,18.085,20.083,22.163,24.341,26.659,29.076,31.614,34.292,45.863,49.939,54.016,59.112,64.149,69.304,74.400,80.336,86.529,93.765],
             worker_count: [2,2,3,4,4,6,7,8,9,10,11,12,12,13,13,14,14,15,15,16,17,18,19,20,21,22,23,24,25,26],
             success_chance: [0.88,0.86,0.84,0.82,0.80,0.78,0.76,0.74,0.72,0.70,0.68,0.66,0.64,0.62,0.60,0.58,0.56,0.54,0.52,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50],
             visibilityNormal: "",
@@ -133,7 +134,7 @@ class GetEternal extends Component{
         return parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7) - (this.getFuel(i)*7) ).toFixed(2)
     }
     getFuel(i){
-        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level] / 1.205)) * 0.05).toFixed(2)
+        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[0]/1.205)) * 0.05).toFixed(2)
     }
 
     getFleetSuccessChance(i){
@@ -472,15 +473,25 @@ class GetEternal extends Component{
                     <div class="contrainer-fluid">
                         <div class="my-3 row">
                             <div class="row d-none d-lg-block px-0 mx-0">
-                                <div class="col-5 row">
-                                    <div class="col-2">
-                                        <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
+                                <div class="row col-12">
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Calculator</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo}>Validated with frifster#1185 (Master Papink's) A Rank 5100MP Fleet.</p>
+                                        </div>
                                     </div>
-                                    <div class="col-2">
-                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Calculator</button>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-14"}>Fuel Values are estimates based on white paper with the help of Dannii ❤#3151 and Memnoch#3381</p>
+                                        </div>
                                     </div>
-                                    <div class="col-8"><p class={this.state.sheetInfo}>Validated with frifster#1185 (Master Papink's) A Rank 5100MP Fleet</p></div>
                                 </div>
+                                
                                 
                                 <div class="row px-0 mx-0">
                                 <div class="col-2"></div>
@@ -706,12 +717,6 @@ class GetEternal extends Component{
                                 <br/>
                                 <br/>
                                 <br/>
-                                
-
-                                
-
-
-
                                 </p>
                             </div>
 
@@ -783,9 +788,7 @@ class GetEternal extends Component{
                                 </div>
 
                             </div>
-
                             <div class={this.state.visFleetLevel}>
-
                                 <div class="d-none d-lg-block px-0 mx-0">
                                     <div class="row">
                                         <div class="col-8">
@@ -891,18 +894,15 @@ class GetEternal extends Component{
                                 })()}
                             </table>
                         </div>
-
-
-
                         <div class="d-none d-lg-block px-0 mx-0">
                             <div class="row align-items-start mt-6">
                                 <div class="col-6">
                                     <p class="disclaimer">
                                     Disclaimer: ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
                                     <br/>
-                                    All values are approximation and should only be used as a template. ETL/USD updates are every 2 seconds.
+                                    All values are approximation and should only be used as a template. 
                                     <br/>
-                                    <strike>Mobile View is currently non-existent. You have been warned. I'll get back to it if I'm not busy.</strike>
+                                    ETL/USD updates are from Coingecko and updates every 2 seconds.
                                     <br/>
                                     Mobile View Finally Available
                                     </p>
@@ -912,24 +912,22 @@ class GetEternal extends Component{
                                     <p class="credits text-info">
                                     Original Sheet and ORM Matrix by: Discord@starl3xx#2691
                                     <br/>
-                                    Made by: Discord@Jucci#0007
+                                    Found bugs? Want to help? DM me directly in Discord: Jucci#0007
                                     <br/>
-                                    Found bugs? Want to help? Send us a message.
+                                    If you found this sheet helpful (copies on click): <button class="btn text-size-12 text-info px-0 mx-0 mb-0 py-0" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button> 
                                     </p>
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="d-xs-block d-sm-none px-0 mx-0">
                             <div class="row mt-2">
                                 <div class="col-12">
                                     <p class="disclaimer1">
                                     Disclaimer: ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
                                     <br/>
-                                    All values are approximation and should only be used as a template. ETL/USD updates are every 2 seconds.
+                                    All values are approximation and should only be used as a template. 
                                     <br/>
-                                    <strike>Mobile View is currently non-existent. You have been warned. I'll get back to it if I'm not busy.</strike>
+                                    ETL/USD updates are from Coingecko and updates every 2 seconds.
                                     <br/>
                                     Mobile View Finally Available
                                     </p>
@@ -937,25 +935,20 @@ class GetEternal extends Component{
                                 </div>
                                 <div class="col-12">
                                     <p class="credits1 text-info">
-                                    Original Sheet and ORM Matrix by: Discord@starl3xx#2691
+                                    Original Sheet and ORM Matrix by: Discord @ starl3xx#2691
                                     <br/>
-                                    Made by: Discord@Jucci#0007
+                                    Made by: Discord @ Jucci#0007
                                     <br/>
-                                    Found bugs? Want to help? Send us a message.
+                                    Found bugs? Want to help? DM me directly.
+                                    <br/>
+                                    If you found this sheet helpful (copies on click): <br/><button class="btn text-info px-0 mx-0 text-size-10" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button>
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        
-
-
-
-
-
                 </div>
             </div>
         )
     }
 }
-
 export default GetEternal
