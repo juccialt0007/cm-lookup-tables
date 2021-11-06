@@ -184,11 +184,12 @@ class GetEternal extends Component{
                 return answer
             }
         } else if (this.state.mp < 1500) {
-            if (this.state.mp > 1499 && i === 0){
-                return 91
-            } else if (this.state.mp > 1499 && i === 1){
-                return 89
-            } else {
+            if (this.state.mp < 100){
+                return parseFloat(this.state.d_success_chance[i] * 100).toFixed(0)
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
                 return parseFloat(this.state.d_success_chance[i] * 100).toFixed(0)
             }
         }
@@ -213,11 +214,12 @@ class GetEternal extends Component{
                 return answer+'%'
             }
         } else if (this.state.mp < 1500) {
-            if (this.state.mp > 1499 && i === 0){
-                return 91+'%'
-            } else if (this.state.mp > 1499 && i === 1){
-                return 89+'%'
-            } else {
+            if (this.state.mp < 100){
+                return parseFloat(this.state.d_success_chance[i] * 100).toFixed(0)+'%'
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
                 return parseFloat(this.state.d_success_chance[i] * 100).toFixed(0)+'%'
             }
         }
@@ -243,11 +245,12 @@ class GetEternal extends Component{
                 return answer
             }
         } else if (this.state.mp < 1500) {
-            if (this.state.mp > 1499 && i === 0){
-                return 91
-            } else if (this.state.mp > 1499 && i === 1){
-                return 89
-            } else {
+            if (this.state.mp < 100){
+                return parseFloat(this.state.c_success_chance[i] * 100).toFixed(0)
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
                 return parseFloat(this.state.c_success_chance[i] * 100).toFixed(0)
             }
         }
@@ -272,11 +275,12 @@ class GetEternal extends Component{
                 return answer+'%'
             }
         } else if (this.state.mp < 1500) {
-            if (this.state.mp > 1499 && i === 0){
-                return 91+'%'
-            } else if (this.state.mp > 1499 && i === 1){
-                return 89+'%'
-            } else {
+            if (this.state.mp < 100){
+                return parseFloat(this.state.c_success_chance[i] * 100).toFixed(0)+'%'
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
                 return parseFloat(this.state.c_success_chance[i] * 100).toFixed(0)+'%'
             }
         }
@@ -303,11 +307,12 @@ class GetEternal extends Component{
             }
 
         } else if (this.state.mp < 1500) {
-            if (this.state.mp > 1499 && i === 0){
-                return 91
-            } else if (this.state.mp > 1499 && i === 1){
-                return 89
-            } else {
+            if (this.state.mp < 100){
+                return parseFloat(this.state.b_success_chance[i] * 100).toFixed(0)
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
                 return parseFloat(this.state.b_success_chance[i] * 100).toFixed(0)
             }
         }
@@ -333,11 +338,12 @@ class GetEternal extends Component{
             }
 
         } else if (this.state.mp < 1500) {
-            if (this.state.mp > 1499 && i === 0){
-                return 91+'%'
-            } else if (this.state.mp > 1499 && i === 1){
-                return 89+'%'
-            } else {
+            if (this.state.mp < 100){
+                return parseFloat(this.state.b_success_chance[i] * 100).toFixed(0)+'%'
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
                 return parseFloat(this.state.b_success_chance[i] * 100).toFixed(0)+'%'
             }
         }
@@ -367,11 +373,18 @@ class GetEternal extends Component{
             } else {
                 return answer
             }
-        } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.a_success_chance[i] * 100).toFixed(0)
-        }
+        } 
+            else if (this.state.mp < 1500) {
+                if (this.state.mp < 100){
+                    return parseFloat(this.state.a_success_chance[i] * 100).toFixed(0)
+                } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                    return 'Not Enough MP'
+                }
+                else {
+                    return parseFloat(this.state.a_success_chance[i] * 100).toFixed(0)
+                }
+            }
     }
-
     getFleetASRM(i){
         if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
@@ -397,10 +410,16 @@ class GetEternal extends Component{
                 return answer+'%'
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.a_success_chance[i] * 100).toFixed(0)+'%'
+            if (this.state.mp < 100){
+                return parseFloat(this.state.a_success_chance[i] * 100).toFixed(0)+'%'
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
+                return parseFloat(this.state.a_success_chance[i] * 100).toFixed(0)+'%'
+            }
         }
     }
-
     getFleetSSR(i){
         if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
@@ -418,7 +437,14 @@ class GetEternal extends Component{
                 return answer
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.s_success_chance[i] * 100).toFixed(0)
+            if (this.state.mp < 100){
+                return parseFloat(this.state.s_success_chance[i] * 100).toFixed(0)
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
+                return parseFloat(this.state.s_success_chance[i] * 100).toFixed(0)
+            }
         }
     }
     getFleetSSRM(i){
@@ -438,7 +464,14 @@ class GetEternal extends Component{
                 return answer+'%'
             }
         } else if (this.state.mp < 1500) {
-            return parseFloat(this.state.s_success_chance[i] * 100).toFixed(0)+'%'
+            if (this.state.mp < 100){
+                return parseFloat(this.state.s_success_chance[i] * 100).toFixed(0)+'%'
+            } else if ((Math.floor(this.state.mp/100)*100) < this.state.minepower[i]){
+                return 'Not Enough MP'
+            }
+            else {
+                return parseFloat(this.state.s_success_chance[i] * 100).toFixed(0)+'%'
+            }
         }
     }
 
