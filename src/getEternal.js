@@ -15,8 +15,8 @@ class GetEternal extends Component{
             updateTimer: 0,
             minepower: [100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000],
             planets: ["Odrocury","Thabbiter","Pulmeron","Ecryria","Searus","Gemia","Malphus","Neuter","Grarvis 022","Sorth 33A5","Dutrabos","Lustronides","Zullosie","Yimagua","Haostea","Kongebro","Vuruturn","Droxuyama","Miuq I11","Zapus 5M0","Begelia","Gochimars","Konvides","Donvillon","Ania","Aenerth","Tachiron","Cichurilia","Gagua 07","Sector G"],
-            oracle_adjustment: [1,2,3,4.125,5.25,6.5,7.75,9,10.25,11.625,14.375,16.125,18,19.875,22.375,24.125,26.5,28.875,31.375,34,44.5,48.5,52.75,57.25,62,67.125,72.5,78.25,84.25,90.75],
-            //oracle_adjustment: [1.000,2.019,3.078,4.176,5.315,6.516,7.754,9.033,10.372,11.751,14.429,16.208,18.085,20.083,22.163,24.341,26.659,29.076,31.614,34.292,45.863,49.939,54.016,59.112,64.149,69.304,74.400,80.336,86.529,93.765],
+            //oracle_adjustment: [1,2,3,4.125,5.25,6.5,7.75,9,10.25,11.625,14.375,16.125,18,19.875,22.375,24.125,26.5,28.875,31.375,34,44.5,48.5,52.75,57.25,62,67.125,72.5,78.25,84.25,90.75],
+            oracle_adjustment: [1.000,2.019,3.078,4.176,5.315,6.516,7.754,9.033,10.372,11.751,14.429,16.208,18.085,20.083,22.163,24.341,26.659,29.076,31.614,34.292,45.863,49.939,54.016,59.112,64.149,69.304,74.400,80.336,86.529,93.765],
             worker_count: [2,2,3,4,4,6,7,8,9,10,11,12,12,13,13,14,14,15,15,16,17,18,19,20,21,22,23,24,25,26],
             success_chance: [0.88,0.86,0.84,0.82,0.80,0.78,0.76,0.74,0.72,0.70,0.68,0.66,0.64,0.62,0.60,0.58,0.56,0.54,0.52,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50],
             visibilityNormal: "",
@@ -29,7 +29,7 @@ class GetEternal extends Component{
             a_success_chance: [0.93,0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.77,0.75,0.71,0.69,0.67,0.65,0.63,0.61,0.59,0.57,0.55,0.53,0.52,0.52,0.52,0.52,0.52,0.50,0.50,0.50,0.50,0.50],
             s_success_chance: [0.97,0.95,0.93,0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.74,0.72,0.70,0.68,0.66,0.64,0.62,0.60,0.58,0.56,0.55,0.55,0.55,0.55,0.55,0.53,0.53,0.53,0.53,0.53],
             fleet_rank: "",
-            fleet_level: 11,
+            fleet_level: 0,
             rank_reward: [1,1.01,1.02,1.03,1.04,1.05,1.1,1.12,1.14,1.16,1.20,1.205,1.21,1.215,1.22,1.225,1.25,1.255,1.26,1.265,1.27,1.3,1.305,1.31,1.315,1.35],
             sheetInfo: "d-none",
             visInfo: "",
@@ -50,10 +50,10 @@ class GetEternal extends Component{
     }
 
     async loadData(){
-        const url = "https://api.coingecko.com/api/v3/simple/price?ids=cryptomines-eternal&vs_currencies=usd"
+        const url = "https://api.pancakeswap.info/api/v2/tokens/0xD44FD09d74cd13838F137B590497595d6b3FEeA4"
         const response = await fetch(url);
         const data = await response.json();
-        this.setState({eternalPrice: data["cryptomines-eternal"]["usd"]})
+        this.setState({eternalPrice: data["data"]["price"]})
     }
 
     async componentDidMount() {
@@ -72,7 +72,7 @@ class GetEternal extends Component{
         return this.state.minepower[i]
     }
     getMineUSD(i){
-        return parseFloat(5.0 * this.state.oracle_adjustment[i]).toFixed(2)
+        return parseFloat(4.0 * this.state.oracle_adjustment[i]).toFixed(2)
     }
     
     setMP(event){
@@ -112,17 +112,20 @@ class GetEternal extends Component{
     //(Who called in the) Fleet
 
     getFleetMineETL(i){
-        return parseFloat((this.getFleetMineUSD(i)/this.state.eternalPrice)).toFixed(3)
+        return parseFloat((this.getFleetMineUSD(i)/this.state.eternalPrice)).toFixed(4)
     }
 
     getFleetMineUSD(i){
-        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level] / 1.205))).toFixed(2)
+        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
     }
 
     getFleetSRvsUSD(i){
         if (this.state.fleet_rank === ""){
             return 'Enter Fleet Rank'
         } 
+        else if (isNaN(parseFloat(this.getFleetMineUSD(i)*7 * this.getFleetSuccessChance(i) / 100).toFixed(2))) {
+            return 'Not Enough MP'
+        }
         else {
             return '$ '+parseFloat(this.getFleetMineUSD(i)*7 * this.getFleetSuccessChance(i) / 100).toFixed(2)
         }
@@ -156,7 +159,7 @@ class GetEternal extends Component{
         
     }
     getFuel(i){
-        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[0]/1.205)) * 0.05).toFixed(2)
+        return parseFloat(((this.getMineUSD(i) * this.state.rank_reward[16]) * 0.05)).toFixed(2)
     }
 
     getFleetSuccessChance(i){
@@ -508,7 +511,7 @@ class GetEternal extends Component{
 
                         <div class="d-none d-lg-block px-0 mx-0">
                             <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
-                                <p class="col-4 getEternalHeader mt-3"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{this.state.eternalPrice}</span></p>
+                                <p class="col-4 getEternalHeader mt-3"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
                                 <p class="col-4 getEternalHeader mt-3"> <b>Contract (7 Days) / Worker</b> -{'>'} <span class="text-primary">{parseFloat(7/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
                                 <p class="col-4 getEternalHeader mt-3"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
                             </div>
@@ -518,7 +521,7 @@ class GetEternal extends Component{
 
                         <div class="d-xs-block d-sm-none px-0 mx-0">
                             <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
-                                <p class="col-4 getEternalHeaderM mt-3"> <b>USD/ETL</b>:<br/>  <span class="text-primary">{this.state.eternalPrice}</span></p>
+                                <p class="col-4 getEternalHeaderM mt-3"> <b>USD/ETL</b>:<br/>  <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
                                 <p class="col-4 getEternalHeaderM mt-3"> <b>Contract 7d: </b><br/> <span class="text-primary">{parseFloat(7/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
                                 <p class="col-4 getEternalHeaderM mt-3"> <b>Minting</b>: <br/><span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
                             </div>
@@ -545,7 +548,7 @@ class GetEternal extends Component{
                                     </div>
                                     <div class="col-7 row">
                                         <div class="col-12">
-                                            <p class={this.state.sheetInfo+" text-size-14"}>Fuel Values are estimates based on in game values (Planet 1 = 21Fuel), with some additional help from Dannii ❤#3151 and Memnoch#3381</p>
+                                            <p class={this.state.sheetInfo+" text-size-14"}>Fuel Values are from whitepaper, with some additional help from Dannii ❤#3151 and Memnoch#3381. New Oracle values also from Dannii ❤#3151</p>
                                         </div>
                                     </div>
                                 </div>
@@ -576,10 +579,10 @@ class GetEternal extends Component{
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
                                         <input type="text" class="input-group-text" maxlength="1" onChange={this.setFleetRank}></input>
                                     </div>
-                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-2 pt-2">
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
                                         <p class="text-left">Fleet Level:</p>
                                     </div>
-                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-2">
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
                                         <input type="number" class="input-group-text" onChange={this.setFleetLevel}></input>
                                     </div>
 
@@ -630,13 +633,13 @@ class GetEternal extends Component{
                                         <input type="text" class="input-group-text" maxlength="1" onChange={this.setFleetRank}></input>
                                     </div>
                                     <div class="col-12 my-1"><p class="text-small">Fleet Ranks are: D, C, B, A, and S</p></div>
-                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-4 pt-2">
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-4 pt-2">
                                         <p class="text-left-M">Fleet Level:</p>
                                     </div>
-                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 11" class="col-8">
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-8">
                                         <input type="number" class="input-group-text" onChange={this.setFleetLevel}></input>
                                     </div>
-                                    <div class="col-12 my-1"><p class="text-small">Fleet Levels are 0 to 25, they increase rewards earned. Default is 11.</p></div>
+                                    <div class="col-12 my-1"><p class="text-small">Fleet Levels are 0 to 25, they increase rewards earned. Default is 0.</p></div>
                                     
 
                                 </div>
@@ -960,7 +963,7 @@ class GetEternal extends Component{
                                     <br/>
                                     All values are approximation and should only be used as a template. 
                                     <br/>
-                                    ETL/USD updates are from Coingecko and updates every 2 seconds.
+                                    ETL/USD updates are from Pancakeswap.
                                     <br/>
                                     Mobile View Finally Available
                                     </p>
@@ -969,6 +972,8 @@ class GetEternal extends Component{
                                 <div class="col-6">
                                     <p class="credits text-info">
                                     Original Sheet and ORM Matrix by: Discord@starl3xx#2691
+                                    <br/>
+                                    New ORM Matrix by: #Dannii ❤#3151
                                     <br/>
                                     Found bugs? Want to help? DM me directly in Discord: Jucci#0007
                                     <br/>
@@ -985,7 +990,7 @@ class GetEternal extends Component{
                                     <br/>
                                     All values are approximation and should only be used as a template. 
                                     <br/>
-                                    ETL/USD updates are from Coingecko and updates every 2 seconds.
+                                    ETL/USD updates are from Pancakeswap.
                                     <br/>
                                     Mobile View Finally Available
                                     </p>
@@ -993,7 +998,9 @@ class GetEternal extends Component{
                                 </div>
                                 <div class="col-12">
                                     <p class="credits1 text-info">
-                                    Original Sheet and ORM Matrix by: Discord @ starl3xx#2691
+                                    Original Sheet and Original ORM Matrix by: Discord @ starl3xx#2691
+                                    <br/>
+                                    New ORM Matrix by: #Dannii ❤#3151
                                     <br/>
                                     Made by: Discord @ Jucci#0007
                                     <br/>
