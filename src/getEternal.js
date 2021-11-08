@@ -40,7 +40,7 @@ class GetEternal extends Component{
             btnHighlightCMInfo: "btn btn-custom text-size-14",
             btnHighlightFleetRank: "btn stretch text-size-14",
             btnHighlightFleetLevel: "btn stretch text-size-14",
-
+            fuel: [21,43,66,90,114,140,167,195,224,254,311,350,390,434,479,526,576,628,683,741,950,1000,1050,1100,1400,1500,1600,1750,1900,2100],
         }
         
         this.setMP = this.setMP.bind(this);
@@ -133,7 +133,7 @@ class GetEternal extends Component{
     }
 
     getFleetContractCost(){
-        return parseFloat(((7*this.state.workers)/this.state.eternalPrice)).toFixed(3)
+        return parseFloat(((7*this.state.workers)/this.state.eternalPrice)).toFixed(4)
     }
 
     getFleetNet(i){
@@ -159,7 +159,7 @@ class GetEternal extends Component{
         
     }
     getFuel(i){
-        return parseFloat(((this.getMineUSD(i) * this.state.rank_reward[16]) * 0.05)).toFixed(2)
+        return parseFloat((this.state.fuel[i]/100)).toFixed(2)
     }
 
     getFleetSuccessChance(i){
