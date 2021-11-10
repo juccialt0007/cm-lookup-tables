@@ -161,6 +161,9 @@ class GetEternal extends Component{
     getFuel(i){
         return parseFloat((this.state.fuel[i]/100)).toFixed(2)
     }
+    // getFuel(i){
+    //     return parseFloat(this.getMineUSD(i) * this.state.rank_reward[7] * 0.05).toFixed(2)
+    // }
 
     getFleetSuccessChance(i){
         if (this.state.fleet_rank === "D" || this.state.fleet_rank === "d" ) {
@@ -548,7 +551,7 @@ class GetEternal extends Component{
                                     </div>
                                     <div class="col-7 row">
                                         <div class="col-12">
-                                            <p class={this.state.sheetInfo+" text-size-14"}>Fuel Values are from whitepaper, with some additional help from Dannii ❤#3151 and Memnoch#3381. New Oracle values also from Dannii ❤#3151</p>
+                                            <p class={this.state.sheetInfo+" text-size-14"}>Fuel Values (Adjusted) are from the game. New Oracle values from Dannii ❤#3151</p>
                                         </div>
                                     </div>
                                 </div>
