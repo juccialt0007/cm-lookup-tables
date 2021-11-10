@@ -41,13 +41,19 @@ class GetEternal extends Component{
             btnHighlightFleetRank: "btn stretch text-size-14",
             btnHighlightFleetLevel: "btn stretch text-size-14",
             fuel: [21,43,66,90,114,140,167,195,224,254,311,350,390,434,479,526,576,628,683,741,950,1000,1050,1100,1400,1500,1600,1750,1900,2100],
+            visSelectDays: "",
+            selectDays: "7",
+            
         }
+        
         
         this.setMP = this.setMP.bind(this);
         this.setWorkers = this.setWorkers.bind(this);
         this.setFleetLevel = this.setFleetLevel.bind(this);
         this.setFleetRank = this.setFleetRank.bind(this);
     }
+    
+    
 
     async loadData(){
         const url = "https://api.pancakeswap.info/api/v2/tokens/0xD44FD09d74cd13838F137B590497595d6b3FEeA4"
@@ -64,29 +70,22 @@ class GetEternal extends Component{
     async componentWillUnmount() {
         clearInterval(this.updateTimer);
     }
-
-
     // Normal
-
     getMinePower(i){
         return this.state.minepower[i]
     }
     getMineUSD(i){
         return parseFloat(4.0 * this.state.oracle_adjustment[i]).toFixed(2)
     }
-    
     setMP(event){
         this.setState({mp : event.target.value})
     }
-
     setWorkers(event){
         this.setState({workers: event.target.value})
     }
-
     setFleetRank(event){
         this.setState({fleet_rank: event.target.value})
     }
-    
     setFleetLevel(event){
         this.setState({fleet_level: event.target.value})
     }
@@ -95,9 +94,7 @@ class GetEternal extends Component{
     }
     btnFleets = () => {
         this.setState({sheetInfo: "mt-2 text-right-special" ,visibilityNormal: "d-none", visibilityFleet: "overflow", inputVisFleet: "row mt-2", btnHighlightInfo: "btn stretch mobile-margin", btnHighlightFleet: "btn btn-custom mobile-margin"})
-        alert("Disclaimer: \r\nThis is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated\r\n\r\nAll calculator values are approximation. Do not take them literally.\r\n\r\nSpecial Thanks to: deejaygeekout#1720 and especially to: frifster#1185 (Master Papink) for agreeing to my experiment on clarifying the white paper.\r\n\r\nI made this to help everyone.\r\n\r\nBefore any update to the site happens, I verify it first with a Mod. Goodluck!");
     }
-
     btnFleetInfo = () => {
         this.setState({visInfo: "mb-4", visFleetLevel: "d-none", visFleetRank: "d-none", btnHighlightCMInfo: "btn btn-custom text-size-14", btnHighlightFleetRank:"btn stretch text-size-14", btnHighlightFleetLevel:"btn stretch text-size-14"})
     }
@@ -111,6 +108,32 @@ class GetEternal extends Component{
 
     //(Who called in the) Fleet
 
+    setDays = (event) => {
+        this.setState({ selectDays: event.target.value });
+      };
+
+    getContractCost(){
+        if (this.state.selectDays === "30"){
+            return parseFloat(27/this.state.eternalPrice).toFixed(4)
+        } else if (this.state.selectDays === "15"){
+            return parseFloat(14/this.state.eternalPrice).toFixed(4)
+        } 
+        else if (this.state.selectDays === "7"){
+            return parseFloat(7/this.state.eternalPrice).toFixed(4)
+        }
+    }
+
+    getContractDays(){
+        if (this.state.selectDays === "30"){
+            return 27
+        } else if (this.state.selectDays === "15"){
+            return 14
+        } 
+        else if (this.state.selectDays === "7"){
+            return 7
+        }
+    }
+
     getFleetMineETL(i){
         return parseFloat((this.getFleetMineUSD(i)/this.state.eternalPrice)).toFixed(4)
     }
@@ -123,40 +146,39 @@ class GetEternal extends Component{
         if (this.state.fleet_rank === ""){
             return 'Enter Fleet Rank'
         } 
-        else if (isNaN(parseFloat(this.getFleetMineUSD(i)*7 * this.getFleetSuccessChance(i) / 100).toFixed(2))) {
+        else if (isNaN(parseFloat(this.getFleetMineUSD(i)* this.state.selectDays * this.getFleetSuccessChance(i) / 100).toFixed(2))) {
             return 'Not Enough MP'
         }
         else {
-            return '$ '+parseFloat(this.getFleetMineUSD(i)*7 * this.getFleetSuccessChance(i) / 100).toFixed(2)
+            return '$ '+parseFloat(this.getFleetMineUSD(i)* this.state.selectDays * this.getFleetSuccessChance(i) / 100).toFixed(2)
         }
         
     }
 
     getFleetContractCost(){
-        return parseFloat(((7*this.state.workers)/this.state.eternalPrice)).toFixed(4)
+        return parseFloat(((this.getContractDays()*this.state.workers)/this.state.eternalPrice)).toFixed(4)
     }
 
     getFleetNet(i){
         if (this.state.fleet_rank === ""){
             return 'Enter Fleet Rank'
         }
-        else if (isNaN(parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7) ).toFixed(2))){
+        else if (isNaN(parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*this.getContractDays()) ).toFixed(2))){
             return 'Not Enough MP'
         } else {
-            return '$ '+parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7) ).toFixed(2)
+            return '$ '+parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*this.getContractDays()) ).toFixed(2)
         }
     }
     getFleetNetFuel(i){
         if (this.state.fleet_rank === ""){
             return 'Enter Fleet Rank'
         }
-        else if (isNaN(parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7) - (this.getFuel(i)*7) ).toFixed(2))){
+        else if (isNaN(parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*this.getContractDays()) - (this.getFuel(i)*this.state.selectDays) ).toFixed(2))){
             return 'Not Enough MP'
         }
         else {
-            return '$ '+parseFloat(((this.getFleetMineUSD(i)*7) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*7) - (this.getFuel(i)*7) ).toFixed(2)
+            return '$ '+parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - (this.state.workers*this.getContractDays()) - (this.getFuel(i)*this.state.selectDays) ).toFixed(2)
         }
-        
     }
     getFuel(i){
         return parseFloat((this.state.fuel[i]/100)).toFixed(2)
@@ -508,25 +530,52 @@ class GetEternal extends Component{
 
     render(){
         return(
+            
+            
+            
+
             <div class="container-fixed px-3">
                 <div class="container-fluid px-1">
                     <div class="container-fluid">
 
-                        <div class="d-none d-lg-block px-0 mx-0">
-                            <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
-                                <p class="col-4 getEternalHeader mt-3"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
-                                <p class="col-4 getEternalHeader mt-3"> <b>Contract (7 Days) / Worker</b> -{'>'} <span class="text-primary">{parseFloat(7/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
-                                <p class="col-4 getEternalHeader mt-3"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
-                            </div>
-                        </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                                <div class="modal-body">
+                                <p class="modal-popup"><b class="text-size-17">Disclaimer: </b><br/><br/>This is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated.<br/><br/>All calculator values are approximation. Do not take them literally.<br/><br/>Goodluck!<br/><br/></p>
+                                <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">I understand</button>
+                                </div>
 
                         
+                            </div>
+                        </div>
+                        </div>
 
+                        <div class="d-none d-lg-block px-0 mx-0">
+                            <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
+                                <div class="col-4 mt-3">
+                                <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                                </div>
+                                <div class="row col-4">
+                                <div class="col-3"></div>
+                                <div class="col-3 top-12"><select class="form-select getEternalHeader" onChange={this.setDays} aria-label="Default select">
+                                <option selected value="7">7 Days</option>
+                                <option value="15">15 Days</option>
+                                <option value="30">30 Days</option>
+                                </select></div>
+                                <div class="col-6 mt-3"><p class="getEternalHeaderL"><b>Contract / Worker</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                </div>
+                                <div class="col-4  mt-3">
+                                    <p class="getEternalHeader"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="d-xs-block d-sm-none px-0 mx-0">
                             <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
                                 <p class="col-4 getEternalHeaderM mt-3"> <b>USD/ETL</b>:<br/>  <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
-                                <p class="col-4 getEternalHeaderM mt-3"> <b>Contract 7d: </b><br/> <span class="text-primary">{parseFloat(7/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
-                                <p class="col-4 getEternalHeaderM mt-3"> <b>Minting</b>: <br/><span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(3)} ETL</span> </p>
+                                <p class="col-4 getEternalHeaderM mt-3"> <b>Contract 7d: </b><br/> <span class="text-primary">{this.getContractCost()} ETL</span> </p>
+                                <p class="col-4 getEternalHeaderM mt-3"> <b>Minting</b>: <br/><span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
                             </div>
                         </div>
 
@@ -543,7 +592,7 @@ class GetEternal extends Component{
                                             <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
                                         </div>
                                         <div class="col-2">
-                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Calculator</button>
+                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Calculator</button>
                                         </div>
                                         <div class="col-8">
                                             <p class={this.state.sheetInfo}>Validated with frifster#1185 (Master Papink's) A Rank 5100MP Fleet.</p>
@@ -609,7 +658,7 @@ class GetEternal extends Component{
                                         <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
                                     </div>
                                     <div class="col-6">
-                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets}>Calculator</button>
+                                        <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Calculator</button>
                                     </div>
                                 </div>
 
@@ -926,11 +975,11 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">Mine Reward (USD)</th>
                                     <th class="border border-2 border-dark">Fuel Cost (USD)</th>
                                     <th class="border border-2 border-dark">Success Rate (SR)</th>
-                                    <th class="border border-2 border-dark">7 Day Reward (USD) vs SR</th>
+                                    <th class="border border-2 border-dark">{this.state.selectDays} Day Reward (USD) vs SR</th>
                                     <th class="border border-2 border-dark">Est. Workers</th>
-                                    <th class="border border-2 border-dark">Worker Contract Upkeep / 7d </th>
-                                    <th class="border border-2 border-dark">Net Profit / 7d</th>
-                                    <th class="border border-2 border-dark">Net Profit - Fuel / 7d</th>
+                                    <th class="border border-2 border-dark">Worker Contract Upkeep / {this.state.selectDays}d </th>
+                                    <th class="border border-2 border-dark">Net Profit / {this.state.selectDays}d</th>
+                                    <th class="border border-2 border-dark">Net Profit - Fuel / {this.state.selectDays}d</th>
                                 </tr>
                                 {/* Fleet */}
                                 {(() => {
@@ -980,7 +1029,7 @@ class GetEternal extends Component{
                                     <br/>
                                     Found bugs? Want to help? DM me directly in Discord: Jucci#0007
                                     <br/>
-                                    If you found this sheet helpful (copies on click): <button class="btn text-size-12 text-info px-0 mx-0 mb-0 py-0" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button> 
+                                    If you found this sheet helpful: <button class="btn text-size-12 text-info px-0 mx-0 mb-0 py-0" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied!" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button> 
                                     </p>
                                 </div>
                             </div>
@@ -997,7 +1046,6 @@ class GetEternal extends Component{
                                     <br/>
                                     Mobile View Finally Available
                                     </p>
-                                    
                                 </div>
                                 <div class="col-12">
                                     <p class="credits1 text-info">
@@ -1009,7 +1057,7 @@ class GetEternal extends Component{
                                     <br/>
                                     Found bugs? Want to help? DM me directly.
                                     <br/>
-                                    If you found this sheet helpful (copies on click): <br/><button class="btn text-info px-0 mx-0 text-size-10" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button>
+                                    If you found this sheet helpful: <br/><button class="btn text-info px-0 mx-0 text-size-10" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied!" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button>
                                     </p>
                                 </div>
                             </div>
