@@ -529,7 +529,9 @@ class GetEternal extends Component{
     }
 
     
-    
+    closeTab = () => {
+        window.close();
+    }
 
 
     render(){
@@ -547,7 +549,7 @@ class GetEternal extends Component{
                                 
                                 <div class="row">
                                     <div class="col-6">
-                                    <button type="button" class="btn btn-secondary width-100 mobile-margin my-2">I don't understand</button>
+                                    <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>I don't understand</button>
                                     </div>
                                     <div class="col-6">
                                     <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">I understand</button>
