@@ -286,3 +286,7 @@ select{
 .text-size-17{
   font-size: 17px !important;
 }
+
+.width-100{
+  width: 100% !important;
+}

@@ -3,11 +3,12 @@ import './App.css';
 import './table.css';
 
 
-class GetEternal extends Component{
 
+
+
+class GetEternal extends Component{
     constructor(props){
         super(props);
-        
         this.state = {
             mp: 0,
             workers: 0,
@@ -22,7 +23,6 @@ class GetEternal extends Component{
             visibilityNormal: "",
             visibilityFleet:"d-none",
             inputVisFleet: "d-none",
-
             d_success_chance: [0.85,0.83,0.81,0.79,0.77,0.75,0.73,0.71,0.69,0.67,0.6,0.58,0.56,0.54,0.52,0.50,0.48,0.46,0.44,0.42,0.41,0.41,0.41,0.41,0.41,0.39,0.39,0.39,0.39,0.39],
             c_success_chance: [0.88,0.86,0.84,0.82,0.8,0.78,0.76,0.74,0.72,0.70,0.65,0.63,0.61,0.59,0.57,0.55,0.53,0.51,0.49,0.47,0.43,0.43,0.43,0.43,0.43,0.40,0.40,0.40,0.40,0.40],
             b_success_chance: [0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.77,0.75,0.73,0.67,0.65,0.63,0.61,0.59,0.57,0.55,0.53,0.51,0.49,0.47,0.47,0.47,0.47,0.47,0.45,0.45,0.45,0.45,0.45],
@@ -43,17 +43,17 @@ class GetEternal extends Component{
             fuel: [21,43,66,90,114,140,167,195,224,254,311,350,390,434,479,526,576,628,683,741,950,1000,1050,1100,1400,1500,1600,1750,1900,2100],
             visSelectDays: "",
             selectDays: "7",
-            
         }
-        
-        
         this.setMP = this.setMP.bind(this);
         this.setWorkers = this.setWorkers.bind(this);
         this.setFleetLevel = this.setFleetLevel.bind(this);
         this.setFleetRank = this.setFleetRank.bind(this);
     }
+
     
-    
+
+
+
 
     async loadData(){
         const url = "https://api.pancakeswap.info/api/v2/tokens/0xD44FD09d74cd13838F137B590497595d6b3FEeA4"
@@ -223,8 +223,8 @@ class GetEternal extends Component{
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.d_success_chance[i] * 100 + divi).toFixed(0);
             if (i < 10){
-                if (answer >= 97){
-                return 97
+                if (answer >= 88){
+                return 88
                 } else {
                     return answer
                 }
@@ -253,8 +253,8 @@ class GetEternal extends Component{
             const divi = Math.floor(diff/50);
             const answer = parseFloat(this.state.d_success_chance[i] * 100 + divi).toFixed(0);
             if (i < 10){
-                if (answer >= 97){
-                return 97+'%'
+                if (answer >= 88){
+                return 88+'%'
                 } else {
                     return answer+'%'
                 }
@@ -528,12 +528,12 @@ class GetEternal extends Component{
         }
     }
 
+    
+    
+
+
     render(){
         return(
-            
-            
-            
-
             <div class="container-fixed px-3">
                 <div class="container-fluid px-1">
                     <div class="container-fluid">
@@ -543,8 +543,19 @@ class GetEternal extends Component{
                             <div class="modal-content">
                             
                                 <div class="modal-body">
-                                <p class="modal-popup"><b class="text-size-17">Disclaimer: </b><br/><br/>This is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated.<br/><br/>All calculator values are approximation. Do not take them literally.<br/><br/>Goodluck!<br/><br/></p>
-                                <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">I understand</button>
+                                <p class="modal-popup"><b class="text-size-17">Disclaimer: </b><br/><br/>This is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated.<br/><br/>All calculator values are <b>approximation</b>. Do not take them literally. <br/><br/>This is best used as a <b>template</b>. <br/>Please don't go complaining in General Chat if your "expectations" are not reached.<br/><br/>The game is audited by a Top BlockChain Auditor. <br/>Your claims of it being rigged are unfounded.<br/><br/>Goodluck!<br/><br/></p>
+                                
+                                <div class="row">
+                                    <div class="col-6">
+                                    <button type="button" class="btn btn-secondary width-100 mobile-margin my-2">I don't understand</button>
+                                    </div>
+                                    <div class="col-6">
+                                    <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">I understand</button>
+                                    </div>
+                                
+                                
+                                </div>
+                            
                                 </div>
 
                         
@@ -725,7 +736,7 @@ class GetEternal extends Component{
                             </div>
 
                             <div class="d-none d-lg-block px-0 mx-0">
-                                <div class="col-5 row my-4">
+                                <div class="col-5 btn-group row my-4">
                                     <div class="col-2">
                                         <button type="button" class={this.state.btnHighlightCMInfo} onClick={this.btnFleetInfo}>CM Info</button>
                                     </div>
@@ -1059,6 +1070,10 @@ class GetEternal extends Component{
                                     <br/>
                                     If you found this sheet helpful: <br/><button class="btn text-info px-0 mx-0 text-size-10" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied!" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button>
                                     </p>
+
+                                    <div className="copyonclick">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
