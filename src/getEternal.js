@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import './App.css';
 import './table.css';
 
-
-
-
-
 class GetEternal extends Component{
     constructor(props){
         super(props);
@@ -28,20 +24,15 @@ class GetEternal extends Component{
             b_success_chance: [0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.77,0.75,0.73,0.67,0.65,0.63,0.61,0.59,0.57,0.55,0.53,0.51,0.49,0.47,0.47,0.47,0.47,0.47,0.45,0.45,0.45,0.45,0.45],
             a_success_chance: [0.93,0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.77,0.75,0.71,0.69,0.67,0.65,0.63,0.61,0.59,0.57,0.55,0.53,0.52,0.52,0.52,0.52,0.52,0.50,0.50,0.50,0.50,0.50],
             s_success_chance: [0.97,0.95,0.93,0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.74,0.72,0.70,0.68,0.66,0.64,0.62,0.60,0.58,0.56,0.55,0.55,0.55,0.55,0.55,0.53,0.53,0.53,0.53,0.53],
-            fleet_rank: "",
+            fleet_rank: "D",
             fleet_level: 0,
             rank_reward: [1,1.01,1.02,1.03,1.04,1.05,1.1,1.12,1.14,1.16,1.20,1.205,1.21,1.215,1.22,1.225,1.25,1.255,1.26,1.265,1.27,1.3,1.305,1.31,1.315,1.35],
             sheetInfo: "d-none",
             visInfo: "",
-            visFleetRank: "d-none",
-            visFleetLevel: "d-none",
+            visCredits: "d-none",
             btnHighlightInfo: "btn btn-custom mobile-margin",
             btnHighlightFleet: "btn stretch mobile-margin",
-            btnHighlightCMInfo: "btn btn-custom text-size-14",
-            btnHighlightFleetRank: "btn stretch text-size-14",
-            btnHighlightFleetLevel: "btn stretch text-size-14",
             fuel: [21,43,66,90,114,140,167,195,224,254,311,350,390,434,479,526,576,628,683,741,950,1000,1050,1100,1400,1500,1600,1750,1900,2100],
-            visSelectDays: "",
             selectDays: "7",
         }
         this.setMP = this.setMP.bind(this);
@@ -49,11 +40,6 @@ class GetEternal extends Component{
         this.setFleetLevel = this.setFleetLevel.bind(this);
         this.setFleetRank = this.setFleetRank.bind(this);
     }
-
-    
-
-
-
 
     async loadData(){
         const url = "https://api.pancakeswap.info/api/v2/tokens/0xD44FD09d74cd13838F137B590497595d6b3FEeA4"
@@ -90,19 +76,19 @@ class GetEternal extends Component{
         this.setState({fleet_level: event.target.value})
     }
     btnVisNrm = () => {
-        this.setState({sheetInfo: "d-none" ,visibilityNormal: "mb-4", visibilityFleet: "d-none", inputVisFleet: "d-none", btnHighlightInfo: "btn btn-custom mobile-margin", btnHighlightFleet: "btn stretch mobile-margin"})
+        this.setState({sheetInfo: "d-none" ,visibilityNormal: "mb-4", visibilityFleet: "d-none", inputVisFleet: "d-none", btnHighlightInfo: "btn btn-custom mobile-margin", btnHighlightFleet: "btn stretch mobile-margin",visCredits: "d-none"})
     }
     btnFleets = () => {
-        this.setState({sheetInfo: "mt-2 text-right-special" ,visibilityNormal: "d-none", visibilityFleet: "overflow", inputVisFleet: "row mt-2", btnHighlightInfo: "btn stretch mobile-margin", btnHighlightFleet: "btn btn-custom mobile-margin"})
+        this.setState({sheetInfo: "mt-2 text-right-special" ,visibilityNormal: "d-none", visibilityFleet: "overflow", inputVisFleet: "row mt-2", btnHighlightInfo: "btn stretch mobile-margin", btnHighlightFleet: "btn btn-custom mobile-margin",visCredits: ""})
     }
     btnFleetInfo = () => {
-        this.setState({visInfo: "mb-4", visFleetLevel: "d-none", visFleetRank: "d-none", btnHighlightCMInfo: "btn btn-custom text-size-14", btnHighlightFleetRank:"btn stretch text-size-14", btnHighlightFleetLevel:"btn stretch text-size-14"})
+        this.setState({visInfo: "mb-4", visFleetLevel: "d-none", visFleetRank: "d-none", btnHighlightCMInfo: "btn btn-custom text-size-14"})
     }
     btnFleetRanks = () => {
-        this.setState({visInfo: "d-none", visFleetLevel: "d-none", visFleetRank: "mb-4", btnHighlightCMInfo: "btn stretch text-size-14", btnHighlightFleetRank:"btn btn-custom text-size-14", btnHighlightFleetLevel:"btn stretch text-size-14"})
+        this.setState({visInfo: "d-none", visFleetLevel: "d-none", visFleetRank: "mb-4", btnHighlightCMInfo: "btn stretch text-size-14"})
     }
     btnFleetLevels = () => {
-        this.setState({visInfo: "d-none", visFleetLevel: "mb-4", visFleetRank: "d-none", btnHighlightCMInfo: "btn stretch text-size-14", btnHighlightFleetRank:"btn stretch text-size-14", btnHighlightFleetLevel:"btn btn-custom text-size-14"})
+        this.setState({visInfo: "d-none", visFleetLevel: "mb-4", visFleetRank: "d-none", btnHighlightCMInfo: "btn stretch text-size-14"})
     }
 
 
@@ -110,6 +96,10 @@ class GetEternal extends Component{
 
     setDays = (event) => {
         this.setState({ selectDays: event.target.value });
+      };
+
+    setFleetRank = (event) => {
+        this.setState({ fleet_rank: event.target.value });
       };
 
     getContractCost(){
@@ -155,8 +145,11 @@ class GetEternal extends Component{
         
     }
 
-    getFleetContractCost(){
+    getFleetContractCostETL(){
         return parseFloat(((this.getContractDays()*this.state.workers)/this.state.eternalPrice)).toFixed(4)
+    }
+    getFleetContractCostUSD(){
+        return parseFloat(this.getContractDays()*this.state.workers).toFixed(2)
     }
 
     getFleetNet(i){
@@ -183,9 +176,6 @@ class GetEternal extends Component{
     getFuel(i){
         return parseFloat((this.state.fuel[i]/100)).toFixed(2)
     }
-    // getFuel(i){
-    //     return parseFloat(this.getMineUSD(i) * this.state.rank_reward[7] * 0.05).toFixed(2)
-    // }
 
     getFleetSuccessChance(i){
         if (this.state.fleet_rank === "D" || this.state.fleet_rank === "d" ) {
@@ -528,11 +518,9 @@ class GetEternal extends Component{
         }
     }
 
-    
     closeTab = () => {
         window.close();
     }
-
 
     render(){
         return(
@@ -545,44 +533,64 @@ class GetEternal extends Component{
                             <div class="modal-content">
                             
                                 <div class="modal-body">
-                                <p class="modal-popup"><b class="text-size-17">Disclaimer: </b><br/><br/>This is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated.<br/><br/>All calculator values are <b>approximation</b>. Do not take them literally. <br/><br/>This is best used as a <b>template</b>. <br/>Please don't go complaining in General Chat if your "expectations" are not reached.<br/><br/>The game is audited by a Top BlockChain Auditor. <br/>Your claims of it being rigged are unfounded.<br/><br/>Goodluck!<br/><br/></p>
+                                <p class="modal-popup"><b class="text-size-17">Disclaimer: </b><br/><br/>This is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated.<br/><br/>All calculator values are <b>approximation</b>. Do not take them literally. <br/><br/>This is best used as a <b>template</b>. <br/><br/>Please don't go complaining in General Chat if your "expectations" are not reached.<br/><br/>The game is audited by a Top BlockChain Auditor. <br/>Your claims of it being rigged are unfounded.<br/><br/></p>
                                 
                                 <div class="row">
-                                    <div class="col-6">
-                                    <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>I don't understand</button>
-                                    </div>
-                                    <div class="col-6">
-                                    <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">I understand</button>
-                                    </div>
-                                
-                                
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>I don't understand</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>I don't understand</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">I understand</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">I understand</button>
+                                        </div>
+                                        </div>
                                 </div>
-                            
                                 </div>
 
-                        
                             </div>
                         </div>
                         </div>
 
                         <div class="d-none d-lg-block px-0 mx-0">
-                            <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
-                                <div class="col-4 mt-3">
-                                <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                            {/* <div class="row"> */}
+                                {/* <div class="col-11"> */}
+                                <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
+                                    <div class="col-4 mt-3">
+                                    <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                                    </div>
+                                    <div class="row col-4">
+                                    <div class="col-3"></div>
+                                    <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                    <option selected value="7">7 Days</option>
+                                    <option value="15">15 Days</option>
+                                    <option value="30">30 Days</option>
+                                    </select></div>
+                                    <div class="col-6 mt-3"><p class="getEternalHeaderL"><b>Contract / Worker</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                    </div>
                                 </div>
-                                <div class="row col-4">
-                                <div class="col-3"></div>
-                                <div class="col-3 top-12"><select class="form-select getEternalHeader" onChange={this.setDays} aria-label="Default select">
-                                <option selected value="7">7 Days</option>
-                                <option value="15">15 Days</option>
-                                <option value="30">30 Days</option>
-                                </select></div>
-                                <div class="col-6 mt-3"><p class="getEternalHeaderL"><b>Contract / Worker</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                {/* </div> */}
+                                {/* <div class="col-1">
+                                <select class="form-select getEternalHeader select-days mt-2" onChange="" aria-label="Default select">
+                                    <option selected value="EN">EN</option>
+                                    <option value="ES">ESP</option>
+                                    <option value="BR">BR</option>
+                                </select>
                                 </div>
-                                <div class="col-4  mt-3">
-                                    <p class="getEternalHeader"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
-                                </div>
-                            </div>
+
+                            </div> */}
+                            
                         </div>
                         <div class="d-xs-block d-sm-none px-0 mx-0">
                             <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
@@ -591,9 +599,6 @@ class GetEternal extends Component{
                                 <p class="col-4 getEternalHeaderM mt-3"> <b>Minting</b>: <br/><span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
                             </div>
                         </div>
-
-
-
                     </div>
 
                     <div class="contrainer-fluid">
@@ -623,10 +628,10 @@ class GetEternal extends Component{
                                 <div class="col-2"></div>
                                 <div class={this.state.inputVisFleet+" col-8"}>
 
-                                    <div title="MP affects Success Rate (SR)" class="col-2 pt-2">
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
                                         <p class="text-left">MP:</p>
                                     </div>
-                                    <div title="MP affects Success Rate (SR)" class="col-2">
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
                                         <input type="number" class="input-group-text" onChange={this.setMP}></input>
                                     </div>
                                     <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
@@ -636,34 +641,58 @@ class GetEternal extends Component{
                                         <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
                                     </div>
 
-                                    <div class="col-4 mt-2"><p class="text-right">Hover on the fields to show tool-tip.</p></div>
+                                    <div class="col-4"></div>
 
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
                                         <p class="text-left">Fleet Rank:</p>
                                     </div>
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
-                                        <input type="text" class="input-group-text" maxlength="1" onChange={this.setFleetRank}></input>
+                                    <select class="form-select fleet-rank-custom input-group-text" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
                                     </div>
                                     <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
                                         <p class="text-left">Fleet Level:</p>
                                     </div>
                                     <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
-                                        <input type="number" class="input-group-text" onChange={this.setFleetLevel}></input>
+                                    <select class="form-select fleet-rank-custom input-group-text" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
                                     </div>
-
-                                    <div class="col-4 mt-2"><p class="text-right">Input Fleet Rank to show Success Rates.</p></div>
 
                                 </div>
                                 <div class="col-2"></div>
                                 </div>
-                                
-                                
-
-
                             </div>
-
-
-
 
                             <div class="d-xs-block d-sm-none px-0 mx-0">
                                 <div class="px-0 mx-0 row">
@@ -674,13 +703,12 @@ class GetEternal extends Component{
                                         <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Calculator</button>
                                     </div>
                                 </div>
-
                                 <div class={this.state.inputVisFleet+" col-12 pt-4 px-0 mx-0"}>
 
-                                    <div title="MP affects Success Rate (SR)" class="col-4 pt-2">
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-4 pt-2">
                                         <p class="text-left-M">MP:</p>
                                     </div>
-                                    <div title="MP affects Success Rate (SR)" class="col-8">
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-8">
                                         <input type="number" class="input-group-text" onChange={this.setMP}></input>
                                     </div>
                                     <div class="col-12 my-1"><p class="text-small">MP affects Success Rate (SR)</p></div>
@@ -695,285 +723,73 @@ class GetEternal extends Component{
                                         <p class="text-left-M">Fleet Rank:</p>
                                     </div>
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-8">
-                                        <input type="text" class="input-group-text" maxlength="1" onChange={this.setFleetRank}></input>
+                                        <select class="form-select fleet-rank-custom input-group-text" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                        <option selected value="D">D Rank</option>
+                                        <option value="C">C Rank</option>
+                                        <option value="B">B Rank</option>
+                                        <option value="A">A Rank</option>
+                                        <option value="S">S Rank</option>
+                                        </select>
                                     </div>
                                     <div class="col-12 my-1"><p class="text-small">Fleet Ranks are: D, C, B, A, and S</p></div>
                                     <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-4 pt-2">
                                         <p class="text-left-M">Fleet Level:</p>
                                     </div>
                                     <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-8">
-                                        <input type="number" class="input-group-text" onChange={this.setFleetLevel}></input>
+                                    <select class="form-select fleet-rank-custom input-group-text" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
                                     </div>
                                     <div class="col-12 my-1"><p class="text-small">Fleet Levels are 0 to 25, they increase rewards earned. Default is 0.</p></div>
-                                    
-
                                 </div>
 
-
-
-
-
                             </div>
-
-                            
-
-
                         </div>
                     </div>
-                        
                         <div id="normal" class={this.state.visibilityNormal}>
-                         
-                            <div class="d-xs-block d-sm-none px-0 mx-0">
-                                <div class="row my-4">
-                                    <div class="col-4 padding-right">
-                                        <button type="button" class={this.state.btnHighlightCMInfo} onClick={this.btnFleetInfo}>CM Info</button>
-                                    </div>
-                                    <div class="col-4 padding-center">
-                                        <button type="button" class={this.state.btnHighlightFleetRank} onClick={this.btnFleetRanks}>Fleet Ranks</button>
-                                    </div>
-                                    <div class="col-4 padding-left">
-                                        <button type="button" class={this.state.btnHighlightFleetLevel} onClick={this.btnFleetLevels}>Fleet Levels</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="d-none d-lg-block px-0 mx-0">
-                                <div class="col-5 btn-group row my-4">
-                                    <div class="col-2">
-                                        <button type="button" class={this.state.btnHighlightCMInfo} onClick={this.btnFleetInfo}>CM Info</button>
-                                    </div>
-                                    <div class="col-2">
-                                        <button type="button" class={this.state.btnHighlightFleetRank} onClick={this.btnFleetRanks}>Fleet Ranks</button>
-                                    </div>
-                                    <div class="col-2">
-                                        <button type="button" class={this.state.btnHighlightFleetLevel} onClick={this.btnFleetLevels}>Fleet Levels</button>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="my-6">
-
                             <div class={this.state.visInfo}>
-                                <p class="text-right1 my-4">
-
-                                <b><a href="https://cryptomines.medium.com/crytomines-update-pre-raids-cac023eebc11" rel="noreferrer" target="_blank">Link to updates in Medium</a> </b> <br/><br/>
-                        
-                                WHAT’S NEW:<br/>
-
-                                <b>QoL Changes:</b><br/>
-                                — Daily Mining: You will now be able to <b>mine at any time of the day</b>, all daily mines will restart at <b>00:00 UTC.</b>
-                                <br/>
-                                — Unclaimed $ETERNAL: Updated the way the <b>daily withdrawal tax percentage decreases</b>, the tax will drop by 2% the <b>first time you go on an expedition in the day</b>. 
-                                <br/>
-                                <br/>
-
-                                <b>Fleets:</b>
-                                <br/>
-                                — Fleets: They will be NFT created from the combination of all your Workers and Ships, this will lower the cost of GAS to all miners. <br/>
-                                You can <b>add</b> NFTs to these fleets, or you can <b><span class="text-danger">disassemble</span></b> them, recovering all your workers and ships separately again.<br/>
-                                — The initial cost of building your fleet will be close to the usual cost of an expedition, but, <b>your expeditions will now cost the equivalent of sending just one NFT!</b>
-                                <br/>
-                                Fleets main features:<br/>
-                                — They will be able to have a custom name.<br/>
-                                — The price of creating a fleet will vary depending on how many NFT you add to them.<br/>
-                                — Once your Fleet is <b>created</b>, you can <b>add more Spaceships and Workers to make it stronger</b>, you must pay in $ETERNAL the cost of $0.5 USD per NFT added.<br/> 
-                                All $ETERNAL collected from fleets will go directly to the reward pool.<br/>
-                                —  For example, if you create a fleet with 4 NFTs, it will cost you a total of $2 USD in $ETERNAL.<br/>
-                                — <b>More Ships and Workers can be added to them, <span class="text-danger">but they cannot be removed without separating the entire Fleet</span>, so choose your crew carefully!</b>.<br/>
-                                — They will have as many spaces as your Spaceships allow, keeping a maximum of <b>10 Spaceships per fleet</b>.<br/>
-                                — You will be able to have <b>multiple fleets on your account</b>. <b>Multiple Voyages!</b><br/>
-                                — They will gain experience and level up, allowing them to increase rewards in the long run. <br/>
-                                — When you <b><span class="text-danger">disband your fleet you will lose the levels you have gained</span></b>.<br/>
-                                — Individual contracts to your workers will be replaced by a <b>fleet contracts, which will have the same total cost of regular contracts, but in a single transaction</b>, reducing GAS costs. <br/>
-                                You will be able to <b>choose between using $ETERNAL from your unclaimed rewards or from your wallet</b>, you will also get a small discount for hiring them for longer periods.<br/>
-                                — Fleets can be <b>bought and sold in the Marketplace</b>.
-                                <br/>
-                                <br/>
-                                <b>Economy:</b><br/>
-
-                                — Fuel⛽: It will be necessary to be able to perform regular explorations to the Planets and will have to be purchased prior to the expedition. 
-                                <br/>The cost of fuel will vary depending on the Planet you wish to explore, the farther away the Planet is, the more fuel will be needed to explore it, having approximately a value of 5% of the reward of that Planet.<br/>
-                                All $ETERNAL collected from fuel will go directly into the reward pool.<br/>
-                                — Marketplace: We monumentally improved our internal marketplace to support the hundreds of thousands of transactions that take place daily, the Marketplace tax will go up by 5%, reaching a total of 15%.
-                                <br/>All $ETERNAL collected from the Marketplace will go directly to the rewards pool.
-
-                                <br/><br/>
-
-                                <b>From AMA:</b><br/>
-                                — What do you mean you are going to give me 11 levels and a lot of money?
-                                <br/>&emsp;&emsp;Players who create their fleet during the event will be given Level 11 for each fleet created (FLEET LEVEL), allowing players to keep their rewards similar to how they were before the update,
-                                <br/> the more you level up your fleet, the better rewards you will get.
-                                <br/>
-                                — What is a fleet?
-                                <br/>&emsp;&emsp;Fleet is a new nft, it is the union of ships and workers, allowing you to reduce your GAS costs for mining and other actions.
-                                <br/>
-                                — Why should I build a fleet?
-                                <br/>&emsp;&emsp;It will be necessary to go on explorations and each exploration you do (win or lose) will earn you experience for your fleet.
-                                <br/>
-                                — Can I dismantle a fleet?
-                                <br/>&emsp;&emsp;If you can dismantle it, you must take into account that you will lose the experience accumulated in your fleet, you'll get back all your worker's and spaceships.
-                                <br/>
-                                — Can the fleets be sold?
-                                <br/>&emsp;&emsp;Yes, fleets can be sold on the market.
-                                <br/>
-                                — Are the fleets transferable? 
-                                <br/>&emsp;&emsp;Yes, fleets are transferable.
-                                <br/>
-                                — Can the fleets be dismantled if they have a contract?
-                                <br/>&emsp;&emsp;No, fleets with a contract cannot be dismantled. 
-                                <br/>
-                                — Can more nft be added to the fleets?
-                                <br/>&emsp;&emsp;Yes, you can add more nft to add more range or mining power. 
-                                <br/>
-                                — How do I know what my fleet rank is? 
-                                <br/>&emsp;&emsp;The fleet rank is determined by the ship with the highest rarity as long as you have the highest number of them, if you have the same amount of all rarities, the lowest will be chosen.
-                                <br/>
-                                — Can I merge two fleets? 
-                                <br/>&emsp;&emsp;No, you would have to disassemble one fleet and add it's contents to the other if you have space, if not, you will have to reassemble both.
-                                <br/>
-                                — What happens to my workers contracts?
-                                <br/>&emsp;&emsp;They will be transferred to the fleet and will be averaged once entered so that they all have the same contract time within the fleet. These contracts will be able to be paid with unclaimed $ETERNAL or from your wallet.
-                                <br/>
-                                — What is fuel ⛽️?
-                                <br/>&emsp;&emsp;Fuel is necessary to be able to go on expeditions, it must be purchased prior to the expedition and costs approximately 5% of the rewards.
-                                <br/>
-                                — What will happen to the claim button?
-                                <br/>&emsp;&emsp;The claim button is reduced by 2% once you make your first mining of the day, i.e. if you do not play one day, the withdrawal tax percentage does not decrease.
-
-                                <br/>
-                                <br/>
-                                <br/>
+                                <p class="text-right1 my-2 pt-3">
+                                All Info can be found in: <b><a href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/><br/>
+                                
+                                What's New?<br/>
+                                ▪️ Updated the UI for ease of use. <br/>
+                                ▪️ Removed 'Est Workers' no longer required.<br/>
+                                ▪️ Added Fleet Contract (USD).<br/>
+                                ▪️ Translation to other language in the works:<br/> 
+                                &emsp;&emsp; ESP - Mod AwesomeD<br/>
+                                &emsp;&emsp; BR - No TL<br/>
+                                &emsp;&emsp; Thai - No TL<br/>
+                                &emsp;&emsp; VN - No TL<br/><br/>
+                                DM Me in Discord if you want to help translate: Jucci#0007
                                 </p>
-                            </div>
-
-                            <div class={this.state.visFleetRank}>
-
-
-                                <div class="d-none d-lg-block px-0 mx-0">
-                                    <div class="row">
-                                        <div class="col-7">
-                                        <p class="text-right1 mt-4">
-                                            The Fleet RANK is based on the majority of ships in your fleet with the highest rarity, with a tie defaulting to lower rank.<br/> 
-                                            Fleet rank affects the <b>SUCCESS RATE</b> of the planet you're mining — better rank = better success%. <br/>
-                                            If the Majority of your ships are:<br/> 
-                                            ★ = Rank D <br/> 
-                                            ★★ = Rank C <br/> 
-                                            ★★★ = Rank B <br/> 
-                                            ★★★★ = Rank A <br/> 
-                                            ★★★★★ = Rank S <br/> 
-                                            So if you have 6 ships in your fleet, and 5 of them are ★, your fleet is Rank D. <br/> 
-                                            If you by chance have even numbers, like 4 ships total, 2 are ★★ and the other 2 are ★★★, it defaults to the lower value, so Rank C.<br/> 
-                                            <b>Only S Rank Fleets can break the 88% Success Rate cap to 91%.</b>
-
-                                            <br/> 
-                                            <br/> 
-                                            <br/> 
-                                            <b>Fleet Ranks determine Base Success Rate</b>. Previous Success Rates are highlighted in Green, Refer to image: <br/> 
-                                            <b>This affects Veterans Guild. Check Fleets Calculator and figure out your Success Rates based on Fleet Rank and MP.</b>
-                                        </p>
-                                        </div>
-                                        <div class="col-5">
-                                            <img 
-                                            src="https://miro.medium.com/max/631/1*g_vxLk4DtIP7l5q1e-gU8Q.png"
-                                            alt="new"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="d-xs-block d-sm-none px-0 mx-0">
-                                    <div class="row">
-                                        <div class="col-12">
-                                        <p class="text-right1 mt-4">
-                                            The Fleet RANK is based on the majority of ships in your fleet with the highest rarity, with a tie defaulting to lower rank.<br/> 
-                                            Fleet rank affects the <b>SUCCESS RATE</b> of the planet you're mining — better rank = better success%. <br/>
-                                            If the Majority of your ships are:<br/> 
-                                            ★ = Rank D <br/> 
-                                            ★★ = Rank C <br/> 
-                                            ★★★ = Rank B <br/> 
-                                            ★★★★ = Rank A <br/> 
-                                            ★★★★★ = Rank S <br/> 
-                                            So if you have 6 ships in your fleet, and 5 of them are ★, your fleet is Rank D. <br/> 
-                                            If you by chance have even numbers, like 4 ships total, 2 are ★★ and the other 2 are ★★★, it defaults to the lower value, so Rank C.<br/> 
-                                            <b>Only S Rank Fleets can break the 88% Success Rate cap to 91%.</b>
-
-                                            <br/> 
-                                            <br/> 
-                                            <br/> 
-                                            <b>Fleet Ranks determine Base Success Rate</b>. Previous Success Rates are highlighted in Green, Refer to image below. <br/> 
-                                            <b>This affects Veterans Guild. Check Fleets Calculator and figure out your Success Rates based on Fleet Rank and MP.</b>
-                                        </p>
-                                        </div>
-                                        <div class="col-12 overflow">
-                                            <img 
-                                            src="https://miro.medium.com/max/631/1*g_vxLk4DtIP7l5q1e-gU8Q.png"
-                                            alt="new"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
 
                             </div>
-                            <div class={this.state.visFleetLevel}>
-                                <div class="d-none d-lg-block px-0 mx-0">
-                                    <div class="row">
-                                        <div class="col-8">
-
-                                        <p class="text-right1 mt-4">
-                                            Fleet LEVEL determines the <b>additional rewards gained</b> when you mine with your fleet. 
-                                            <br/>
-                                            <br/>In order to allow a progressive scaling to all our players, your Fleets will be able to level up which will allow you to reach better earnings 
-                                            <br/>starting from a more limited point, improving your rewards with respect to the initial levels up to 35%. <br/>
-                                            In order to progress in an optimal way, you will have to climb between Planets, as you go up each Tier of experience (levels 6, 11, 16, 21 and 25)
-                                            <br/> the amount of experience received in planets lower than your Tier decreases.<br/>
-                                            <br/>
-                                            Level 11 is roughly equivalent to current rewards.
-                                            <br/>
-                                            <b>Win or Lose, your Fleet still gains Experience</b>
-                                            <br/>
-                                            Experience Earned is around 5 / Expedition
-                                        </p>
-
-                                        
-                                        </div>
-                                        <div class="col-4">
-                                        <img 
-                                        src="https://miro.medium.com/max/513/1*PbTRw6E5g8fwlLTnpZePww.png"
-                                        alt="new"
-                                        />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-xs-block d-sm-none px-0 mx-0">
-                                <div class="row">
-                                        <div class="col-12">
-
-                                        <p class="text-right1 mt-4">
-                                            Fleet LEVEL determines the <b>additional rewards gained</b> when you mine with your fleet. 
-                                            <br/>
-                                            <br/>In order to allow a progressive scaling to all our players, your Fleets will be able to level up which will allow you to reach better earnings 
-                                            <br/>starting from a more limited point, improving your rewards with respect to the initial levels up to 35%. <br/>
-                                            In order to progress in an optimal way, you will have to climb between Planets, as you go up each Tier of experience (levels 6, 11, 16, 21 and 25)
-                                            <br/> the amount of experience received in planets lower than your Tier decreases.<br/>
-                                            <br/>
-                                            Level 11 is roughly equivalent to current rewards.
-                                            <br/>
-                                            <b>Win or Lose, your Fleet still gains Experience</b>
-                                            <br/>
-                                            Experience Earned is around 5 / Expedition
-                                        </p>
-
-                                        
-                                        </div>
-                                        <div class="col-12 overflow">
-                                        <img 
-                                        src="https://miro.medium.com/max/513/1*PbTRw6E5g8fwlLTnpZePww.png"
-                                        alt="new"
-                                        />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div >
                             </div>
                         </div>
 
@@ -988,9 +804,9 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">Mine Reward (USD)</th>
                                     <th class="border border-2 border-dark">Fuel Cost (USD)</th>
                                     <th class="border border-2 border-dark">Success Rate (SR)</th>
-                                    <th class="border border-2 border-dark">{this.state.selectDays} Day Reward (USD) vs SR</th>
-                                    <th class="border border-2 border-dark">Est. Workers</th>
-                                    <th class="border border-2 border-dark">Worker Contract Upkeep / {this.state.selectDays}d </th>
+                                    <th class="border border-2 border-dark">{this.state.selectDays}d Reward (USD) * SR</th>
+                                    <th class="border border-2 border-dark">Fleet Contract / {this.state.selectDays}d (ETL) </th>
+                                    <th class="border border-2 border-dark">Fleet Contract / {this.state.selectDays}d (USD) </th>
                                     <th class="border border-2 border-dark">Net Profit / {this.state.selectDays}d</th>
                                     <th class="border border-2 border-dark">Net Profit - Fuel / {this.state.selectDays}d</th>
                                 </tr>
@@ -1009,8 +825,8 @@ class GetEternal extends Component{
                                                 <td class="border border-secondary">${this.getFuel(i)}</td>
                                                 <td class="border border-secondary text-secondary"><b>{this.getFleetSuccessChanceM(i)}</b></td>
                                                 <td class="border border-secondary">{this.getFleetSRvsUSD(i)}</td>
-                                                <td class="border border-secondary">{this.state.workers}</td>
-                                                <td class="border border-secondary text-primary">{this.getFleetContractCost()} ETL</td>
+                                                <td class="border border-secondary text-primary">{this.getFleetContractCostETL()} ETL</td>
+                                                <td class="border border-secondary text-primary">${this.getFleetContractCostUSD()}</td>
                                                 <td class="border border-secondary">{this.getFleetNet(i)}</td>
                                                 <td class="border border-secondary">{this.getFleetNetFuel(i)}</td>
                                             </tr>
@@ -1021,37 +837,46 @@ class GetEternal extends Component{
                             </table>
                         </div>
                         <div class="d-none d-lg-block px-0 mx-0">
-                            <div class="row align-items-start mt-6">
-                                <div class="col-6">
-                                    <p class="disclaimer">
-                                    Disclaimer: ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
-                                    <br/>
-                                    All values are approximation and should only be used as a template. 
-                                    <br/>
-                                    ETL/USD updates are from Pancakeswap.
-                                    <br/>
-                                    Mobile View Finally Available
-                                    </p>
+                            <div class={this.state.visCredits}>
+                                <div class="row align-items-start mt-6">
                                     
-                                </div>
-                                <div class="col-6">
-                                    <p class="credits text-info">
-                                    Original Sheet and ORM Matrix by: Discord@starl3xx#2691
-                                    <br/>
-                                    New ORM Matrix by: #Dannii ❤#3151
-                                    <br/>
-                                    Found bugs? Want to help? DM me directly in Discord: Jucci#0007
-                                    <br/>
-                                    If you found this sheet helpful: <button class="btn text-size-12 text-info px-0 mx-0 mb-0 py-0" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied!" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button> 
-                                    </p>
+                                    <div class="col-6">
+                                        <p class="disclaimer">
+                                        Disclaimer: 
+                                        <br/>ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
+                                        <br/>
+                                        All values are approximation and should only be used as a template. 
+                                        <br/>
+                                        ETL/USD updates are from Pancakeswap.
+                                        <br/>
+                                        Mobile View Finally Available
+                                        </p>
+                                        
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="credits text-info">
+                                        Original Sheet and Oracle Values by: starl3xx#2691
+                                        <br/>
+                                        New Oracle Values by: #Dannii ❤#3151
+                                        <br/>
+                                        Found bugs? Want to help? DM me directly in Discord: Jucci#0007
+                                        <br/>
+                                        If you found this sheet helpful: <button class="btn text-size-12 text-info px-0 mx-0 mb-0 py-0" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied!" onClick={() => {navigator.clipboard.writeText("0x1e206BD3B8253AEa904353f89bbE67f122Fbc149")}}>0x1e206BD3B8253AEa904353f89bbE67f122Fbc149</button> 
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                            
                         </div>
                         <div class="d-xs-block d-sm-none px-0 mx-0">
-                            <div class="row mt-2">
+                            
+                            <div class={this.state.visCredits}>
+                                <div class="row mt-2">
                                 <div class="col-12">
+                                    
                                     <p class="disclaimer1">
-                                    Disclaimer: ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
+                                    Disclaimer: 
+                                    <br/>ORM Matrix is based on observation and not actual value (unless the devs gives us the Data).
                                     <br/>
                                     All values are approximation and should only be used as a template. 
                                     <br/>
@@ -1062,9 +887,9 @@ class GetEternal extends Component{
                                 </div>
                                 <div class="col-12">
                                     <p class="credits1 text-info">
-                                    Original Sheet and Original ORM Matrix by: Discord @ starl3xx#2691
+                                    Original Sheet and Oracle Values by: starl3xx#2691
                                     <br/>
-                                    New ORM Matrix by: #Dannii ❤#3151
+                                    New Oracle Values by: #Dannii ❤#3151
                                     <br/>
                                     Made by: Discord @ Jucci#0007
                                     <br/>
@@ -1077,6 +902,9 @@ class GetEternal extends Component{
 
                                     </div>
                                 </div>
+                                        
+                                </div>
+                                
                             </div>
                         </div>
                 </div>
