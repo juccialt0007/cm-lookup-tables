@@ -782,11 +782,11 @@ class GetEternal extends Component{
                                 ▪️ Removed 'Est Workers' no longer required.<br/>
                                 ▪️ Added Fleet Contract (USD).<br/>
                                 ▪️ Translation to other language in the works:<br/> 
-                                &emsp;&emsp; ESP - Mod AwesomeD<br/>
+                                &emsp;&emsp; ESP - Mod AwesomeD#8553<br/>
                                 &emsp;&emsp; BR - No TL<br/>
-                                &emsp;&emsp; Thai - No TL<br/>
+                                &emsp;&emsp; Thai - KITTYPUNKZ#2657<br/>
                                 &emsp;&emsp; VN - No TL<br/><br/>
-                                DM Me in Discord if you want to help translate: Jucci#0007
+                                DM Me in Discord if you want to help translate to your language not listed: Jucci#0007
                                 </p>
 
                             </div>
