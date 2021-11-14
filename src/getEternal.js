@@ -826,7 +826,7 @@ class GetEternal extends Component{
                                                 <td class="border border-secondary text-secondary"><b>{this.getFleetSuccessChanceM(i)}</b></td>
                                                 <td class="border border-secondary">{this.getFleetSRvsUSD(i)}</td>
                                                 <td class="border border-secondary text-primary">{this.getFleetContractCostETL()} ETL</td>
-                                                <td class="border border-secondary text-primary">${this.getFleetContractCostUSD()}</td>
+                                                <td class="border border-secondary">${this.getFleetContractCostUSD()}</td>
                                                 <td class="border border-secondary">{this.getFleetNet(i)}</td>
                                                 <td class="border border-secondary">{this.getFleetNetFuel(i)}</td>
                                             </tr>
