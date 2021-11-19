@@ -2,23 +2,24 @@ import React, { Component } from 'react'
 import './App.css';
 import './table.css';
 
+
+  
+    
+    
+
 class GetEternal extends Component{
     constructor(props){
         super(props);
         this.state = {
-            mp: 0,
-            workers: 0,
+            // Price
             eternalPrice: 0,
             updateTimer: 0,
+            // Sheet
+            mp: 0,
+            workers: 0,
             minepower: [100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000],
             planets: ["Odrocury","Thabbiter","Pulmeron","Ecryria","Searus","Gemia","Malphus","Neuter","Grarvis 022","Sorth 33A5","Dutrabos","Lustronides","Zullosie","Yimagua","Haostea","Kongebro","Vuruturn","Droxuyama","Miuq I11","Zapus 5M0","Begelia","Gochimars","Konvides","Donvillon","Ania","Aenerth","Tachiron","Cichurilia","Gagua 07","Sector G"],
-            //oracle_adjustment: [1,2,3,4.125,5.25,6.5,7.75,9,10.25,11.625,14.375,16.125,18,19.875,22.375,24.125,26.5,28.875,31.375,34,44.5,48.5,52.75,57.25,62,67.125,72.5,78.25,84.25,90.75],
             oracle_adjustment: [1.000,2.019,3.078,4.176,5.315,6.516,7.754,9.033,10.372,11.751,14.429,16.208,18.085,20.083,22.163,24.341,26.659,29.076,31.614,34.292,45.863,49.939,54.016,59.112,64.149,69.304,74.400,80.336,86.529,93.765],
-            worker_count: [2,2,3,4,4,6,7,8,9,10,11,12,12,13,13,14,14,15,15,16,17,18,19,20,21,22,23,24,25,26],
-            success_chance: [0.88,0.86,0.84,0.82,0.80,0.78,0.76,0.74,0.72,0.70,0.68,0.66,0.64,0.62,0.60,0.58,0.56,0.54,0.52,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50],
-            visibilityNormal: "",
-            visibilityFleet:"d-none",
-            inputVisFleet: "d-none",
             d_success_chance: [0.85,0.83,0.81,0.79,0.77,0.75,0.73,0.71,0.69,0.67,0.6,0.58,0.56,0.54,0.52,0.50,0.48,0.46,0.44,0.42,0.41,0.41,0.41,0.41,0.41,0.39,0.39,0.39,0.39,0.39],
             c_success_chance: [0.88,0.86,0.84,0.82,0.8,0.78,0.76,0.74,0.72,0.70,0.65,0.63,0.61,0.59,0.57,0.55,0.53,0.51,0.49,0.47,0.43,0.43,0.43,0.43,0.43,0.40,0.40,0.40,0.40,0.40],
             b_success_chance: [0.91,0.89,0.87,0.85,0.83,0.81,0.79,0.77,0.75,0.73,0.67,0.65,0.63,0.61,0.59,0.57,0.55,0.53,0.51,0.49,0.47,0.47,0.47,0.47,0.47,0.45,0.45,0.45,0.45,0.45],
@@ -27,13 +28,27 @@ class GetEternal extends Component{
             fleet_rank: "D",
             fleet_level: 0,
             rank_reward: [1,1.01,1.02,1.03,1.04,1.05,1.1,1.12,1.14,1.16,1.20,1.205,1.21,1.215,1.22,1.225,1.25,1.255,1.26,1.265,1.27,1.3,1.305,1.31,1.315,1.35],
+            fuel: [21,43,66,90,114,140,167,195,224,254,311,350,390,434,479,526,576,628,683,741,950,1000,1050,1100,1400,1500,1600,1750,1900,2100],
+            // UI
+            visibilityNormal: "",
+            visibilityFleet:"d-none",
+            inputVisFleet: "d-none",
             sheetInfo: "d-none",
             visInfo: "",
             visCredits: "d-none",
             btnHighlightInfo: "btn btn-custom mobile-margin",
             btnHighlightFleet: "btn stretch mobile-margin",
-            fuel: [21,43,66,90,114,140,167,195,224,254,311,350,390,434,479,526,576,628,683,741,950,1000,1050,1100,1400,1500,1600,1750,1900,2100],
+            // UI
             selectDays: "7",
+            // Language
+            visLangSelect: "EN",
+            visEn: "",
+            visThai: "d-none",
+            visESP: "d-none",
+            visGER: "d-none",
+            visPER: "d-none",
+            visINDO: "d-none",
+            visGREEK: "d-none",
         }
         this.setMP = this.setMP.bind(this);
         this.setWorkers = this.setWorkers.bind(this);
@@ -42,15 +57,22 @@ class GetEternal extends Component{
     }
 
     async loadData(){
-        const url = "https://api.pancakeswap.info/api/v2/tokens/0xD44FD09d74cd13838F137B590497595d6b3FEeA4"
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({eternalPrice: data["data"]["price"]})
+        // PancakeSwap API
+        // const url = "https://api.pancakeswap.info/api/v2/tokens/0xD44FD09d74cd13838F137B590497595d6b3FEeA4"
+        // const response = await fetch(url);
+        // const data = await response.json();
+        // this.setState({eternalPrice: data["data"]["price"]})
+
+        // Blockchain Pull Requests for Current Oracle Price
+        const Web3 = require('web3');
+        const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+        const price = Web3.utils.fromWei(web3.utils.toBN(await web3.eth.getStorageAt('0x1A652dEa38B3522106D1675dbe5fc222e831fE8c', 151)))
+        this.setState({eternalPrice: price})
     }
 
     async componentDidMount() {
         this.loadData()
-        this.updateTimer = setInterval(() => this.loadData(), 2000);
+        this.updateTimer = setInterval(() => this.loadData(), 5000);
     }
 
     async componentWillUnmount() {
@@ -522,6 +544,73 @@ class GetEternal extends Component{
         window.close();
     }
 
+    setVisLang = (event) => {
+        console.log(event.target.value)
+        if (event.target.value === "EN"){
+            this.setState({visEn: "",
+            visThai: "d-none",
+            visESP: "d-none",
+            visGER: "d-none",
+            visPER: "d-none",
+            visINDO: "d-none",
+            visGREEK: "d-none",})
+        } else if (event.target.value === "ESP"){
+            this.setState({visEn: "d-none",
+            visThai: "d-none",
+            visESP: "",
+            visGER: "d-none",
+            visPER: "d-none",
+            visINDO: "d-none",
+            visGREEK: "d-none",})
+        }
+        else if (event.target.value === "GER"){
+            this.setState({visEn: "d-none",
+            visThai: "d-none",
+            visESP: "d-none",
+            visGER: "",
+            visPER: "d-none",
+            visINDO: "d-none",
+            visGREEK: "d-none",})
+        }
+        else if (event.target.value === "THAI"){
+            this.setState({visEn: "d-none",
+            visThai: "",
+            visESP: "d-none",
+            visGER: "d-none",
+            visPER: "d-none",
+            visINDO: "d-none",
+            visGREEK: "d-none",})
+        }
+        else if (event.target.value === "PER"){
+            this.setState({visEn: "d-none",
+            visThai: "d-none",
+            visESP: "d-none",
+            visGER: "d-none",
+            visPER: "",
+            visINDO: "d-none",
+            visGREEK: "d-none",})
+        }
+        else if (event.target.value === "INDO"){
+            this.setState({visEn: "d-none",
+            visThai: "d-none",
+            visESP: "d-none",
+            visGER: "d-none",
+            visPER: "d-none",
+            visINDO: "",
+            visGREEK: "d-none"})
+        } else if (event.target.value === "GRK"){
+            this.setState({visEn: "d-none",
+            visThai: "d-none",
+            visESP: "d-none",
+            visGER: "d-none",
+            visPER: "d-none",
+            visINDO: "d-none",
+            visGREEK: ""})
+        }
+      };
+
+    
+
     render(){
         return(
             <div class="container-fixed px-3">
@@ -533,7 +622,14 @@ class GetEternal extends Component{
                             <div class="modal-content">
                             
                                 <div class="modal-body">
-                                <p class="modal-popup"><b class="text-size-17">Disclaimer: </b><br/><br/>This is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated.<br/><br/>All calculator values are <b>approximation</b>. Do not take them literally. <br/><br/>This is best used as a <b>template</b>. <br/><br/>Please don't go complaining in General Chat if your "expectations" are not reached.<br/><br/>The game is audited by a Top BlockChain Auditor. <br/>Your claims of it being rigged are unfounded.<br/><br/></p>
+
+                                <div class={this.state.visEn}>
+                                <p class="modal-popup"><b class="text-size-17">Disclaimer: </b><br/><br/>This is a Community Project coded solely by me Jucci#0007, so any help from the community to solve equations would be really appreciated.<br/><br/>
+                                All calculator values are <b>approximation</b>. Do not take them literally. 
+                                <br/><br/>This is best used as a <b>template</b>. <br/><br/>
+                                Please don't go complaining in General Chat if your "expectations" are not reached.<br/><br/>
+                                The game is audited by a Top BlockChain Auditor. <br/>Your claims of it being rigged are unfounded.
+                                <br/><br/></p>
                                 
                                 <div class="row">
                                         <div class="col-6">
@@ -556,42 +652,347 @@ class GetEternal extends Component{
                                 </div>
                                 </div>
 
+                                <div class={this.state.visESP}>
+
+                                <p class="modal-popup"><b class="text-size-17">Descargo de Responsabilidad:</b><br/><br/>
+                                Este es un proyecto comunitario creado y mantenido únicamente por mí Jucci # 0007, por lo que cualquier ayuda de la comunidad para resolver ecuaciones sería muy bien recibida.<br/><br/>
+                                Todos los valores de la calculadora son aproximados. No los tomes literalmente.<br/><br/>
+                                Es mejor utilizarlo como plantilla.<br/><br/>
+                                Por favor, no vaya a quejarse en el chat general si no se cumplen sus ""expectativas"".<br/><br/>
+                                El juego es auditado por un auditor de Top BlockChain.<br/>
+                                Sus afirmaciones de que está manipulado son infundadas.<br/><br/></p>
+                                
+                                <div class="row">
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>No entiendo</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>No entiendo</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">Entiendo</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">Entiendo</button>
+                                        </div>
+                                        </div>
+                                </div>
+
+
+                                </div>
+
+                                <div class={this.state.visThai}>
+                                <p class="modal-popup"><b class="text-size-17">ข้อจำกัดความรับผิดชอบ:</b><br/><br/>
+                                นี่เป็นโปรเจคในคอมมูนิตี้ซึ่งเขียนโปรแกรมโดย Jucci#0007 เพียงผู้เดียว ดังนั้นขอขอบคุณทุกๆ ความช่วยเหลือจากเพื่อนๆ ในคอมมูนิตี้ที่ช่วยแก้รายละเอียดสมการของโปรแกรมนี้ให้ใช้งานได้ดีที่สุด<br/><br/>
+                                รายละเอียดการคำนวณทั้งหมดนี้เป็นเพียงค่าประมาณการเท่านั้น. ไม่สามารถอ้างอิงจากค่าจริงได้ ไม่แนะนำให้นำค่าที่ได้จากการคำนวณไปใช้จริง<br/><br/>
+                                เหมาะที่สดที่จะใช้เป็นเพียงเทมเพลต<br/><br/>
+                                โปรดอย่าไปคอมเมนต์ Complain หรือต่อว่าในห้องแชท General ถ้าโปรแกรมคำนวณออกมาไม่ถึงตาม ""ความคาดหวัง"" ของคุณ<br/>
+                                เกมดังกล่าวได้รับการ Audit โดย Blockchain Auditor ชั้นนำ การอ้างว่าคุณถูกหลอกลวงนั้นไม่มีมูล โปรดศึกษาและปกป้องข้อมูลของคุณให้ดีที่สุด เท่าที่เป็นไปได้
+                                <br/><br/></p>
+                                
+                                <div class="row">
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>ฉันไม่เข้าใจ</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>ฉันไม่เข้าใจ</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">ฉันเข้าใจและยอมรับ</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">ฉันเข้าใจและยอมรับ</button>
+                                        </div>
+                                        </div>
+                                </div>
+                                </div>
+
+                                <div class={this.state.visGER}>
+                                <p class="modal-popup"><b class="text-size-17">Haftungsausschluss:</b><br/><br/>
+                                Das ist ein Community Projekt, einzig und alleine programmiert von mir Jucci#0007. Jede Hilfe aus der Community um Gleichungen zu lösen ist sehr willkommen.<br/><br/>
+                                Alle berechneten Werte sind eine Schätzung. Die Werte sind nicht genau zunehmen.<br/><br/>
+                                Die Tabelle wird am Besten als Vorlage genutzt.<br/><br/>
+                                Bitte nicht im General Chat beschweren wenn die ""Erwartungen"" nicht erfüllt werden.<br/><br/>
+                                Das Spiel ist von einem Top BlockChain Prüfer überprüft worden.<br/>
+                                Behauptungen über Manipulation sind unbegründet."
+                                <br/><br/></p>
+                                
+                                <div class="row">
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>Nicht verstanden</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>Nicht verstanden</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">Verstanden</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">Verstanden</button>
+                                        </div>
+                                        </div>
+                                </div>
+                                </div>
+
+                                <div class={this.state.visINDO}>
+                                <p class="modal-popup"><b class="text-size-17">Disclaimer:</b><br/><br/>
+                                Ini adalah Proyek Komunitas yang dibuat oleh saya Jucci#0007, jadi bantuan apapun dari komunitas untuk memecahkan persamaan akan sangat dihargai.<br/><br/>
+                                Semua nilai perhitungan adalah perkiraan. Jangan menelannya mentah-mentah.<br/><br/>
+                                Ini paling baik digunakan sebagai template.<br/><br/>
+                                Tolong jangan komplain di General Chat jika ""ekspektasi"" anda tidak terpenuhi<br/><br/>
+                                Permainan ini telah diaudit oleh Top BlockChain Auditor <br/>
+                                Klaimmu tentang dicurangi oleh itu adalah tidak berdasar.
+                                <br/><br/></p>
+                                
+                                <div class="row">
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>Aku Tidak Mengerti</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>Aku Tidak Mengerti</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">Aku Mengerti</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">Aku Mengerti</button>
+                                        </div>
+                                        </div>
+                                </div>
+                                </div>
+                                
+                                <div class={this.state.visPER}>
+                                <p class="modal-popup"><b class="text-size-17">سلب مسئولیت:</b><br/><br/>
+                                این یک پروژه عمومی است که فقط توسط من Jucci#0007 کدگذاری شده است؛
+                                بنابراین از هرگونه کمک برای حل معادلات، قدردانی می‌شود.<br/><br/>
+                                تمام مقادیر ماشین حساب تقریبی هستند. آنها را به معنای واقعی کلمه نگیرید.<br/><br/>
+                                بهتر است از جدول به عنوان یک الگو استفاده شود.<br/><br/>
+                                بازی توسط یک محقق برتر BlockChain ممیزی شده است.<br/>
+                                ادعای شما مبنی بر تقلب در آن بی‌اساس است.
+                                <br/><br/></p>
+                                
+                                <div class="row">
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>متوجه نشدم</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>متوجه نشدم</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">متوجه هستم</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">متوجه هستم</button>
+                                        </div>
+                                        </div>
+                                </div>
+                                </div>
+
+                                <div class={this.state.visGREEK}>
+                                <p class="modal-popup"><b class="text-size-17">Αποποίηση ευθυνών:</b><br/><br/>
+                                Αυτό είναι ένα Community Project δημιουργημένο αποκλειστικά από εμένα Jucci#0007, επομένως οποιαδήποτε βοήθεια από την κοινότητα για την επίλυση προβλημάτων θα εκτιμηθεί πραγματικά.<br/><br/>
+                                Όλες οι τιμές της αριθμομηχανής είναι κατά προσέγγιση. Μην τις παίρνετε κυριολεκτικά.<br/><br/>
+                                Αυτό χρησιμοποιείται καλύτερα ως πρότυπο.<br/><br/>
+                                Παρακαλώ μην παραπονιέστε στο General Chat αν δεν εκπληρωθούν οι ""προσδοκίες"" σας.<br/><br/>
+                                Το παιχνίδι ελέγχεται από έναν Top BlockChain Auditor.<br/>
+                                Οι ισχυρισμοί σας ότι είναι στημένο είναι αβάσιμοι.
+                                <br/><br/></p>
+                                
+                                <div class="row">
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>Δεν καταλαβαίνω</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>Δεν καταλαβαίνω</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">Καταλαβαίνω</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">Καταλαβαίνω</button>
+                                        </div>
+                                        </div>
+                                </div>
+                                </div>
+
+                                </div>
                             </div>
                         </div>
                         </div>
 
                         <div class="d-none d-lg-block px-0 mx-0">
-                            {/* <div class="row"> */}
-                                {/* <div class="col-11"> */}
-                                <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
+                            <div class="row"> 
+
+
+                                <div class="col-11">
+
+                                <div class={this.state.visEn+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4 mt-3">
                                     <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
                                     </div>
                                     <div class="row col-4">
-                                    <div class="col-3"></div>
-                                    <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
-                                    <option selected value="7">7 Days</option>
-                                    <option value="15">15 Days</option>
-                                    <option value="30">30 Days</option>
-                                    </select></div>
-                                    <div class="col-6 mt-3"><p class="getEternalHeaderL"><b>Contract / Worker</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                        <div class="col-1"></div>
+                                        <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option selected value="7">7 Days</option>
+                                        <option value="15">15 Days</option>
+                                        <option value="30">30 Days</option>
+                                        </select></div>
+                                        <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contract / Worker</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
                                         <p class="getEternalHeader"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
                                     </div>
                                 </div>
-                                {/* </div> */}
-                                {/* <div class="col-1">
-                                <select class="form-select getEternalHeader select-days mt-2" onChange="" aria-label="Default select">
-                                    <option selected value="EN">EN</option>
-                                    <option value="ES">ESP</option>
-                                    <option value="BR">BR</option>
+
+                                <div class={this.state.visESP+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
+                                    <div class="col-4 mt-3">
+                                    <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                                    </div>
+                                    <div class="row col-4">
+                                    <div class="col-1"></div>
+                                    <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                    <option selected value="7">7 Días</option>
+                                    <option value="15">5 Días</option>
+                                    <option value="30">30 Días</option>
+                                    </select></div>
+                                    <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contrato / Trabajador</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visThai+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
+                                    <div class="col-4 mt-3">
+                                    <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                                    </div>
+                                    <div class="row col-4">
+                                    <div class="col-1"></div>
+                                    <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                    <option selected value="7">7 วัน</option>
+                                    <option value="15">15 วัน</option>
+                                    <option value="30">30 วัน</option>
+                                    </select></div>
+                                    <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>ค่าต่อสัญญา/คนงาน</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader"> <b>ค่าเปิดตัว/ยาน ใหม่</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visGER+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
+                                    <div class="col-4 mt-3">
+                                    <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                                    </div>
+                                    <div class="row col-4">
+                                        <div class="col-1"></div>
+                                        <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option selected value="7">7 Tage</option>
+                                        <option value="15">15 Tage</option>
+                                        <option value="30">30 Tage</option>
+                                        </select></div>
+                                        <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Vertrag / Arbeiter</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader"> <b>Prägung</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visINDO+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
+                                    <div class="col-4 mt-3">
+                                    <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                                    </div>
+                                    <div class="row col-4">
+                                        <div class="col-1"></div>
+                                        <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option selected value="7">7 Hari</option>
+                                        <option value="15">15 Hari</option>
+                                        <option value="30">30 Hari</option>
+                                        </select></div>
+                                        <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Kontrak / Pekerja</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visPER+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
+                                    <div class="col-4 mt-3">
+                                    <p class="getEternalHeader"> <b>دلار/اترنال</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                                    </div>
+                                    <div class="row col-4">
+                                        <div class="col-1"></div>
+                                        <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option selected value="7">7 روز</option>
+                                        <option value="15">15 روز</option>
+                                        <option value="30">30 روز</option>
+                                        </select></div>
+                                        <div class="col-8 mt-3"><p class="getEternalHeaderL"><span class="text-primary">ETL</span> <b>قرارداد/کارگر</b> -{'>'} <span class="text-primary">{this.getContractCost()}</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader"><span class="text-primary">ETL</span> <b>استخراج</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)}</span> </p>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visGREEK+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
+                                    <div class="col-4 mt-3">
+                                    <p class="getEternalHeader"> <b>USD/ETL</b> -{'>'} <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
+                                    </div>
+                                    <div class="row col-4">
+                                        <div class="col-1"></div>
+                                        <div class="col-3 top-12"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option selected value="7">7 Ημέρες</option>
+                                        <option value="15">15 Ημέρες</option>
+                                        <option value="30">30 Ημέρες</option>
+                                        </select></div>
+                                        <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Συμβόλαιο / Εργάτη</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                    </div>
+                                </div>
+
+                                </div>
+                                <div class="col-1">
+                                <select class="form-select getEternalHeader select-lang" onChange={this.setVisLang} aria-label="Default select">
+                                    <option selected value="EN">EN - ENG</option>
+                                    <option value="ESP">ES - ESP</option>
+                                    <option value="THAI">TH - THAI</option>
+                                    <option value="GER">DE - GER</option>
+                                    <option value="INDO">ID - INDO</option>
+                                    <option value="PER">FA - PERS</option>
+                                    <option value="GRK">EL - GRE</option>
                                 </select>
                                 </div>
 
-                            </div> */}
+                            </div>
                             
                         </div>
+                        {/* Mobile View */}
                         <div class="d-xs-block d-sm-none px-0 mx-0">
                             <div class="row d-flex sm-flex align-items-start border border-2 border-dark"> 
                                 <p class="col-4 getEternalHeaderM mt-3"> <b>USD/ETL</b>:<br/>  <span class="text-primary">{parseFloat(this.state.eternalPrice).toFixed(2)}</span></p>
@@ -604,7 +1005,8 @@ class GetEternal extends Component{
                     <div class="contrainer-fluid">
                         <div class="my-3 row">
                             <div class="row d-none d-lg-block px-0 mx-0">
-                                <div class="row col-12">
+
+                                <div class={this.state.visEn+" row col-12"}>
                                     <div class="col-5 row">
                                         <div class="col-2">
                                             <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
@@ -622,11 +1024,127 @@ class GetEternal extends Component{
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class={this.state.visESP+" row col-12"}>
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo+" text-size-fit-3"} onClick={this.btnVisNrm}>Info</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet+" text-size-fit-3"} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Calculadora</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo+" text-size-fit-2"}>Validado con la flota de frifster#1185 (Master Papink) Rank A de 5100MP</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-fit-2"}>Los valores de Combustible (Adjustados) provienen del juego. Nuevos valores del Oráculo proporcionados por Dannii ❤#3151</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visThai+" row col-12"}>
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo+" text-size-fit-2"} onClick={this.btnVisNrm}>รายละเอียด</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet+" text-size-fit-2"} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">คำนวณ</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo}>Validated with frifster#1185 (Master Papink's) A Rank 5100MP Fleet.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-14"}>Fuel Values (Adjusted) are from the game. New Oracle values from Dannii ❤#3151</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visGER+" row col-12"}>
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Rechner</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo}>Bestätigt durch frifster#1185 (Master Papink's) A Rank 5100MP Flotte.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-14"}>Treibstoffwerte (angepasst) sind aus dem Spiel. Neue Oracle Werte von Dannii ❤#3151</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visINDO+" row col-12"}>
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>Info</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Kalkulator</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo+" text-size-fit-2"}>Divalidasi dengan frifster#1185 (Master Papink's) Armada Ranking A 5100MP.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-fit-2"}>Nilai Bahan Bakar (Disesuaikan) adalah berasal dari permainan. Nilai Oracle Baru dari Danii ❤#3151</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visPER+" row col-12"}>
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo+" text-size-fit"} onClick={this.btnVisNrm}>اطلاعات</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet+" text-size-fit"} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">ماشین‌ حساب</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo}>تایید شده توسط frifster#1185</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-14"}>مقادیر سوخت (تنظیم شده) از بازی است. مقادیر جدید اوراکل از Dannii ❤#3151</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visGREEK+" row col-12"}>
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo+" text-size-fit-1"} onClick={this.btnVisNrm}>Πληροφορίες</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet+" text-size-fit-1"} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Αριθμομηχανή</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo+" text-size-fit"}>Επικυρώθηκε απο frifster#1185 (Master Papink's) με A Rank 5100MP Fleet.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-fit"}>Οι τιμές Καυσίμου(προσαρμοσμένες) είναι από το παιχνίδι. Οι καινούριες τιμές του Oracle είναι από Dannii ❤#3151</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 
                                 <div class="row px-0 mx-0">
                                 <div class="col-2"></div>
-                                <div class={this.state.inputVisFleet+" col-8"}>
+
+
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visEn}>
 
                                     <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
                                         <p class="text-left">MP:</p>
@@ -647,7 +1165,7 @@ class GetEternal extends Component{
                                         <p class="text-left">Fleet Rank:</p>
                                     </div>
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
-                                    <select class="form-select fleet-rank-custom input-group-text" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
                                     <option selected value="D">D Rank</option>
                                     <option value="C">C Rank</option>
                                     <option value="B">B Rank</option>
@@ -659,7 +1177,7 @@ class GetEternal extends Component{
                                         <p class="text-left">Fleet Level:</p>
                                     </div>
                                     <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
-                                    <select class="form-select fleet-rank-custom input-group-text" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
                                     <option selected value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -690,6 +1208,398 @@ class GetEternal extends Component{
                                     </div>
 
                                 </div>
+
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visESP}>
+
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
+                                        <p class="text-left">MP:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">Trabajadores:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4"></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">Rank de Flota:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
+                                        <p class="text-left">Nivel de Flota:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
+                                    </div>
+
+                                </div>
+
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visThai}>
+
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
+                                        <p class="text-left">MP:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">จำนวนคนงาน:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4"></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">แรงค์กองยาน:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
+                                        <p class="text-left">เลเวลกองยาน:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
+                                    </div>
+
+                                </div>
+
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visGER}>
+
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
+                                        <p class="text-left">MP:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">Arbeiter:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4"></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">Flotten Rang:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
+                                        <p class="text-left">Flotten Level:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
+                                    </div>
+
+                                </div>
+
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visINDO}>
+
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
+                                        <p class="text-left">MP:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">Pekerja:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4"></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">Ranking Armada:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
+                                        <p class="text-left">Level Armada:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
+                                    </div>
+
+                                </div>
+
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visPER}>
+
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
+                                        <p class="text-left">ام‌پی(MP):</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">کارگرها:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4"></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">رتبه‌ی ناوگان:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
+                                        <p class="text-left">سطح ناوگان:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
+                                    </div>
+
+                                </div>
+
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visGREEK}>
+
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
+                                        <p class="text-left">MP:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">Εργάτες:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4"></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">Βαθμός Στόλου:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
+                                        <p class="text-left">Επίπεδο Στόλου:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
+                                    </div>
+
+                                </div>
+
+
                                 <div class="col-2"></div>
                                 </div>
                             </div>
@@ -723,7 +1633,7 @@ class GetEternal extends Component{
                                         <p class="text-left-M">Fleet Rank:</p>
                                     </div>
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-8">
-                                        <select class="form-select fleet-rank-custom input-group-text" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                        <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
                                         <option selected value="D">D Rank</option>
                                         <option value="C">C Rank</option>
                                         <option value="B">B Rank</option>
@@ -736,7 +1646,7 @@ class GetEternal extends Component{
                                         <p class="text-left-M">Fleet Level:</p>
                                     </div>
                                     <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-8">
-                                    <select class="form-select fleet-rank-custom input-group-text" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
                                     <option selected value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -773,29 +1683,44 @@ class GetEternal extends Component{
                     </div>
                         <div id="normal" class={this.state.visibilityNormal}>
                             <div class="my-6">
-                            <div class={this.state.visInfo}>
-                                <p class="text-right1 my-2 pt-3">
-                                All Info can be found in: <b><a href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/><br/>
+                            <div class={this.state.visInfo+" row"}>
+                                <div class="col-4">
+                                    <p class="text-right1 my-2 pt-3">
+                                    All Info can be found in: <b><a href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/><br/>
+                                    
+                                    What's New?<br/>
+                                    ▪️ We now get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/>
+                                    ▪️ Mobile View is still in EN. Will come back for it when  I have the time.<br/>
+                                    <br/>
+                                    
+                                    
+                                    </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="text-right1 my-2 pt-3">
+                                    ▪️ Translation to other language in the works:<br/> 
+                                    &emsp;&emsp; ESP/Spanish - Mod AwesomeD#8553<br/>
+                                    &emsp;&emsp; DE/German - Maschs#6651<br/>
+                                    &emsp;&emsp; FA/Persian - hesen7#1593<br/>
+                                    &emsp;&emsp; ID/Indonesian - Mbun#1456<br/>
+                                    &emsp;&emsp; EL/Greek - ExiLeD#3745<br/>
+                                    &emsp;&emsp; BR/PT - Double#9147 (unfinished, someone finish it)<br/>
+                                    &emsp;&emsp; TH/Thai - KITTYPUNKZ#2657<br/>
+                                    &emsp;&emsp; VI/Vietnam - No TL<br/><br/>
+                                    DM Me in Discord if you want to help translate to your language not listed: Jucci#0007
+                                    </p>
+                                </div>
                                 
-                                What's New?<br/>
-                                ▪️ Updated the UI for ease of use. <br/>
-                                ▪️ Removed 'Est Workers' no longer required.<br/>
-                                ▪️ Added Fleet Contract (USD).<br/>
-                                ▪️ Translation to other language in the works:<br/> 
-                                &emsp;&emsp; ESP - Mod AwesomeD#8553<br/>
-                                &emsp;&emsp; BR - No TL<br/>
-                                &emsp;&emsp; Thai - KITTYPUNKZ#2657<br/>
-                                &emsp;&emsp; VN - No TL<br/><br/>
-                                DM Me in Discord if you want to help translate to your language not listed: Jucci#0007
-                                </p>
 
                             </div>
                             </div>
                         </div>
 
                         <div id="fleet" class={this.state.visibilityFleet}>
+
                             <table>
-                                <tr class="border border-dark">
+
+                                <tr class={this.state.visEn+" border border-dark"}>
                                     <th class="border border-2 border-dark">#</th>
                                     <th class="border extra-padding border-2 border-dark">Planet</th>
                                     <th class="border border-2 border-dark">MP</th>
@@ -805,11 +1730,108 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">Fuel Cost (USD)</th>
                                     <th class="border border-2 border-dark">Success Rate (SR)</th>
                                     <th class="border border-2 border-dark">{this.state.selectDays}d Reward (USD) * SR</th>
-                                    <th class="border border-2 border-dark">Fleet Contract / {this.state.selectDays}d (ETL) </th>
-                                    <th class="border border-2 border-dark">Fleet Contract / {this.state.selectDays}d (USD) </th>
+                                    <th class="border border-2 border-dark">Fleet Contract / {this.state.selectDays}d (ETL)</th>
+                                    <th class="border border-2 border-dark">Fleet Contract / {this.state.selectDays}d (USD)</th>
                                     <th class="border border-2 border-dark">Net Profit / {this.state.selectDays}d</th>
                                     <th class="border border-2 border-dark">Net Profit - Fuel / {this.state.selectDays}d</th>
                                 </tr>
+
+                                <tr class={this.state.visESP+" border border-dark"}>
+                                    <th class="border border-2 border-dark">#</th>
+                                    <th class="border extra-padding border-2 border-dark">Planeta</th>
+                                    <th class="border border-2 border-dark">MP</th>
+                                    <th class="border border-2 border-dark">Oracle</th>
+                                    <th class="border border-2 border-dark">Recompensa de Minado (ETL)</th>
+                                    <th class="border border-2 border-dark">Recompensa de Minado (USD)</th>
+                                    <th class="border border-2 border-dark">Costo de Combustible (USD)</th>
+                                    <th class="border border-2 border-dark">Tasa de éxito (TE)</th>
+                                    <th class="border border-2 border-dark">Recompensa de {this.state.selectDays} Días * TE (USD)</th>
+                                    <th class="border border-2 border-dark">Contrato de Flota / {this.state.selectDays} Días (ETL)</th>
+                                    <th class="border border-2 border-dark">Contrato de Flota / {this.state.selectDays} Días (USD)</th>
+                                    <th class="border border-2 border-dark">Beneficio Neto / {this.state.selectDays} Días </th>
+                                    <th class="border border-2 border-dark">Beneficio Neto - Costo de Combustible / {this.state.selectDays} Días</th>
+                                </tr>
+
+                                <tr class={this.state.visThai+" border border-dark"}>
+                                    <th class="border border-2 border-dark">#</th>
+                                    <th class="border extra-padding border-2 border-dark">ดาว</th>
+                                    <th class="border border-2 border-dark">MP</th>
+                                    <th class="border border-2 border-dark">Oracle</th>
+                                    <th class="border border-2 border-dark">รางวัลที่ได้ (ETL)</th>
+                                    <th class="border border-2 border-dark">รางวัลที่ได้ (USD)</th>
+                                    <th class="border border-2 border-dark">ค่าน้ำมัน (USD)</th>
+                                    <th class="border border-2 border-dark">อัตราการขุดสำเร็จ</th>
+                                    <th class="border border-2 border-dark">รางวัล {this.state.selectDays} วัน * อัตราขุดสำเร็จ</th>
+                                    <th class="border border-2 border-dark">ค่าสัญญาคนงาน {this.state.selectDays} วัน (ETL)</th>
+                                    <th class="border border-2 border-dark">ค่าสัญญาคนงาน {this.state.selectDays} วัน (USD)</th>
+                                    <th class="border border-2 border-dark">รางวัลสุทธิทั้งหมด {this.state.selectDays} วัน</th>
+                                    <th class="border border-2 border-dark">รางวัลทั้งหมด หลังหักค่าน้ำมัน {this.state.selectDays} วัน</th>
+                                </tr>
+
+                                <tr class={this.state.visGER+" border border-dark"}>
+                                    <th class="border border-2 border-dark">#</th>
+                                    <th class="border extra-padding border-2 border-dark">Planet</th>
+                                    <th class="border border-2 border-dark">MP</th>
+                                    <th class="border border-2 border-dark">Oracle</th>
+                                    <th class="border border-2 border-dark">Minenbelohnung (ETL)</th>
+                                    <th class="border border-2 border-dark">Minenbelohnung (USD)</th>
+                                    <th class="border border-2 border-dark">Treibstoffkosten (USD)</th>
+                                    <th class="border border-2 border-dark">Gewinnwahrscheinlichkeit (SR)</th>
+                                    <th class="border border-2 border-dark">{this.state.selectDays} Tage Belohnung (USD) * SR</th>
+                                    <th class="border border-2 border-dark">Flotten Vertrag / {this.state.selectDays} Tage (ETL)</th>
+                                    <th class="border border-2 border-dark">Flotten Vertrag / {this.state.selectDays} Tage (USD)</th>
+                                    <th class="border border-2 border-dark">Netto Profit / {this.state.selectDays} Tage </th>
+                                    <th class="border border-2 border-dark">Netto Profit - Treibstoff / {this.state.selectDays} Tage</th>
+                                </tr>
+
+                                <tr class={this.state.visINDO+" border border-dark"}>
+                                    <th class="border border-2 border-dark">#</th>
+                                    <th class="border extra-padding border-2 border-dark">Planet</th>
+                                    <th class="border border-2 border-dark">MP</th>
+                                    <th class="border border-2 border-dark">Oracle</th>
+                                    <th class="border border-2 border-dark">Hadiah Pertambangan (ETL)</th>
+                                    <th class="border border-2 border-dark">Hadiah Pertambangan (USD)</th>
+                                    <th class="border border-2 border-dark">Harga Bahan Bakar (USD)</th>
+                                    <th class="border border-2 border-dark">Tingkat Keberhasilan (SR)</th>
+                                    <th class="border border-2 border-dark">Hadiah {this.state.selectDays}H (USD) * SR</th>
+                                    <th class="border border-2 border-dark">Kontrak Armada / {this.state.selectDays}H (ETL)</th>
+                                    <th class="border border-2 border-dark">Kontrak Armada / {this.state.selectDays}H (USD)</th>
+                                    <th class="border border-2 border-dark">Laba Bersih / {this.state.selectDays}H</th>
+                                    <th class="border border-2 border-dark">Laba Bersih - Bahan Bakar / {this.state.selectDays}H</th>
+                                </tr>
+
+                                <tr class={this.state.visPER+" border border-dark"}>
+                                    <th class="border border-2 border-dark">#</th>
+                                    <th class="border extra-padding border-2 border-dark">سیاره</th>
+                                    <th class="border border-2 border-dark">ام پی(MP)</th>
+                                    <th class="border border-2 border-dark">اوراکل</th>
+                                    <th class="border border-2 border-dark">پاداش استخراج (اترنالی)</th>
+                                    <th class="border border-2 border-dark">پاداش استخراج (دلاری)</th>
+                                    <th class="border border-2 border-dark">هزینه‌ سوخت (دلاری)</th>
+                                    <th class="border border-2 border-dark">میزان موفقیت (م‌م)</th>
+                                    <th class="border border-2 border-dark">پاداش {this.state.selectDays} روز (دلاری) * م‌م</th>
+                                    <th class="border border-2 border-dark">قرارداد ناوگان / {this.state.selectDays} روز (اترنالی)</th>
+                                    <th class="border border-2 border-dark">قرارداد ناوگان / {this.state.selectDays} روز (دلاری)</th>
+                                    <th class="border border-2 border-dark">سود خالص / {this.state.selectDays} روز</th>
+                                    <th class="border border-2 border-dark">سود خالص با کسر سوخت / {this.state.selectDays} روز</th>
+                                </tr>
+
+                                <tr class={this.state.visGREEK+" border border-dark"}>
+                                    <th class="border border-2 border-dark">#</th>
+                                    <th class="border extra-padding border-2 border-dark">Πλανήτης</th>
+                                    <th class="border border-2 border-dark">MP</th>
+                                    <th class="border border-2 border-dark">Oracle</th>
+                                    <th class="border border-2 border-dark">Ανταμοιβή απο Mining (ELT)</th>
+                                    <th class="border border-2 border-dark">Ανταμοιβή απο Mining (USD)</th>
+                                    <th class="border border-2 border-dark">Κόστος Καυσίμου (USD)</th>
+                                    <th class="border border-2 border-dark">Ποσοστό Επιτυχίας (ΠΕ)</th>
+                                    <th class="border border-2 border-dark">{this.state.selectDays} μέρες ανταμοιβής (USD) * (ΠΕ)</th>
+                                    <th class="border border-2 border-dark">Συμβόλαιο Στόλου / {this.state.selectDays} μέρες (ETL)</th>
+                                    <th class="border border-2 border-dark">Συμβόλαιο Στόλου / {this.state.selectDays} μέρες (USD)</th>
+                                    <th class="border border-2 border-dark">Καθαρό Κέρδος / {this.state.selectDays} μέρες</th>
+                                    <th class="border border-2 border-dark">Καθαρό Κέρδος - Καύσιμο / {this.state.selectDays} μέρες</th>
+                                </tr>
+
                                 {/* Fleet */}
                                 {(() => {
                                     const print = [];
@@ -835,6 +1857,8 @@ class GetEternal extends Component{
                                     return print
                                 })()}
                             </table>
+
+
                         </div>
                         <div class="d-none d-lg-block px-0 mx-0">
                             <div class={this.state.visCredits}>
@@ -847,9 +1871,9 @@ class GetEternal extends Component{
                                         <br/>
                                         All values are approximation and should only be used as a template. 
                                         <br/>
-                                        ETL/USD updates are from Pancakeswap.
+                                        ETL/USD updates are from Pancho's Logs in this Address: 0x1A652dEa38B3522106D1675dbe5fc222e831fE8c
                                         <br/>
-                                        Mobile View Finally Available
+                                        Mobile View is still in EN. Will update it when I'm free.
                                         </p>
                                         
                                     </div>
@@ -857,7 +1881,7 @@ class GetEternal extends Component{
                                         <p class="credits text-info">
                                         Original Sheet and Oracle Values by: starl3xx#2691
                                         <br/>
-                                        New Oracle Values by: #Dannii ❤#3151
+                                        New Oracle Values by: Dannii ❤#3151
                                         <br/>
                                         Found bugs? Want to help? DM me directly in Discord: Jucci#0007
                                         <br/>
@@ -880,16 +1904,16 @@ class GetEternal extends Component{
                                     <br/>
                                     All values are approximation and should only be used as a template. 
                                     <br/>
-                                    ETL/USD updates are from Pancakeswap.
+                                    ETL/USD updates are from Pancho's Logs in this Address: 0x1A652dEa38B3522106D1675dbe5fc222e831fE8c
                                     <br/>
-                                    Mobile View Finally Available
+                                    Mobile View is still in EN. Will update it when I'm free.
                                     </p>
                                 </div>
                                 <div class="col-12">
                                     <p class="credits1 text-info">
                                     Original Sheet and Oracle Values by: starl3xx#2691
                                     <br/>
-                                    New Oracle Values by: #Dannii ❤#3151
+                                    New Oracle Values by: Dannii ❤#3151
                                     <br/>
                                     Made by: Discord @ Jucci#0007
                                     <br/>

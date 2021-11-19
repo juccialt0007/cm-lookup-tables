@@ -1,8 +1,6 @@
 table {
     font-family: 'Nunito', sans-serif;
-    overflow: auto;
     width: 100%;
-    height: 15%;
   }
 
 th {
@@ -10,7 +8,7 @@ th {
   text-align: center;
   padding: 8px;
   font-size: 16px;
-}
+} 
 
 tr {
   font-family: 'Nunito', sans-serif;
@@ -22,6 +20,7 @@ td  {
   text-align: center;
   padding: 8px;
   font-size: 14px;
+  
 }
 
 .getEternalHeader{
@@ -289,3 +288,37 @@ input[type=number] {
   font-family: 'Nunito', sans-serif !important;
 }
 
+/* .text-middle{
+  text-align: center !important;
+} */
+
+.extra-padding{
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+}
+
+.text-size-fit-3{
+  font-size:14px !important
+}
+
+.text-size-fit-2{
+  font-size:13px !important
+}
+
+.text-size-fit{
+  font-size:12px !important
+}
+.text-size-fit-1{
+  font-size:11px !important
+}
+
+.select-lang{ 
+  width: 110px;
+  height: 60px;
+  font-size: 14px;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  border-color: #000 !important;
+  border-width: 2px !important;
+  border-radius: 0 !important;
+}
