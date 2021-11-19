@@ -313,7 +313,7 @@ input[type=number] {
 }
 
 .select-lang{ 
-  width: 110px;
+  width: 100%;
   height: 60px;
   font-size: 14px;
   text-align: left;
