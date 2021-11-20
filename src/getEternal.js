@@ -1081,7 +1081,7 @@ class GetEternal extends Component{
                                     </div>
                                     <div class="row col-4">
                                         <div class="col-1"></div>
-                                        <div class="col-3 px-0 mx-0"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
                                         <option selected value="7">7 Days</option>
                                         <option value="15">15 Days</option>
                                         <option value="30">30 Days</option>
