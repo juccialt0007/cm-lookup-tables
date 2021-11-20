@@ -338,21 +338,22 @@ class GetEternal extends Component{
     }
     getFleetContractCostUSD(){
         if(this.state.currency === "USD"){
-            return parseFloat(this.getContractDays()*this.state.workers).toFixed(2)
+            return parseFloat(this.getContractDays()*this.state.workers).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         } else if (this.state.currency === "PHP"){
-            return parseFloat(this.getContractDays()*this.state.workers * this.state.php).toFixed(2)
+            return parseFloat(this.getContractDays()*this.state.workers * this.state.php).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         } else if (this.state.currency === "GBP"){
-            return parseFloat(this.getContractDays()*this.state.workers * this.state.gbp).toFixed(2)
+            return parseFloat(this.getContractDays()*this.state.workers * this.state.gbp).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         } else if (this.state.currency === "EUR"){
-            return parseFloat(this.getContractDays()*this.state.workers * this.state.eur).toFixed(2)
+            return parseFloat(this.getContractDays()*this.state.workers * this.state.eur).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         } else if (this.state.currency === "BRL"){
-            return parseFloat(this.getContractDays()*this.state.workers * this.state.brl).toFixed(2)
+            return parseFloat(this.getContractDays()*this.state.workers * this.state.brl).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         } else if (this.state.currency === "SGD"){
-            return parseFloat(this.getContractDays()*this.state.workers * this.state.sgd).toFixed(2)
+            return parseFloat(this.getContractDays()*this.state.workers * this.state.sgd).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         } else if (this.state.currency === "THB"){
-            return parseFloat(this.getContractDays()*this.state.workers * this.state.thb).toFixed(2)
+            return parseFloat(this.getContractDays()*this.state.workers * this.state.thb).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         }
     }
+
 
     getFleetNet(i){
         if (this.state.fleet_rank === ""){
@@ -1062,6 +1063,7 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visEn+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4  row">
+                                        <div class="col-1"></div>
                                         <div class="col-3">
                                             <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
                                             <option selected value="USD">$ - USD</option>
@@ -1073,7 +1075,7 @@ class GetEternal extends Component{
                                             <option value="THB">฿ - THB</option>
                                             </select>
                                         </div>
-                                        <div class="col-9 mt-3 ml-0 pl-0">
+                                        <div class="col-4 mt-3 ml-0 pl-0">
                                             <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
                                         </div>
                                     </div>
@@ -1093,6 +1095,7 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visESP+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4  row">
+                                        <div class="col-1"></div>
                                         <div class="col-3">
                                             <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
                                             <option selected value="USD">$ - USD</option>
@@ -1104,7 +1107,7 @@ class GetEternal extends Component{
                                             <option value="THB">฿ - THB</option>
                                             </select>
                                         </div>
-                                        <div class="col-9 mt-3 ml-0 pl-0">
+                                        <div class="col-4 mt-3 ml-0 pl-0">
                                             <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
                                         </div>
                                     </div>
@@ -1124,6 +1127,7 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visThai+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4  row">
+                                        <div class="col-1"></div>
                                         <div class="col-3">
                                             <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
                                             <option selected value="USD">$ - USD</option>
@@ -1135,7 +1139,7 @@ class GetEternal extends Component{
                                             <option value="THB">฿ - THB</option>
                                             </select>
                                         </div>
-                                        <div class="col-9 mt-3 ml-0 pl-0">
+                                        <div class="col-4 mt-3 ml-0 pl-0">
                                             <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
                                         </div>
                                     </div>
@@ -1155,6 +1159,7 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visGER+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4  row">
+                                        <div class="col-1"></div>
                                         <div class="col-3">
                                             <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
                                             <option selected value="USD">$ - USD</option>
@@ -1166,7 +1171,7 @@ class GetEternal extends Component{
                                             <option value="THB">฿ - THB</option>
                                             </select>
                                         </div>
-                                        <div class="col-9 mt-3 ml-0 pl-0">
+                                        <div class="col-4 mt-3 ml-0 pl-0">
                                             <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
                                         </div>
                                     </div>
@@ -1186,6 +1191,7 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visINDO+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4  row">
+                                        <div class="col-1"></div>
                                         <div class="col-3">
                                             <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
                                             <option selected value="USD">$ - USD</option>
@@ -1197,7 +1203,7 @@ class GetEternal extends Component{
                                             <option value="THB">฿ - THB</option>
                                             </select>
                                         </div>
-                                        <div class="col-9 mt-3 ml-0 pl-0">
+                                        <div class="col-4 mt-3 ml-0 pl-0">
                                             <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
                                         </div>
                                     </div>
@@ -1217,6 +1223,7 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visPER+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4  row">
+                                        <div class="col-1"></div>
                                         <div class="col-3">
                                             <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
                                             <option selected value="USD">$ - USD</option>
@@ -1228,7 +1235,7 @@ class GetEternal extends Component{
                                             <option value="THB">฿ - THB</option>
                                             </select>
                                         </div>
-                                        <div class="col-9 mt-3 ml-0 pl-0">
+                                        <div class="col-4 mt-3 ml-0 pl-0">
                                             <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
                                         </div>
                                     </div>
@@ -1248,6 +1255,7 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visGREEK+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4  row">
+                                        <div class="col-1"></div>
                                         <div class="col-3">
                                             <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
                                             <option selected value="USD">$ - USD</option>
@@ -1259,7 +1267,7 @@ class GetEternal extends Component{
                                             <option value="THB">฿ - THB</option>
                                             </select>
                                         </div>
-                                        <div class="col-9 mt-3 ml-0 pl-0">
+                                        <div class="col-4 mt-3 ml-0 pl-0">
                                             <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
                                         </div>
                                     </div>
@@ -1279,6 +1287,7 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visBRPT+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
                                     <div class="col-4  row">
+                                        <div class="col-1"></div>
                                         <div class="col-3">
                                             <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
                                             <option selected value="USD">$ - USD</option>
@@ -1290,7 +1299,7 @@ class GetEternal extends Component{
                                             <option value="THB">฿ - THB</option>
                                             </select>
                                         </div>
-                                        <div class="col-9 mt-3 ml-0 pl-0">
+                                        <div class="col-4 mt-3 ml-0 pl-0">
                                             <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
                                         </div>
                                     </div>
