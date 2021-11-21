@@ -293,6 +293,8 @@ class GetEternal extends Component{
             return parseFloat(this.state.eternalPrice * this.state.sgd).toFixed(2)
         } else if (this.state.currency === "THB") {
             return parseFloat(this.state.eternalPrice * this.state.thb).toFixed(2)
+        } else if (this.state.currency === "CNY") {
+            return parseFloat(this.state.eternalPrice * this.state.cny).toFixed(2)
         }
     }
 
