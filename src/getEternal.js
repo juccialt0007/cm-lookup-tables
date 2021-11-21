@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 import './App.css';
 import './table.css';
-
-
-  
-    
-    
-
 class GetEternal extends Component{
     constructor(props){
         super(props);
@@ -20,6 +14,7 @@ class GetEternal extends Component{
             brl: 0,
             thb: 0,
             sgd: 0,
+            cny: 0,
             // Sheet
             mp: 0,
             workers: 0,
@@ -58,7 +53,9 @@ class GetEternal extends Component{
             visPER: "d-none",
             visINDO: "d-none",
             visGREEK: "d-none",
-            visBRPT: "d-none"
+            visBRPT: "d-none",
+            visFR: "d-none",
+            visITA: "d-none",
         }
         this.setMP = this.setMP.bind(this);
         this.setWorkers = this.setWorkers.bind(this);
@@ -74,7 +71,7 @@ class GetEternal extends Component{
         // this.setState({eternalPrice: data["data"]["price"]})
 
         // USDT to Conversion
-        const url = "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=php%2Cgbp%2Ceur%2Cbrl%2Csgd%2Cthb"
+        const url = "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=php%2Cgbp%2Ceur%2Cbrl%2Csgd%2Cthb%2Ccny"
         const response = await fetch(url);
         const data = await response.json();
         this.setState({
@@ -83,7 +80,8 @@ class GetEternal extends Component{
         eur: data["tether"]["eur"],
         brl: data["tether"]["brl"],
         sgd: data["tether"]["sgd"],
-        thb: data["tether"]["thb"]})
+        thb: data["tether"]["thb"],
+        cny: data["tether"]["cny"]})
         
         // Blockchain Pull Requests for Current Oracle Price
         const Web3 = require('web3');
@@ -137,6 +135,8 @@ class GetEternal extends Component{
             this.setState({currency: event.target.value, currencySymbol: "S$"});
         } else if (event.target.value === "THB"){
             this.setState({currency: event.target.value, currencySymbol: "฿"});
+        } else if (event.target.value === "CNY"){
+            this.setState({currency: event.target.value, currencySymbol: "¥"});
         }
         
     }
@@ -150,7 +150,9 @@ class GetEternal extends Component{
             visPER: "d-none",
             visINDO: "d-none",
             visGREEK: "d-none",
-            visBRPT: "d-none"})
+            visBRPT: "d-none",
+            visFR: "d-none",
+            visITA: "d-none",})
         } else if (event.target.value === "ESP"){
             this.setState({visEn: "d-none",
             visThai: "d-none",
@@ -159,7 +161,9 @@ class GetEternal extends Component{
             visPER: "d-none",
             visINDO: "d-none",
             visGREEK: "d-none",
-            visBRPT: "d-none"})
+            visBRPT: "d-none",
+            visFR: "d-none",
+            visITA: "d-none",})
         }
         else if (event.target.value === "GER"){
             this.setState({visEn: "d-none",
@@ -169,7 +173,9 @@ class GetEternal extends Component{
             visPER: "d-none",
             visINDO: "d-none",
             visGREEK: "d-none",
-            visBRPT: "d-none"})
+            visBRPT: "d-none",
+            visFR: "d-none",
+            visITA: "d-none",})
         }
         else if (event.target.value === "THAI"){
             this.setState({visEn: "d-none",
@@ -179,7 +185,9 @@ class GetEternal extends Component{
             visPER: "d-none",
             visINDO: "d-none",
             visGREEK: "d-none",
-            visBRPT: "d-none"})
+            visBRPT: "d-none",
+            visFR: "d-none",
+            visITA: "d-none",})
         }
         else if (event.target.value === "PER"){
             this.setState({visEn: "d-none",
@@ -189,7 +197,9 @@ class GetEternal extends Component{
             visPER: "", errorMP: "ام‌پی(MP) کافی نیست",
             visINDO: "d-none",
             visGREEK: "d-none",
-            visBRPT: "d-none"})
+            visBRPT: "d-none",
+            visFR: "d-none",
+            visITA: "d-none",})
         }
         else if (event.target.value === "INDO"){
             this.setState({visEn: "d-none",
@@ -199,7 +209,9 @@ class GetEternal extends Component{
             visPER: "d-none",
             visINDO: "", errorMP: "MP Tidak Cukup",
             visGREEK: "d-none",
-            visBRPT: "d-none"})
+            visBRPT: "d-none",
+            visFR: "d-none",
+            visITA: "d-none",})
         } else if (event.target.value === "GRK"){
             this.setState({visEn: "d-none",
             visThai: "d-none",
@@ -208,7 +220,9 @@ class GetEternal extends Component{
             visPER: "d-none",
             visINDO: "d-none",
             visGREEK: "", errorMP: "Δεν υπάρχει αρκετό MP",
-            visBRPT: "d-none"})
+            visBRPT: "d-none",
+            visFR: "d-none",
+            visITA: "d-none",})
         } else if (event.target.value === "BRPT"){
             this.setState({visEn: "d-none",
             visThai: "d-none",
@@ -217,7 +231,31 @@ class GetEternal extends Component{
             visPER: "d-none",
             visINDO: "d-none",
             visGREEK: "d-none",
-            visBRPT: "", errorMP: "MP Insuficiente",})
+            visBRPT: "", errorMP: "MP Insuficiente",
+            visFR: "d-none",
+            visITA: "d-none",})
+        } else if (event.target.value === "FR"){
+            this.setState({visEn: "d-none",
+            visThai: "d-none",
+            visESP: "d-none",
+            visGER: "d-none",
+            visPER: "d-none",
+            visINDO: "d-none",
+            visGREEK: "d-none",
+            visBRPT: "d-none", 
+            visFR: "", errorMP: "Pas assez de puissance de minage",
+            visITA: "d-none",})
+        } else if (event.target.value === "ITA"){
+            this.setState({visEn: "d-none",
+            visThai: "d-none",
+            visESP: "d-none",
+            visGER: "d-none",
+            visPER: "d-none",
+            visINDO: "d-none",
+            visGREEK: "d-none",
+            visBRPT: "d-none", 
+            visFR: "d-none", 
+            visITA: "", errorMP: "Non Abbastanza MP",})
         }
       };
     btnVisNrm = () => {
@@ -276,6 +314,8 @@ class GetEternal extends Component{
             return parseFloat(4.0 * this.state.oracle_adjustment[i] * this.state.sgd).toFixed(2)
         } else if (this.state.currency === "THB"){
             return parseFloat(4.0 * this.state.oracle_adjustment[i] * this.state.thb).toFixed(2)
+        } else if (this.state.currency === "CNY"){
+            return parseFloat(4.0 * this.state.oracle_adjustment[i] * this.state.cny).toFixed(2)
         }
     }
 
@@ -351,6 +391,8 @@ class GetEternal extends Component{
             return parseFloat(this.getContractDays()*this.state.workers * this.state.sgd).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         } else if (this.state.currency === "THB"){
             return parseFloat(this.getContractDays()*this.state.workers * this.state.thb).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        } else if (this.state.currency === "CNY"){
+            return parseFloat(this.getContractDays()*this.state.workers * this.state.cny).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         }
     }
 
@@ -392,6 +434,8 @@ class GetEternal extends Component{
             return this.state.workers*this.getContractDays()*this.state.sgd
         } else if (this.state.currency === "THB"){
             return this.state.workers*this.getContractDays()*this.state.thb
+        } else if (this.state.currency === "CNY"){
+            return this.state.workers*this.getContractDays()*this.state.cny
         }
     }
 
@@ -410,6 +454,8 @@ class GetEternal extends Component{
             return parseFloat((this.state.fuel[i]/100)*this.state.sgd).toFixed(2)
         } else if (this.state.currency === "THB"){
             return parseFloat((this.state.fuel[i]/100)*this.state.thb).toFixed(2)
+        } else if (this.state.currency === "CNY"){
+            return parseFloat((this.state.fuel[i]/100)*this.state.cny).toFixed(2)
         }
     }
 
@@ -435,7 +481,10 @@ class GetEternal extends Component{
         } else if (this.state.currency === "THB"){
             return parseFloat((this.state.fuel[i]/100)*this.state.thb).toLocaleString(undefined, {minimumFractionDigits: 2,
                 maximumFractionDigits: 2})
-        }
+        } else if (this.state.currency === "CNY"){
+            return parseFloat((this.state.fuel[i]/100)*this.state.cny).toLocaleString(undefined, {minimumFractionDigits: 2,
+                maximumFractionDigits: 2})
+        } 
     }
 
     getFleetSuccessChance(i){
@@ -779,12 +828,6 @@ class GetEternal extends Component{
         }
     }
 
-    
-
-    
-
-    
-
     render(){
         return(
             <div class="container-fixed px-3">
@@ -833,8 +876,8 @@ class GetEternal extends Component{
                                 Todos los valores de la calculadora son aproximados. No los tomes literalmente.<br/><br/>
                                 Es mejor utilizarlo como plantilla.<br/><br/>
                                 Por favor, no vaya a quejarse en el chat general si no se cumplen sus ""expectativas"".<br/><br/>
-                                El juego es auditado por un auditor de Top BlockChain.<br/>
-                                Sus afirmaciones de que está manipulado son infundadas.<br/><br/></p>
+                                El juego es auditado por un auditor Top de la BlockChain.<br/>
+                                Sus afirmaciones de que está manipulado no tienen fundamento.<br/><br/></p>
                                 
                                 <div class="row">
                                         <div class="col-6">
@@ -1050,6 +1093,70 @@ class GetEternal extends Component{
                                 </div>
                                 </div>
 
+                                <div class={this.state.visFR}>
+                                <p class="modal-popup"><b class="text-size-17">"Clause de non-responsabilité :</b>
+                                <br/><br/>
+                                Ceci est un projet communautaire codé seulement par moi Jucci#0007. 
+                                Toute aide de la communauté pour résoudre des problèmes serait appréciée.<br/><br/>
+                                Tous les calculs sont approximatifs, ne les prenez pas littéralement.<br/><br/>
+                                Ceci est à utiliser comme template.<br/><br/>
+                                Merci de ne pas vous plaindre dans le chat général si vos ""expectatives"" ne sont pas atteintes.<br/><br/>
+                                Le jeu est audité par une des meilleures sociétés d'audit de sécurité sur la blockchain.<br/>
+                                Les preuves que les gains sont truquées sont infondées."
+                                <br/><br/></p>
+                                
+                                <div class="row">
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>Je ne comprends pas</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>Je ne comprends pas</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">Je comprends</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">Je comprends</button>
+                                        </div>
+                                        </div>
+                                </div>
+                                </div>
+
+                                <div class={this.state.visITA}>
+                                <p class="modal-popup"><b class="text-size-17">"Esclusione di Responsabilità:</b><br/><br/>
+                                Questo è un progetto comunitario codificato solo da me Jucci#0007, quindi qualsiasi aiuto dalla comunità per risolvere le equazioni sarebbe davvero apprezzato.<br/><br/>
+                                Tutti i valori della calcolatrice sono approssimativi. Non prenderli alla lettera.<br/><br/>
+                                Questo è meglio usarlo come modello.<br/><br/>
+                                Per favore, non andate a lamentarvi nella chat generale se le vostre ""aspettative"" non vengono raggiunte.<br/><br/>
+                                Il gioco è verificato da un Top BlockChain Revisore.<br/>
+                                Le tue affermazioni sul fatto che sia truccato sono infondate."
+                                <br/><br/></p>
+                                
+                                <div class="row">
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>Non Capisco</button>
+                                        </div>
+                                        
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>Non Capisco</button>
+                                        </div>
+                                        </div>
+                                        <div class="col-6">
+                                        <div class="d-none d-lg-block">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">Capisco</button>
+                                        </div>
+                                        <div class="d-xs-block d-sm-none">
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">Capisco</button>
+                                        </div>
+                                        </div>
+                                </div>
+                                </div>
+
                                 </div>
                             </div>
                         </div>
@@ -1073,6 +1180,7 @@ class GetEternal extends Component{
                                             <option value="BRL">R$ - BRL</option>
                                             <option value="SGD">S$ - SGD</option>
                                             <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mt-3 ml-0 pl-0">
@@ -1105,6 +1213,7 @@ class GetEternal extends Component{
                                             <option value="BRL">R$ - BRL</option>
                                             <option value="SGD">S$ - SGD</option>
                                             <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mt-3 ml-0 pl-0">
@@ -1121,7 +1230,7 @@ class GetEternal extends Component{
                                     <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contrato / Trabajador</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Minteo</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
                                     </div>
                                 </div>
 
@@ -1137,6 +1246,7 @@ class GetEternal extends Component{
                                             <option value="BRL">R$ - BRL</option>
                                             <option value="SGD">S$ - SGD</option>
                                             <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mt-3 ml-0 pl-0">
@@ -1169,6 +1279,7 @@ class GetEternal extends Component{
                                             <option value="BRL">R$ - BRL</option>
                                             <option value="SGD">S$ - SGD</option>
                                             <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mt-3 ml-0 pl-0">
@@ -1201,6 +1312,7 @@ class GetEternal extends Component{
                                             <option value="BRL">R$ - BRL</option>
                                             <option value="SGD">S$ - SGD</option>
                                             <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mt-3 ml-0 pl-0">
@@ -1233,6 +1345,7 @@ class GetEternal extends Component{
                                             <option value="BRL">R$ - BRL</option>
                                             <option value="SGD">S$ - SGD</option>
                                             <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mt-3 ml-0 pl-0">
@@ -1265,6 +1378,7 @@ class GetEternal extends Component{
                                             <option value="BRL">R$ - BRL</option>
                                             <option value="SGD">S$ - SGD</option>
                                             <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mt-3 ml-0 pl-0">
@@ -1297,6 +1411,7 @@ class GetEternal extends Component{
                                             <option value="BRL">R$ - BRL</option>
                                             <option value="SGD">S$ - SGD</option>
                                             <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mt-3 ml-0 pl-0">
@@ -1317,6 +1432,72 @@ class GetEternal extends Component{
                                     </div>
                                 </div>
 
+                                <div class={this.state.visFR+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
+                                    <div class="col-4  row">
+                                        <div class="col-1"></div>
+                                        <div class="col-3">
+                                            <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
+                                            <option selected value="USD">$ - USD</option>
+                                            <option value="PHP">₱ - PHP</option>
+                                            <option value="GBP">£ - GBP</option>
+                                            <option value="EUR">€ - EUR</option>
+                                            <option value="BRL">R$ - BRL</option>
+                                            <option value="SGD">S$ - SGD</option>
+                                            <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4 mt-3 ml-0 pl-0">
+                                            <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row col-4">
+                                        <div class="col-1"></div>
+                                        <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option selected value="7">7 Jours</option>
+                                        <option value="15">15 Jours</option>
+                                        <option value="30">30 Jours</option>
+                                        </select></div>
+                                        <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contrat par travailleur</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visITA+" row d-flex sm-flex align-items-start border border-2 border-dark"}> 
+                                    <div class="col-4  row">
+                                        <div class="col-1"></div>
+                                        <div class="col-3">
+                                            <select class="form-select text-left-default getEternalHeader select-currency pl-6" onChange={this.setCurrency} aria-label="Default select">
+                                            <option selected value="USD">$ - USD</option>
+                                            <option value="PHP">₱ - PHP</option>
+                                            <option value="GBP">£ - GBP</option>
+                                            <option value="EUR">€ - EUR</option>
+                                            <option value="BRL">R$ - BRL</option>
+                                            <option value="SGD">S$ - SGD</option>
+                                            <option value="THB">฿ - THB</option>
+                                            <option value="CNY">¥ - CNY</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4 mt-3 ml-0 pl-0">
+                                            <p class="getEternalHeader"><b>/ ETL</b> -{'>'} <span class="text-primary">{this.getETLvsCurrency()}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row col-4">
+                                        <div class="col-1"></div>
+                                        <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option selected value="7">7 Giorni</option>
+                                        <option value="15">15 Giorni</option>
+                                        <option value="30">30 Giorni</option>
+                                        </select></div>
+                                        <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contratto / Lavoratore</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
+                                    </div>
+                                    <div class="col-4  mt-3">
+                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                    </div>
+                                </div>
+
                                 </div>
                                 <div class="col-1">
                                 <select class="form-select getEternalHeader select-lang" onChange={this.setVisLang} aria-label="Default select">
@@ -1328,6 +1509,8 @@ class GetEternal extends Component{
                                     <option value="PER">FA - PERS</option>
                                     <option value="GRK">EL - GREEK</option>
                                     <option value="BRPT">PT - BR</option>
+                                    <option value="FR">FR - FRE</option>
+                                    <option value="ITA">IT - ITA</option>
                                 </select>
                                 </div>
 
@@ -1376,12 +1559,12 @@ class GetEternal extends Component{
                                             <button type="button" class={this.state.btnHighlightFleet+" text-size-fit-3"} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Calculadora</button>
                                         </div>
                                         <div class="col-8">
-                                            <p class={this.state.sheetInfo+" text-size-fit-2"}>Validado con la flota de frifster#1185 (Master Papink) Rank A de 5100MP</p>
+                                            <p class={this.state.sheetInfo+" text-size-fit-2"}>Validado con la flota de frifster#1185 (Master Papink) Rango A de 5100MP</p>
                                         </div>
                                     </div>
                                     <div class="col-7 row">
                                         <div class="col-12">
-                                            <p class={this.state.sheetInfo+" text-size-fit-2"}>Los valores de Combustible (Adjustados) provienen del juego. Nuevos valores del Oráculo proporcionados por Dannii ❤#3151</p>
+                                            <p class={this.state.sheetInfo+" text-size-fit-2"}>Los valores de Combustible (Ajustados) provienen del juego. Nuevos valores del Oráculo proporcionados por Dannii ❤#3151</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1499,6 +1682,44 @@ class GetEternal extends Component{
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class={this.state.visFR+" row col-12"}>
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo+" text-size-fit-2"} onClick={this.btnVisNrm}>Informations</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet+" text-size-fit-2"} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Calculatrice</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo}>Validé avec la flotte rang A 4900 MP de frifster#1185 (Master Papink's)</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-14"}>La valeur de l'essence (ajusté) provient du jeu. Les nouvelles valeurs de l'oracle viennent de Dannii ❤#3151</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class={this.state.visITA+" row col-12"}>
+                                    <div class="col-5 row">
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightInfo+" text-size-fit-2"} onClick={this.btnVisNrm}>Info</button>
+                                        </div>
+                                        <div class="col-2">
+                                            <button type="button" class={this.state.btnHighlightFleet+" text-size-fit-2"} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">Calcolatrice</button>
+                                        </div>
+                                        <div class="col-8">
+                                            <p class={this.state.sheetInfo+" text-size-fit-1"}>Convalidato con la flotta di frifster#1185 (Master Papink's) Flotta Grado A di 5100MP.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 row">
+                                        <div class="col-12">
+                                            <p class={this.state.sheetInfo+" text-size-fit-1"}>Valori del combustibile (Aggiustati) sono dal gioco. I nuovi valori dell'Oracolo sono di Danni ❤#3151</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 
                                 <div class="row px-0 mx-0">
@@ -1588,7 +1809,7 @@ class GetEternal extends Component{
                                     <div class="col-4"></div>
 
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
-                                        <p class="text-left">Rank de Flota:</p>
+                                        <p class="text-left">Rango de Flota:</p>
                                     </div>
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
                                     <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
@@ -2025,6 +2246,136 @@ class GetEternal extends Component{
 
                                 </div>
 
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visFR}>
+
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
+                                        <p class="text-left">Puissance de minage:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">Nombre de travailleur:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4"></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">Rang de la flotte:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
+                                        <p class="text-left">Niveau de la flotte:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
+                                    </div>
+
+                                </div>
+
+                                <div class={this.state.inputVisFleet+" col-8 "+this.state.visITA}>
+
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2 pt-2">
+                                        <p class="text-left">MP:</p>
+                                    </div>
+                                    <div title="MP affects Success Rate (SR) past 1500MP" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setMP}></input>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2 pt-2">
+                                        <p class="text-left">Lavoratori:</p>
+                                    </div>
+                                    <div title="Workers affect Contract Upkeep and Net Profit" class="col-2">
+                                        <input type="number" class="input-group-text" onChange={this.setWorkers}></input>
+                                    </div>
+
+                                    <div class="col-4"></div>
+
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
+                                        <p class="text-left">Grado di Flotta:</p>
+                                    </div>
+                                    <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
+                                    <option selected value="D">D Rank</option>
+                                    <option value="C">C Rank</option>
+                                    <option value="B">B Rank</option>
+                                    <option value="A">A Rank</option>
+                                    <option value="S">S Rank</option>
+                                    </select>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2 pt-2">
+                                        <p class="text-left">Livello di Flotta:</p>
+                                    </div>
+                                    <div title="Fleet Levels are 0 to 25, they increase rewards earned. Default is 0" class="col-2">
+                                    <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetLevel} aria-label="Fleet Select">
+                                    <option selected value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="23">24</option>
+                                    <option value="25">25</option>
+                                    </select>
+                                    </div>
+
+                                </div>
+
 
                                 <div class="col-2"></div>
                                 </div>
@@ -2126,13 +2477,15 @@ class GetEternal extends Component{
                                 <div class="col-6">
                                     <p class="text-right1 my-2 pt-3">
                                     ▪️ Translation to other language in the works:<br/> 
-                                    &emsp;&emsp; ESP/Spanish - Mod AwesomeD#8553<br/>
+                                    &emsp;&emsp; ESP/Spanish - Mod AwesomeD#8553 &#38; DaniSciB 🔱#9456<br/>
                                     &emsp;&emsp; DE/German - Maschs#6651<br/>
                                     &emsp;&emsp; FA/Persian - hesen7#1593<br/>
                                     &emsp;&emsp; ID/Indonesian - Mbun#1456<br/>
                                     &emsp;&emsp; EL/Greek - ExiLeD#3745<br/>
                                     &emsp;&emsp; PT/BR - midgetino#9342<br/>
                                     &emsp;&emsp; TH/Thai - KITTYPUNKZ#2657<br/>
+                                    &emsp;&emsp; FR/FRE - Kelhom#0651<br/>
+                                    &emsp;&emsp; IT/ITA - DaniSciB 🔱#9456<br/>
                                     &emsp;&emsp; VI/Vietnam - No TL<br/><br/>
                                     DM Me in Discord if you want to help translate to your language not listed: Jucci#0007
                                     </p>
@@ -2167,7 +2520,7 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">#</th>
                                     <th class="border extra-padding border-2 border-dark">Planeta</th>
                                     <th class="border border-2 border-dark">MP</th>
-                                    <th class="border border-2 border-dark">Oracle</th>
+                                    <th class="border border-2 border-dark">Oráculo</th>
                                     <th class="border border-2 border-dark">Recompensa de Minado (ETL)</th>
                                     <th class="border border-2 border-dark">Recompensa de Minado ({this.state.currency})</th>
                                     <th class="border border-2 border-dark">Costo de Combustible ({this.state.currency})</th>
@@ -2273,6 +2626,38 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">Contrato da Frota {this.state.selectDays}d ({this.state.currency})</th>
                                     <th class="border border-2 border-dark">Lucro Bruto / {this.state.selectDays}d</th>
                                     <th class="border border-2 border-dark">Lucro Bruto - Combustível / {this.state.selectDays}d</th>
+                                </tr>
+
+                                <tr class={this.state.visFR+" border border-dark"}>
+                                    <th class="border border-2 border-dark">#</th>
+                                    <th class="border extra-padding border-2 border-dark">Planète</th>
+                                    <th class="border border-2 border-dark">Puissance de minage</th>
+                                    <th class="border border-2 border-dark">Oracle</th>
+                                    <th class="border border-2 border-dark">Récompense de minage (ETL)</th>
+                                    <th class="border border-2 border-dark">Récompense de minage ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">Coût de l'essence ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">Pourcentage de réussite (SR)</th>
+                                    <th class="border border-2 border-dark">Récompense sur{this.state.selectDays}j ({this.state.currency}) * SR</th>
+                                    <th class="border border-2 border-dark">Contrat de la flotte / {this.state.selectDays}j (ETL)</th>
+                                    <th class="border border-2 border-dark">Contrat de la flotte / {this.state.selectDays}j ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">Profit net / {this.state.selectDays}j</th>
+                                    <th class="border border-2 border-dark">Profit net - essence / {this.state.selectDays}j</th>
+                                </tr>
+
+                                <tr class={this.state.visITA+" border border-dark"}>
+                                    <th class="border border-2 border-dark">#</th>
+                                    <th class="border extra-padding border-2 border-dark">Pianeta</th>
+                                    <th class="border border-2 border-dark">MP</th>
+                                    <th class="border border-2 border-dark">Oracolo</th>
+                                    <th class="border border-2 border-dark">Ricompense in Miniera (ETL)</th>
+                                    <th class="border border-2 border-dark">Ricompense in Miniera ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">Costo del Combustibile ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">Tasso di Successo (TS)</th>
+                                    <th class="border border-2 border-dark">Ricompensa di {this.state.selectDays} Giorni * TS ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">Contratto di Flotta / {this.state.selectDays} Giorni (ETL)</th>
+                                    <th class="border border-2 border-dark">Contratto di Flotta / {this.state.selectDays} Giorni ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">Utile Netto / {this.state.selectDays} Giorni</th>
+                                    <th class="border border-2 border-dark">Utile Netto - Combustibile / {this.state.selectDays} Giorni</th>
                                 </tr>
 
                                 {/* Fleet */}
