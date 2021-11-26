@@ -327,3 +327,9 @@ input[type=number] {
   font-family: 'Nunito', sans-serif;
   border-color: transparent !important;
 }
+
+.text-left-x{
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
