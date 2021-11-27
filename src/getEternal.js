@@ -41,6 +41,7 @@ class GetEternal extends Component{
             visCredits: "d-none",
             btnHighlightInfo: "btn btn-custom mobile-margin",
             btnHighlightFleet: "btn stretch mobile-margin",
+            showFixedHeader: "d-none",
             // UI
             selectDays: "7",
             currency: "USD",
@@ -1255,30 +1256,34 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visZHtr}>
                                 <p class="modal-popup"><b class="text-size-17">免責聲明：</b><br/><br/>
-                                這是一個由我 Jucci#0007 單獨編碼的社群專案，因此非常感謝社群對解決等式的任何幫助。<br/><br/>
-                                所有計算器的數值都是近似值。 請不要從字面上理解它們。<br/><br/>
-                                這個最好用做樣本。<br/><br/>
+                                這是一個由我 Jucci#0007 單獨編程的社群專案，因此非常感謝社群對完成計算公式提供的所有幫助。<br/><br/>
+
+                                所有計算器顯示的數值都是近似值。 請不要僅從字面上理解它們。<br/><br/>
+
+                                這里的數據最好用做參考樣本。<br/><br/>
+
                                 如果沒有達到您的“期望”，請不要在 General Chat 頻道中抱怨。<br/><br/>
-                                遊戲由頂級區塊鏈審核機構審核。<br/>
-                                有關於它被操縱的說法是沒有根據的。
+
+                                本遊戲已經通過頂級區塊鏈審核機構審核。<br/>
+                                有關於它被人為操縱的說法是沒有根據的。
                                 <br/><br/></p>
                                 
                                 <div class="row">
                                         <div class="col-6">
                                         <div class="d-none d-lg-block">
-                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>我不了解</button>
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>我不明白</button>
                                         </div>
                                         
                                         <div class="d-xs-block d-sm-none">
-                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>我不了解</button>
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>我不明白</button>
                                         </div>
                                         </div>
                                         <div class="col-6">
                                         <div class="d-none d-lg-block">
-                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">我了解</button>
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">我明白</button>
                                         </div>
                                         <div class="d-xs-block d-sm-none">
-                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">我了解</button>
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">我明白</button>
                                         </div>
                                         </div>
                                 </div>
@@ -1286,30 +1291,35 @@ class GetEternal extends Component{
 
                                 <div class={this.state.visZHsm}>
                                 <p class="modal-popup"><b class="text-size-17">免责声明：</b><br/><br/>
-                                这是一个由我 Jucci#0007 单独编码的社群项目，因此非常感谢社群对解决等式的任何帮助。<br/><br/>
-                                所有计算机的数值都是近似值。 请不要从字面上理解它们。<br/><br/>
-                                这个最好用做样本。<br/><br/>
+
+                                这是一个由我 Jucci#0007 单独编程的社群项目，因此非常感谢社群对完成计算公式提供的所有帮助。<br/><br/>
+
+                                所有计算器显示的数值都是近似值。 请不要仅从字面上理解它们。<br/><br/>
+
+                                这里的数据最好用做参考样本。<br/><br/>
+
                                 如果没有达到您的""期望""，请不要在 General Chat 频道中抱怨。<br/><br/>
-                                游戏由顶级区块链审核机构审核。<br/>
-                                有关于它纵的说法是没有根据的。
+
+                                本游戏已经通过顶级区块链审核机构的审核。<br/>
+                                有关于它被人为操纵的说法是没有根据的。
                                 <br/><br/></p>
                                 
                                 <div class="row">
                                         <div class="col-6">
                                         <div class="d-none d-lg-block">
-                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>我不了解</button>
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2" onClick={this.closeTab}>我不明白</button>
                                         </div>
                                         
                                         <div class="d-xs-block d-sm-none">
-                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>我不了解</button>
+                                            <button type="button" class="btn btn-secondary width-100 mobile-margin my-2 modal-text-small" onClick={this.closeTab}>我不明白</button>
                                         </div>
                                         </div>
                                         <div class="col-6">
                                         <div class="d-none d-lg-block">
-                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">我了解</button>
+                                            <button type="button" class="btn btn-custom mobile-margin my-2" data-bs-dismiss="modal">我明白</button>
                                         </div>
                                         <div class="d-xs-block d-sm-none">
-                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">我了解</button>
+                                            <button type="button" class="btn btn-custom mobile-margin my-2 modal-text-small" data-bs-dismiss="modal">我明白</button>
                                         </div>
                                         </div>
                                 </div>
@@ -1979,15 +1989,15 @@ class GetEternal extends Component{
                                             <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>資訊</button>
                                         </div>
                                         <div class="col-2">
-                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">計算機</button>
+                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">計算器</button>
                                         </div>
                                         <div class="col-8">
-                                            <p class={this.state.sheetInfo}>驗證自 frifster#1185 (Papink | Rin's Disciple) A Rank 5100MP 艦隊.</p>
+                                            <p class={this.state.sheetInfo}>已經過 frifster#1185 (Papink | Rin's Disciple) A Rank 5100MP 艦隊驗證.</p>
                                         </div>
                                     </div>
                                     <div class="col-7 row">
                                         <div class="col-12">
-                                            <p class={this.state.sheetInfo+" text-size-14"}>油價(調整過)來自於遊戲。新預言機價來自於 Dannii ❤#3151</p>
+                                            <p class={this.state.sheetInfo+" text-size-14"}>油價(已調整)來源於遊戲。新預言機價格來源於 Dannii ❤#3151</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1998,15 +2008,15 @@ class GetEternal extends Component{
                                             <button type="button" class={this.state.btnHighlightInfo} onClick={this.btnVisNrm}>信息</button>
                                         </div>
                                         <div class="col-2">
-                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">计算机</button>
+                                            <button type="button" class={this.state.btnHighlightFleet} onClick={this.btnFleets} data-bs-toggle="modal" data-bs-target="#exampleModal">计算器</button>
                                         </div>
                                         <div class="col-8">
-                                            <p class={this.state.sheetInfo}>验证自 frifster#1185 （Papink | Rin's Disciple） A Rank 5100MP 艦隊.</p>
+                                            <p class={this.state.sheetInfo}>已经过frifster#1185 （Papink | Rin's Disciple） A Rank 5100MP 艦隊验证.</p>
                                         </div>
                                     </div>
                                     <div class="col-7 row">
                                         <div class="col-12">
-                                            <p class={this.state.sheetInfo+" text-size-14"}>油价（调整过）来自于游戏。 新预言机价来自于 Dannii ❤#3151</p>
+                                            <p class={this.state.sheetInfo+" text-size-14"}>油价（已调整）来源于游戏。 新预言机价来源于 Dannii ❤#3151</p>
                                         </div>
                                     </div>
                                 </div>
@@ -2684,7 +2694,7 @@ class GetEternal extends Component{
                                     <div class="col-4 pt-2 text-left-x">Avg MP: {this.getAverageWorkers()}</div>
 
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
-                                        <p class="text-left">艦隊排行：</p>
+                                        <p class="text-left">艦隊級別：</p>
                                     </div>
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
                                     <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
@@ -2749,7 +2759,7 @@ class GetEternal extends Component{
                                     <div class="col-4 pt-2 text-left-x">Avg MP: {this.getAverageWorkers()}</div>
 
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2 pt-2">
-                                        <p class="text-left">舰队排行：</p>
+                                        <p class="text-left">舰队级别：</p>
                                     </div>
                                     <div title="Fleet Ranks are: D, C, B, A, and S" class="col-2">
                                     <select class="form-select fleet-rank-custom input-group-text text-middle" onChange={this.setFleetRank} aria-label="Fleet Select">
@@ -2883,7 +2893,7 @@ class GetEternal extends Component{
                             <div class={this.state.visInfo+" row"}>
                                 <div class="col-4">
                                     <p class="text-right1 my-2 pt-3">
-                                    All Info can be found in: <b><a href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/><br/>
+                                    All Info can be found in: <b><a class="text-size-17" href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/><br/>
                                     
                                     What's New?<br/>
                                     ▪️ We now get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/>
@@ -2906,7 +2916,7 @@ class GetEternal extends Component{
                                     &emsp;&emsp; TH/Thai - KITTYPUNKZ#2657<br/>
                                     &emsp;&emsp; FR/FRE - Kelhom#0651<br/>
                                     &emsp;&emsp; IT/ITA - DaniSciB 🔱#9456<br/>
-                                    &emsp;&emsp; Chinese Trad/Simp - BoogieMan#8590<br/>
+                                    &emsp;&emsp; Chinese Trad/Simp - BoogieMan#8590 &#38; Floatmachiatto#4399<br/>
                                     
                                     &emsp;&emsp; VI/Vietnam - No TL<br/><br/>
                                     DM Me in Discord if you want to help translate to your language not listed: Jucci#0007
@@ -3089,13 +3099,13 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">預言機</th>
                                     <th class="border border-2 border-dark">挖礦獎勵 (ETL)</th>
                                     <th class="border border-2 border-dark">挖礦獎勵 ({this.state.currency})</th>
-                                    <th class="border border-2 border-dark">油料 ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">油費 ({this.state.currency})</th>
                                     <th class="border border-2 border-dark">勝率 (SR)</th>
                                     <th class="border border-2 border-dark">{this.state.selectDays}d獎勵 ({this.state.currency}) * SR</th>
                                     <th class="border border-2 border-dark">艦隊合約 / {this.state.selectDays}d (ETL)</th>
                                     <th class="border border-2 border-dark">艦隊合約 / {this.state.selectDays}d ({this.state.currency})</th>
-                                    <th class="border border-2 border-dark">淨利 / {this.state.selectDays}d</th>
-                                    <th class="border border-2 border-dark">淨利 - 油費 / {this.state.selectDays}d</th>
+                                    <th class="border border-2 border-dark">淨利潤 / {this.state.selectDays}d</th>
+                                    <th class="border border-2 border-dark">淨利潤 - 油費 / {this.state.selectDays}d</th>
                                 </tr>
 
                                 <tr class={this.state.visZHsm+" border border-dark"}>
@@ -3105,13 +3115,13 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">预言机</th>
                                     <th class="border border-2 border-dark">挖矿奖励 (ETL)</th>
                                     <th class="border border-2 border-dark">挖矿奖励 ({this.state.currency})</th>
-                                    <th class="border border-2 border-dark">油料 ({this.state.currency})</th>
+                                    <th class="border border-2 border-dark">油费 ({this.state.currency})</th>
                                     <th class="border border-2 border-dark">胜率 (SR)</th>
                                     <th class="border border-2 border-dark">{this.state.selectDays}d奖励 ({this.state.currency}) * SR</th>
                                     <th class="border border-2 border-dark">舰队合约 / {this.state.selectDays}d (ETL)</th>
                                     <th class="border border-2 border-dark">舰队合约 / {this.state.selectDays}d ({this.state.currency})</th>
-                                    <th class="border border-2 border-dark">净利 / {this.state.selectDays}d</th>
-                                    <th class="border border-2 border-dark">净利 - 油费 / {this.state.selectDays}d</th>
+                                    <th class="border border-2 border-dark">净利润 / {this.state.selectDays}d</th>
+                                    <th class="border border-2 border-dark">净利润 - 油费 / {this.state.selectDays}d</th>
                                 </tr>
 
                                 {/* Fleet */}
