@@ -328,7 +328,8 @@ input[type=number] {
   font-size: 14px;
   text-align: left;
   font-family: 'Nunito', sans-serif;
-  border-color: transparent !important;
+  background-color: #e9ecef !important;
+  border-color:  transparent !important;
   border-radius: 0 !important;
 }
 
@@ -338,20 +339,21 @@ input[type=number] {
   font-size: 14px;
   text-align: left;
   font-family: 'Nunito', sans-serif;
+  background-color: #e9ecef !important;
   border-color: transparent !important;
   border-radius: 0 !important;
 }
 
 .select-days:hover{
-  background-color: rgba(153, 151, 151, 0.138);
+  background-color: rgba(153, 151, 151, 0.138) !important;
 }
 
 .select-currency:hover{
-  background-color: rgba(153, 151, 151, 0.138);
+  background-color: rgba(153, 151, 151, 0.138) !important;
 }
 
 .select-lang:hover{
-  background-color: rgba(153, 151, 151, 0.138);
+  background-color: rgba(153, 151, 151, 0.138) !important;
 }
 
 .text-left-x{

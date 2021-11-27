@@ -1717,7 +1717,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>合約/工人</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>鑄造中</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>铸造</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
                                     </div>
                                 </div>
 
@@ -1752,7 +1752,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>合约/工人</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>铸造中</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>铸造</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
                                     </div>
                                 </div>
 
@@ -2898,7 +2898,8 @@ class GetEternal extends Component{
                                     What's New?<br/>
                                     ▪️ We now get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/>
                                     ▪️ You can now choose your currency fiat apart from USD (open for adding more).<br/>
-                                    ▪️ Mobile View is still in EN. Will come back for it when I have the time.<br/>
+                                    ▪️ Mobile View is still in EN, has no day select. Will come back for it when I have the time.<br/>
+                                    ▪️ (Not so new) You can select days, language, and currency if you click the dropdowns from the headers. Shaded them to get your attention.<br/>
                                     <br/>
                                     
                                     
