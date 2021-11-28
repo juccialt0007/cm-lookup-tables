@@ -329,8 +329,10 @@ input[type=number] {
   text-align: left;
   font-family: 'Nunito', sans-serif;
   background-color: #e9ecef !important;
-  border-color:  transparent !important;
+  border-color:  transparent;
   border-radius: 0 !important;
+  border-left-color: #ced4da !important;
+  border-right-color: #ced4da !important;
 }
 
 .select-days{ 
@@ -340,8 +342,10 @@ input[type=number] {
   text-align: left;
   font-family: 'Nunito', sans-serif;
   background-color: #e9ecef !important;
-  border-color: transparent !important;
+  border-color: transparent;
   border-radius: 0 !important;
+  border-left-color: #ced4da !important;
+  border-right-color: #ced4da !important;
 }
 
 .select-days:hover{
