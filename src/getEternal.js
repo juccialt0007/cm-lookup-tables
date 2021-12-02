@@ -2902,7 +2902,7 @@ class GetEternal extends Component{
                                     <br/>
 
                                     Upcoming:<br/>
-                                    ▪️ Once the updates for the changes are live, the sheet will remain as it is.<br/>
+                                    ▪️ Until the updates for the changes are live, the sheet will remain as it is.<br/>
                                     ▪️ Mobile View is still in EN, has no day or language select. Will come back for it when I have the time.<br/>
                                     
                                     </p>
