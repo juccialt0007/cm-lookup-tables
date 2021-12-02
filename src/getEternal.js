@@ -1717,7 +1717,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>合約/工人</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>铸造</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>鑄造</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
                                     </div>
                                 </div>
 
@@ -2891,17 +2891,19 @@ class GetEternal extends Component{
                         <div id="normal" class={this.state.visibilityNormal}>
                             <div class="my-6">
                             <div class={this.state.visInfo+" row"}>
-                                <div class="col-4">
+                                <div class="col-5">
                                     <p class="text-right1 my-2 pt-3">
-                                    All Info can be found in: <b><a class="text-size-17" href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/><br/>
+                                    All Info can be found in: <b><a class="text-size-17" href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/>
+                                    Read the future plans of the game thru here: <b><a class="text-size-17" href="https://cryptomines.medium.com/lets-build-cryptomines-together-roadmap-2022-e3ba5d10a62" rel="noreferrer" target="_blank">CryptoMines 2022 Roadmap</a> </b> <br/><br/>
                                     
                                     What's New?<br/>
                                     ▪️ We now get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/>
                                     ▪️ You can now choose your currency fiat apart from USD (open for adding more).<br/>
-                                    ▪️ Mobile View is still in EN, has no day select. Will come back for it when I have the time.<br/>
-                                    ▪️ (Not so new) You can select days, language, and currency if you click the dropdowns from the headers. Shaded them to get your attention.<br/>
                                     <br/>
-                                    
+
+                                    Upcoming:<br/>
+                                    ▪️ Once the updates for the changes are live, the sheet will remain as it is.<br/>
+                                    ▪️ Mobile View is still in EN, has no day or language select. Will come back for it when I have the time.<br/>
                                     
                                     </p>
                                 </div>
