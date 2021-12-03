@@ -2915,6 +2915,7 @@ class GetEternal extends Component{
                                     What's New?<br/>
                                     ▪️ We now get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/>
                                     ▪️ You can now choose your currency fiat apart from USD (open for adding more).<br/>
+                                    ▪️ 3 Days have been added. Default is still 7. <br/>
                                     <br/>
 
                                     Upcoming:<br/>
