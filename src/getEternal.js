@@ -410,6 +410,9 @@ class GetEternal extends Component{
         else if (this.state.selectDays === "7"){
             return parseFloat(7/this.state.eternalPrice).toFixed(4)
         }
+        else if (this.state.selectDays === "3"){
+            return parseFloat(3/this.state.eternalPrice).toFixed(4)
+        }
     }
 
     getContractDays(){
@@ -417,9 +420,10 @@ class GetEternal extends Component{
             return 27
         } else if (this.state.selectDays === "15"){
             return 14
-        } 
-        else if (this.state.selectDays === "7"){
+        } else if (this.state.selectDays === "7"){
             return 7
+        } else if (this.state.selectDays === "3"){
+            return 3
         }
     }
 
@@ -1360,6 +1364,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 Days</option>
                                         <option selected value="7">7 Days</option>
                                         <option value="15">15 Days</option>
                                         <option value="30">30 Days</option>
@@ -1395,8 +1400,9 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                     <div class="col-1"></div>
                                     <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                    <option value="3">3 Días</option>
                                     <option selected value="7">7 Días</option>
-                                    <option value="15">5 Días</option>
+                                    <option value="15">15 Días</option>
                                     <option value="30">30 Días</option>
                                     </select></div>
                                     <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contrato / Trabajador</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
@@ -1430,6 +1436,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                     <div class="col-1"></div>
                                     <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                    <option value="3">3 วัน</option>
                                     <option selected value="7">7 วัน</option>
                                     <option value="15">15 วัน</option>
                                     <option value="30">30 วัน</option>
@@ -1465,6 +1472,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3 "><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 Tage</option>
                                         <option selected value="7">7 Tage</option>
                                         <option value="15">15 Tage</option>
                                         <option value="30">30 Tage</option>
@@ -1500,6 +1508,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3  "><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 Hari</option>
                                         <option selected value="7">7 Hari</option>
                                         <option value="15">15 Hari</option>
                                         <option value="30">30 Hari</option>
@@ -1535,6 +1544,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3  "><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 روز</option>
                                         <option selected value="7">7 روز</option>
                                         <option value="15">15 روز</option>
                                         <option value="30">30 روز</option>
@@ -1570,6 +1580,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3  "><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 Ημέρες</option>
                                         <option selected value="7">7 Ημέρες</option>
                                         <option value="15">15 Ημέρες</option>
                                         <option value="30">30 Ημέρες</option>
@@ -1605,6 +1616,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3  "><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 Dias</option>
                                         <option selected value="7">7 Dias</option>
                                         <option value="15">15 Dias</option>
                                         <option value="30">30 Dias</option>
@@ -1640,6 +1652,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 Jours</option>
                                         <option selected value="7">7 Jours</option>
                                         <option value="15">15 Jours</option>
                                         <option value="30">30 Jours</option>
@@ -1675,6 +1688,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 Giorni</option>
                                         <option selected value="7">7 Giorni</option>
                                         <option value="15">15 Giorni</option>
                                         <option value="30">30 Giorni</option>
@@ -1710,6 +1724,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 天</option>
                                         <option selected value="7">7 天</option>
                                         <option value="15">15 天</option>
                                         <option value="30">30 天</option>
@@ -1745,6 +1760,7 @@ class GetEternal extends Component{
                                     <div class="row col-4">
                                         <div class="col-1"></div>
                                         <div class="col-3"><select class="form-select getEternalHeader select-days" onChange={this.setDays} aria-label="Default select">
+                                        <option value="3">3 天</option>
                                         <option selected value="7">7 天</option>
                                         <option value="15">15 天</option>
                                         <option value="30">30 天</option>
