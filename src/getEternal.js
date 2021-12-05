@@ -344,6 +344,7 @@ class GetEternal extends Component{
     closeTab = () => {
         window.close();
     }
+
     //(Who called in the) Fleet
 
     getETLvsCurrency(){
@@ -373,6 +374,23 @@ class GetEternal extends Component{
     getMinePower(i){
         return this.state.minepower[i]
     }
+
+    // ETERNAL ALWAYS in USD
+    getMineUSDETL(i){
+        return parseFloat(4.0 * this.state.oracle_adjustment[i]).toFixed(2)
+    }
+    getFleetMineETL(i){
+        return parseFloat((this.getFleetMineUSDETL(i)/this.state.eternalPrice)).toFixed(4)
+    }
+    getFleetMineUSDETL(i){
+        if (i < 5){
+            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
+        } else {
+            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+        }
+    }
+
+    // USD to Conversion
     getMineUSD(i){
         if(this.state.currency === "USD"){
             return parseFloat(4.0 * this.state.oracle_adjustment[i]).toFixed(2)
@@ -396,11 +414,34 @@ class GetEternal extends Component{
             return parseFloat(4.0 * this.state.oracle_adjustment[i] * this.state.inr).toFixed(2)
         }
     }
-
-    getMineUSDETL(i){
-        return parseFloat(4.0 * this.state.oracle_adjustment[i]).toFixed(2)
+    getFleetMineUSD(i){
+        if (i < 5){
+            return parseFloat((this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
+        }  else {
+            return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+        }
+    }
+    //Printing
+    getFleetMineUSDM(i){
+        if (i < 5){
+            return parseFloat((this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        } else {
+            return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        }
+    }
+    getFleetSRvsUSD(i){
+        if (this.state.fleet_rank === ""){
+            return 'Enter Fleet Rank'
+        } 
+        else if (isNaN(parseFloat(this.getFleetMineUSD(i)* this.state.selectDays * this.getFleetSuccessChance(i) / 100).toFixed(2))) {
+            return this.state.errorMP
+        }
+        else {
+            return this.state.currencySymbol+parseFloat(this.getFleetMineUSD(i)* this.state.selectDays * this.getFleetSuccessChance(i) / 100).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        }
     }
 
+    //Contracts
     getContractCost(){
         if (this.state.selectDays === "30"){
             return parseFloat(27/this.state.eternalPrice).toFixed(4)
@@ -414,7 +455,6 @@ class GetEternal extends Component{
             return parseFloat(3/this.state.eternalPrice).toFixed(4)
         }
     }
-
     getContractDays(){
         if (this.state.selectDays === "30"){
             return 27
@@ -426,70 +466,29 @@ class GetEternal extends Component{
             return 3
         }
     }
-
-    getConvertedNewTax(i){
-        if (this.state.currency === "USD"){
-            return (i-19)*this.state.selectDays
+    getWorkersUSD(){
+        if(this.state.currency === "USD"){
+            return this.state.workers*this.getContractDays()
         } else if (this.state.currency === "PHP"){
-            return (i-19)*this.state.selectDays*this.state.php
+            return this.state.workers*this.getContractDays()*this.state.php
         } else if (this.state.currency === "GBP"){
-            return (i-19)*this.state.selectDays*this.state.gbp
+            return this.state.workers*this.getContractDays()*this.state.gbp
         } else if (this.state.currency === "EUR"){
-            return (i-19)*this.state.selectDays*this.state.eur
+            return this.state.workers*this.getContractDays()*this.state.eur
         } else if (this.state.currency === "BRL"){
-            return (i-19)*this.state.selectDays*this.state.brl
+            return this.state.workers*this.getContractDays()*this.state.brl
         } else if (this.state.currency === "SGD"){
-            return (i-19)*this.state.selectDays*this.state.sgd
+            return this.state.workers*this.getContractDays()*this.state.sgd
         } else if (this.state.currency === "THB"){
-            return (i-19)*this.state.selectDays*this.state.thb
+            return this.state.workers*this.getContractDays()*this.state.thb
         } else if (this.state.currency === "CNY"){
-            return (i-19)*this.state.selectDays*this.state.cny
+            return this.state.workers*this.getContractDays()*this.state.cny
         } else if (this.state.currency === "TWD") {
-            return (i-19)*this.state.selectDays*this.state.twd
+            return this.state.workers*this.getContractDays()*this.state.twd
         } else if (this.state.currency === "INR") {
-            return (i-19)*this.state.selectDays*this.state.inr
+            return this.state.workers*this.getContractDays()*this.state.inr
         }
     }
-
-    getFleetMineETL(i){
-        return parseFloat((this.getFleetMineUSDETL(i)/this.state.eternalPrice)).toFixed(4)
-    }
-
-    getFleetMineUSDETL(i){
-        if (i < 5){
-            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
-        } else {
-            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
-        }
-    }
-
-    getFleetMineUSD(i){
-        if (i < 5){
-            return parseFloat((this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
-        }  else {
-            return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
-        }
-    }
-    getFleetMineUSDM(i){
-        if (i < 5){
-            return parseFloat((this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-        } else {
-            return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-        }
-    }
-
-    getFleetSRvsUSD(i){
-        if (this.state.fleet_rank === ""){
-            return 'Enter Fleet Rank'
-        } 
-        else if (isNaN(parseFloat(this.getFleetMineUSD(i)* this.state.selectDays * this.getFleetSuccessChance(i) / 100).toFixed(2))) {
-            return this.state.errorMP
-        }
-        else {
-            return this.state.currencySymbol+parseFloat(this.getFleetMineUSD(i)* this.state.selectDays * this.getFleetSuccessChance(i) / 100).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-        }
-    }
-
     getFleetContractCostETL(){
         return parseFloat(((this.getContractDays()*this.state.workers)/this.state.eternalPrice)).toFixed(4)
     }
@@ -519,7 +518,30 @@ class GetEternal extends Component{
 
     }
 
-
+    //Net Profit
+    getConvertedNewTax(i){
+        if (this.state.currency === "USD"){
+            return (i-19)*this.state.selectDays
+        } else if (this.state.currency === "PHP"){
+            return (i-19)*this.state.selectDays*this.state.php
+        } else if (this.state.currency === "GBP"){
+            return (i-19)*this.state.selectDays*this.state.gbp
+        } else if (this.state.currency === "EUR"){
+            return (i-19)*this.state.selectDays*this.state.eur
+        } else if (this.state.currency === "BRL"){
+            return (i-19)*this.state.selectDays*this.state.brl
+        } else if (this.state.currency === "SGD"){
+            return (i-19)*this.state.selectDays*this.state.sgd
+        } else if (this.state.currency === "THB"){
+            return (i-19)*this.state.selectDays*this.state.thb
+        } else if (this.state.currency === "CNY"){
+            return (i-19)*this.state.selectDays*this.state.cny
+        } else if (this.state.currency === "TWD") {
+            return (i-19)*this.state.selectDays*this.state.twd
+        } else if (this.state.currency === "INR") {
+            return (i-19)*this.state.selectDays*this.state.inr
+        }
+    }
     getFleetNet(i){
         if (this.state.fleet_rank === ""){
             return 'Enter Fleet Rank'
@@ -552,30 +574,7 @@ class GetEternal extends Component{
         }
     }
 
-    getWorkersUSD(){
-        if(this.state.currency === "USD"){
-            return this.state.workers*this.getContractDays()
-        } else if (this.state.currency === "PHP"){
-            return this.state.workers*this.getContractDays()*this.state.php
-        } else if (this.state.currency === "GBP"){
-            return this.state.workers*this.getContractDays()*this.state.gbp
-        } else if (this.state.currency === "EUR"){
-            return this.state.workers*this.getContractDays()*this.state.eur
-        } else if (this.state.currency === "BRL"){
-            return this.state.workers*this.getContractDays()*this.state.brl
-        } else if (this.state.currency === "SGD"){
-            return this.state.workers*this.getContractDays()*this.state.sgd
-        } else if (this.state.currency === "THB"){
-            return this.state.workers*this.getContractDays()*this.state.thb
-        } else if (this.state.currency === "CNY"){
-            return this.state.workers*this.getContractDays()*this.state.cny
-        } else if (this.state.currency === "TWD") {
-            return this.state.workers*this.getContractDays()*this.state.twd
-        } else if (this.state.currency === "INR") {
-            return this.state.workers*this.getContractDays()*this.state.inr
-        }
-    }
-
+    //Fuel
     getFuel(i){
         if(this.state.currency === "USD"){
             return parseFloat((this.state.fuel[i]/100)).toFixed(2)
@@ -599,7 +598,7 @@ class GetEternal extends Component{
             return parseFloat((this.state.fuel[i]/100)*this.state.inr).toFixed(2)
         }
     }
-
+    //Pretty Print
     getFuelM(i){
         if(this.state.currency === "USD"){
             return parseFloat((this.state.fuel[i]/100)).toLocaleString(undefined, {minimumFractionDigits: 2,
@@ -634,6 +633,8 @@ class GetEternal extends Component{
         }
     }
 
+
+    // Success Chance Selector
     getFleetSuccessChance(i){
         if (this.state.fleet_rank === "D" || this.state.fleet_rank === "d" ) {
             return this.getFleetDSR(i)
@@ -647,7 +648,7 @@ class GetEternal extends Component{
             return this.getFleetSSR(i)
         }   
     }
-
+    //Pretty Print
     getFleetSuccessChanceM(i){
         if (this.state.fleet_rank === "D" || this.state.fleet_rank === "d" ) {
             return this.getFleetDSR(i)
@@ -662,7 +663,7 @@ class GetEternal extends Component{
         }   
     }
 
-
+    //Base Success Rates
     getFleetDSR(i){
         if (this.state.mp > 1499) {
             const diff = this.state.mp - this.getMinePower(i);
