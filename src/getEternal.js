@@ -427,23 +427,47 @@ class GetEternal extends Component{
         }
     }
 
+    getConvertedNewTax(i){
+        if (this.state.currency === "USD"){
+            return (i-19)*this.state.selectDays
+        } else if (this.state.currency === "PHP"){
+            return (i-19)*this.state.selectDays*this.state.php
+        } else if (this.state.currency === "GBP"){
+            return (i-19)*this.state.selectDays*this.state.gbp
+        } else if (this.state.currency === "EUR"){
+            return (i-19)*this.state.selectDays*this.state.eur
+        } else if (this.state.currency === "BRL"){
+            return (i-19)*this.state.selectDays*this.state.brl
+        } else if (this.state.currency === "SGD"){
+            return (i-19)*this.state.selectDays*this.state.sgd
+        } else if (this.state.currency === "THB"){
+            return (i-19)*this.state.selectDays*this.state.thb
+        } else if (this.state.currency === "CNY"){
+            return (i-19)*this.state.selectDays*this.state.cny
+        } else if (this.state.currency === "TWD") {
+            return (i-19)*this.state.selectDays*this.state.twd
+        } else if (this.state.currency === "INR") {
+            return (i-19)*this.state.selectDays*this.state.inr
+        }
+    }
+
     getFleetMineETL(i){
         return parseFloat((this.getFleetMineUSDETL(i)/this.state.eternalPrice)).toFixed(4)
     }
 
     getFleetMineUSDETL(i){
         if (i < 5){
-            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
+            return parseFloat((this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
         } else {
-            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+            return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
         }
     }
 
     getFleetMineUSD(i){
         if (i < 5){
-            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
+            return parseFloat((this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
         }  else {
-            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+            return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
         }
     }
     getFleetMineUSDM(i){
@@ -504,7 +528,7 @@ class GetEternal extends Component{
             return this.state.errorMP
         } else {
             if (i > 19){
-                return this.state.currencySymbol+parseFloat((( (this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD()) - (i-19)*this.state.selectDays ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+                return this.state.currencySymbol+parseFloat((( (this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD()) - this.getConvertedNewTax(i) ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
             } else {
                 return this.state.currencySymbol+parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD()).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
             }
@@ -520,7 +544,7 @@ class GetEternal extends Component{
         }
         else {
             if (i > 19){
-                return this.state.currencySymbol+parseFloat((( (this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD() - (this.getFuel(i)*this.state.selectDays)) - ((i-19)*this.state.selectDays) ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+                return this.state.currencySymbol+parseFloat((( (this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD() - (this.getFuel(i)*this.state.selectDays)) - this.getConvertedNewTax(i) ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
             }
             else {
                 return this.state.currencySymbol+parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD() - (this.getFuel(i)*this.state.selectDays) ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
