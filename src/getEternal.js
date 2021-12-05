@@ -432,14 +432,35 @@ class GetEternal extends Component{
     }
 
     getFleetMineUSDETL(i){
-        return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+        if (i < 5){
+            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
+        } else {
+            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+        }
     }
 
     getFleetMineUSD(i){
-        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+        if (i < 5){
+            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
+        } 
+        // $1-$10 Minus for Planets 21-30
+        else if (i > 19){
+            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) - (i-19)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        } else {
+            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+        }
     }
     getFleetMineUSDM(i){
-        return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2})
+        if (i < 5){
+            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        } 
+        //$1-$10 Minus for Planets 21-30
+        else if (i > 19){
+            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) - (i-19)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        }
+        else {
+            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        }
     }
 
     getFleetSRvsUSD(i){
@@ -452,7 +473,6 @@ class GetEternal extends Component{
         else {
             return this.state.currencySymbol+parseFloat(this.getFleetMineUSD(i)* this.state.selectDays * this.getFleetSuccessChance(i) / 100).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         }
-        
     }
 
     getFleetContractCostETL(){
@@ -2912,14 +2932,17 @@ class GetEternal extends Component{
                                     All Info can be found in: <b><a class="text-size-17" href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/>
                                     Read the future plans of the game thru here: <b><a class="text-size-17" href="https://cryptomines.medium.com/lets-build-cryptomines-together-roadmap-2022-e3ba5d10a62" rel="noreferrer" target="_blank">CryptoMines 2022 Roadmap</a> </b> <br/><br/>
                                     
-                                    What's New?<br/>
-                                    ▪️ We now get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/>
-                                    ▪️ You can now choose your currency fiat apart from USD (open for adding more).<br/>
+                                    <b class="text-size-17">▪️ Again, I would like to remind everyone that all values in sheet are approximates.</b><br/>
+                                    ▪️ We get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/><br/>
+                                    
+
+                                    <b class="text-size-20">What's New?</b><br/>
+                                    ▪️ Changes in earning to Planet 1-5 is implemented.<br/>
+                                    ▪️ Earnings in USD adjustment from Planet 21-30 are implemented.<br/>
                                     ▪️ 3 Days have been added. Default is still 7. <br/>
                                     <br/>
 
                                     Upcoming:<br/>
-                                    ▪️ Until the updates for the changes are live, the sheet will remain as it is.<br/>
                                     ▪️ Mobile View is still in EN, has no day or language select. Will come back for it when I have the time.<br/>
                                     
                                     </p>

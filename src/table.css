@@ -366,3 +366,6 @@ input[type=number] {
   font-weight: 700;
 }
 
+.text-size-20{
+  font-size: 20px !important;
+}
