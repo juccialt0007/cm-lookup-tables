@@ -442,23 +442,14 @@ class GetEternal extends Component{
     getFleetMineUSD(i){
         if (i < 5){
             return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
-        } 
-        // $1-$10 Minus for Planets 21-30
-        else if (i > 19){
-            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) - (i-19)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-        } else {
+        }  else {
             return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
         }
     }
     getFleetMineUSDM(i){
         if (i < 5){
             return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-        } 
-        //$1-$10 Minus for Planets 21-30
-        else if (i > 19){
-            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) - (i-19)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-        }
-        else {
+        } else {
             return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         }
     }
@@ -512,7 +503,12 @@ class GetEternal extends Component{
         else if (isNaN(parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD() ).toFixed(2))){
             return this.state.errorMP
         } else {
-            return this.state.currencySymbol+parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD() ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            if (i > 19){
+                return this.state.currencySymbol+parseFloat((( (this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD()) - (i-19)*this.state.selectDays ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            } else {
+                return this.state.currencySymbol+parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD()).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            }
+            
         }
     }
     getFleetNetFuel(i){
@@ -523,7 +519,12 @@ class GetEternal extends Component{
             return this.state.errorMP
         }
         else {
-            return this.state.currencySymbol+parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD() - (this.getFuel(i)*this.state.selectDays) ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            if (i > 19){
+                return this.state.currencySymbol+parseFloat((( (this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD() - (this.getFuel(i)*this.state.selectDays)) - ((i-19)*this.state.selectDays) ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            }
+            else {
+                return this.state.currencySymbol+parseFloat(((this.getFleetMineUSD(i)*this.state.selectDays) * (this.getFleetSuccessChance(i)/100)) - this.getWorkersUSD() - (this.getFuel(i)*this.state.selectDays) ).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            }
         }
     }
 
@@ -2933,12 +2934,13 @@ class GetEternal extends Component{
                                     Read the future plans of the game thru here: <b><a class="text-size-17" href="https://cryptomines.medium.com/lets-build-cryptomines-together-roadmap-2022-e3ba5d10a62" rel="noreferrer" target="_blank">CryptoMines 2022 Roadmap</a> </b> <br/><br/>
                                     
                                     <b class="text-size-17">▪️ Again, I would like to remind everyone that all values in sheet are approximates.</b><br/>
-                                    ▪️ We get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/><br/>
+                                    ▪️ We get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/>
+                                    ▪️ If you are experiencing any 'Not Enough MP' Errors. Simply Ctrl+Shift+R, it's a browser caching issue.<br/><br/>
                                     
 
                                     <b class="text-size-20">What's New?</b><br/>
                                     ▪️ Changes in earning to Planet 1-5 is implemented.<br/>
-                                    ▪️ Earnings in USD adjustment from Planet 21-30 are implemented.<br/>
+                                    ▪️ Earnings in USD adjustment from Planet 21-30 are implemented in Net Profit.<br/>
                                     ▪️ 3 Days have been added. Default is still 7. <br/>
                                     <br/>
 
