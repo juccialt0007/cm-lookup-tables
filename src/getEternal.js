@@ -2989,8 +2989,8 @@ class GetEternal extends Component{
                                     <th class="border border-2 border-dark">{this.state.selectDays}d Reward ({this.state.currency}) * SR</th>
                                     <th class="border border-2 border-dark">Fleet Contract / {this.state.selectDays}d (ETL)</th>
                                     <th class="border border-2 border-dark">Fleet Contract / {this.state.selectDays}d ({this.state.currency})</th>
-                                    <th class="border border-2 border-dark">Net Profit / {this.state.selectDays}d</th>
-                                    <th class="border border-2 border-dark">Net Profit - Fuel / {this.state.selectDays}d</th>
+                                    <th class="border border-2 border-dark" title="New tax system deductions for P21-P30">Net Profit / {this.state.selectDays}d</th>
+                                    <th class="border border-2 border-dark" title="New tax system deductions for P21-P30">Net Profit - Fuel / {this.state.selectDays}d</th>
                                 </tr>
 
                                 <tr class={this.state.visESP+" border border-dark"}>
@@ -3186,8 +3186,8 @@ class GetEternal extends Component{
                                                 <td class="border border-secondary">{this.getFleetSRvsUSD(i)}</td>
                                                 <td class="border border-secondary text-primary">{this.getFleetContractCostETL()} ETL</td>
                                                 <td class="border border-secondary">{this.state.currencySymbol}{this.getFleetContractCostUSD()}</td>
-                                                <td class="border border-secondary">{this.getFleetNet(i)}</td>
-                                                <td class="border border-secondary">{this.getFleetNetFuel(i)}</td>
+                                                <td class="border border-secondary" title="New tax system deductions for P21-P30">{this.getFleetNet(i)}</td>
+                                                <td class="border border-secondary" title="New tax system deductions for P21-P30">{this.getFleetNetFuel(i)}</td>
                                             </tr>
                                         )
                                     }
