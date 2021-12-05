@@ -457,9 +457,9 @@ class GetEternal extends Component{
 
     getFleetMineUSDETL(i){
         if (i < 5){
-            return parseFloat((this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
+            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toFixed(2)
         } else {
-            return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
+            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toFixed(2)
         }
     }
 
@@ -472,9 +472,9 @@ class GetEternal extends Component{
     }
     getFleetMineUSDM(i){
         if (i < 5){
-            return parseFloat((this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            return parseFloat((this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level])) + 0.4).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         } else {
-            return parseFloat( (this.getMineUSDETL(i) * (this.state.rank_reward[this.state.fleet_level]))).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            return parseFloat( (this.getMineUSD(i) * (this.state.rank_reward[this.state.fleet_level]))).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
         }
     }
 
