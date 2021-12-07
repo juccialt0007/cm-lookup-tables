@@ -370,6 +370,6 @@ input[type=number] {
   font-size: 20px !important;
 }
 
-.gold{
-  color: #ffe100
+.text-left-TRUE{
+  text-align: left !important;
 }
