@@ -1418,7 +1418,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contract / Worker</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1454,7 +1454,7 @@ class GetEternal extends Component{
                                     <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contrato / Trabajador</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Minteo</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Minteo</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1490,7 +1490,7 @@ class GetEternal extends Component{
                                     <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>ค่าต่อสัญญา/คนงาน</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>ค่าเปิดตัว/ยาน ใหม่</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>ค่าเปิดตัว/ยาน ใหม่</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1526,7 +1526,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Vertrag / Arbeiter</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Prägung</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Prägung</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1562,7 +1562,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Kontrak / Pekerja</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1598,7 +1598,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><span class="text-primary">ETL</span> <b>قرارداد/کارگر</b> -{'>'} <span class="text-primary">{this.getContractCost()}</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"><span class="text-primary">ETL</span> <b>استخراج</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)}</span> </p>
+                                        <p class="getEternalHeader text-center"><span class="text-warning">BNB $5 </span> &#38;  <span class="text-primary">ETL</span>  <b>استخراج</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)}</span>  </p>
                                     </div>
                                 </div>
 
@@ -1634,7 +1634,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Συμβόλαιο / Εργάτη</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1670,7 +1670,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contrato / Trabalhador</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Cunhagem</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Cunhagem</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1706,7 +1706,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contrat par travailleur</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1742,7 +1742,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>Contratto / Lavoratore</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1778,7 +1778,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>合約/工人</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>鑄造</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>鑄造</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
@@ -1814,7 +1814,7 @@ class GetEternal extends Component{
                                         <div class="col-8 mt-3"><p class="getEternalHeaderL"><b>合约/工人</b> -{'>'} <span class="text-primary">{this.getContractCost()} ETL</span> </p></div>
                                     </div>
                                     <div class="col-4  mt-3">
-                                        <p class="getEternalHeader text-center"> <b>铸造</b> -{'>'} <span class="text-primary">{parseFloat(20/this.state.eternalPrice).toFixed(4)} ETL</span> </p>
+                                        <p class="getEternalHeader text-center"> <b>铸造</b> -{'>'} <span class="text-primary">{parseFloat(15/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">$5 BNB</span> </p>
                                     </div>
                                 </div>
 
