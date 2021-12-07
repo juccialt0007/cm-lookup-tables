@@ -17,6 +17,7 @@ class GetEternal extends Component{
             twd: 0,
             cny: 0,
             inr: 0,
+            bnb: 0,
             // Sheet
             mp: 0,
             workers: 0,
@@ -78,7 +79,7 @@ class GetEternal extends Component{
         // this.setState({eternalPrice: data["data"]["price"]})
 
         // USDT to Conversion
-        const url = "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=php%2Cgbp%2Ceur%2Cbrl%2Cthb%2Csgd%2Ctwd%2Ccny%2Cinr"
+        const url = "https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=php%2Cgbp%2Ceur%2Cbrl%2Csgd%2Cthb%2Ctwd%2Ccny%2Cinr%2Cbnb"
         const response = await fetch(url);
         const data = await response.json();
         this.setState({
@@ -90,7 +91,8 @@ class GetEternal extends Component{
         thb: data["tether"]["thb"],
         twd: data["tether"]["twd"],
         cny: data["tether"]["cny"],
-        inr: data["tether"]["inr"]})
+        inr: data["tether"]["inr"],
+        bnb: data["tether"]["bnb"]})
         
         // Blockchain Pull Requests for Current Oracle Price
         const Web3 = require('web3');
@@ -1431,7 +1433,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1476,7 +1478,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minteo</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minteo</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1521,7 +1523,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>ค่าเปิดตัว/ยาน ใหม่</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>ค่าเปิดตัว/ยาน ใหม่</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1566,7 +1568,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Prägung</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Prägung</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1611,7 +1613,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1656,7 +1658,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"><span class="text-warning">BNB ${this.state.mintAmt*5} </span> &#38;  <span class="text-primary">ETL</span> <b>استخراج</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)}</span></p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"><span class="text-warning">BNB {parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} </span> &#38;  <span class="text-primary">ETL</span> <b>استخراج</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)}</span></p></div>
                                     </div>
                                 </div>
 
@@ -1701,7 +1703,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1746,7 +1748,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Cunhagem</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Cunhagem</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1791,7 +1793,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1836,7 +1838,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>Minting</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1881,7 +1883,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>鑄造</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>鑄造</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
@@ -1926,7 +1928,7 @@ class GetEternal extends Component{
                                                 <option value="20">20</option>
                                             </select>
                                         </div>
-                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>铸造</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">${this.state.mintAmt*5} BNB</span> </p></div>
+                                        <div class="col-8"><p class="getEternalHeader text-left-TRUE mt-3 ml-0 pl-0"> <b>铸造</b> -{'>'} <span class="text-primary">{parseFloat((15*this.state.mintAmt)/this.state.eternalPrice).toFixed(4)} ETL</span> &#38; <span class="text-warning">{parseFloat(this.state.mintAmt*5*this.state.bnb).toFixed(4)} BNB</span> </p></div>
                                     </div>
                                 </div>
 
