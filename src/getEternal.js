@@ -3069,9 +3069,14 @@ class GetEternal extends Component{
                             <div class={this.state.visInfo+" row"}>
                                 <div class="col-5">
                                     <p class="text-right1 my-2 pt-3">
+
+                                    <b><span class="text-size-17">CMSHEET will continue to be updated and maintained. This service is free and always will be.<br/>
+                                    CMSHEET will update to CM Reborn when it arrives.
+                                    </span></b><br/><br/>
+
                                     All Info can be found in: <b><a class="text-size-17" href="https://docs.cryptomines.app/" rel="noreferrer" target="_blank">CryptoMines Whitepaper</a> </b> <br/>
-                                    Read the future plans of the game thru here: <b><a class="text-size-17" href="https://cryptomines.medium.com/lets-build-cryptomines-together-roadmap-2022-e3ba5d10a62" rel="noreferrer" target="_blank">CryptoMines 2022 Roadmap</a> </b> <br/><br/>
-                                    
+                                    Read the future plans of the game thru here: <b><a class="text-size-17" href="https://cryptomines.medium.com/lets-build-cryptomines-together-roadmap-2022-e3ba5d10a62" rel="noreferrer" target="_blank">CryptoMines 2022 Roadmap</a> </b> <br/>
+                                    Read the next course of action here: <b><a class="text-size-17" href="https://cryptomines.medium.com/cryptomines-community-voting-980401bbec4e" rel="noreferrer" target="_blank">CryptoMines Voting and CryptoMines Reborn</a> </b> <br/><br/>
                                     <b class="text-size-17">▪️ Again, I would like to remind everyone that all values in sheet are approximates.</b><br/>
                                     ▪️ We get our USD/ETL straight from Pancho <br/>&emsp;&emsp;(Courtesy of midgetino#9342 and h0m3us3r#1911)<br/>
                                     ▪️ If you are experiencing any 'Not Enough MP' Errors. Simply Ctrl+Shift+R, it's a browser caching issue.<br/><br/>
